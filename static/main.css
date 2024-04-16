@@ -27,10 +27,13 @@ body {
   color: var(--black);
 }
 
-.banner {
-  background-color: red;
-}
+
+/* Global Styles */
 
 video {
   width: 100%;
+}
+
+.text-left {
+  text-align: left;
 }

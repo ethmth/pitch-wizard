@@ -1,25 +1,26 @@
 {% extends "layout.html" %} {% block content %}
 
-<script
-  type="text/javascript"
-  src="{{ url_for('static', filename = 'learn.js') }}"
-></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
 
 <script>
-  let lesson = {{lesson|tojson}}
+  let lesson = {{ lesson| tojson}}
 </script>
 
 <div class="container">
-  <div id="slide">
-    <h1>{{lesson.lessonName}}</h1>
-    <img
-      alt="Tux, the penguin character, who is the Linux mascot."
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/265px-Tux.svg.png"
-    />
-    <h2>
-      Learn how to identify 4 common Baseball pitches: Fastball, Changeup,
-      Curveball, and Knuckleball!
-    </h2>
+  <div class="row">
+
+    <div class="col-1"></div>
+    <div class="col-10" id="slide">
+      <h1>{{lesson.lessonName}}</h1>
+      <img alt="Tux, the penguin character, who is the Linux mascot."
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/265px-Tux.svg.png" />
+      <h2>
+        Learn how to identify 4 common Baseball pitches: Fastball, Changeup,
+        Curveball, and Knuckleball!
+      </h2>
+    </div>
+
+    <div class="col-1"></div>
   </div>
 </div>
 
