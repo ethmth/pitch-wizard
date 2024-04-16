@@ -1,0 +1,56 @@
+{
+  "lessons": [
+    {
+      "lessonId": 0,
+      "lessonName": "Tips",
+      "nextRoute": "/learn/1",
+      "slides": [
+        {
+          "slideName": "What is a Pitch?",
+          "slideType": "Information",
+          "slideMedia": [
+            {
+              "filename": "Intro_SwingAndMiss.mp4",
+              "caption": "Make the batter swing and miss"
+            },
+            {
+              "filename": "Intro_StrikeZone.mp4",
+              "caption": "Throw a pitch in the \"strike zone\" (white box)"
+            }
+          ],
+          "slideText": "In baseball, the pitcher’s goal is to get a strike, which leads to an out.\nThere are two ways to get a strike:"
+        },
+        {
+          "slideName": "Pitch Velocity",
+          "slideType": "Information",
+          "slideMedia": [
+            {
+              "filename": "Intro_PitchVelocityEdited.mp4",
+              "caption": "Nick Pivetta, Boston Red Sox"
+            }
+          ],
+          "slideText": "Pitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
+        }
+      ]
+    },
+    {
+      "lessonId": 1,
+      "lessonName": "Fastball",
+      "nextRoute": "/miniquiz/1",
+      "slides": [
+        {
+          "slideName": "Info",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "Velocity: 92-105 mph\nMovement: Straight line; little to no curve.\nGoal: So fast that the batter can’t react in time.\nMost common baseball pitch."
+        },
+        {
+          "slideName": "Example 1",
+          "slideType": "Example",
+          "slideMedia": ["FastballExample1_ReidDetmers.mp4"],
+          "slideText": "Reid Detmers, Los Angeles Angels"
+        }
+      ]
+    }
+  ]
+}
