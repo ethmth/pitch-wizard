@@ -5,20 +5,8 @@ const slideNavigation = "#slide-navigation";
 let slides = {};
 let currentSlide = 0;
 
-function nextButtonClicked(nextBehavior, nextRoute) {
-  // window.location.href = "/learn/1";
+function nextButtonClicked() {
   console.log("Next button clicked");
-
-  console.log("Next behavior " + nextBehavior);
-
-  const slidesLength = Object.keys(slides).length;
-
-  if (nextBehavior == "lesson" || currentSlide >= slidesLength - 1) {
-    window.location.href = nextRoute;
-    return;
-  } else {
-    setSlide(currentSlide + 1);
-  }
 }
 
 function getSlideMediaDiv(slideMedia) {
@@ -120,13 +108,13 @@ function genSlideNavigation() {
 }
 
 $(document).ready(function () {
-  initializeSlides(lesson["slides"]);
+  // initializeSlides(lesson["slides"]);
 
-  genSlideNavigation();
+  // genSlideNavigation();
 
-  renderCurrentSlide();
+  // renderCurrentSlide();
 
   $(nextButton).click(function () {
-    nextButtonClicked(lesson["nextBehavior"], lesson["nextRoute"]);
+    nextButtonClicked();
   });
 });

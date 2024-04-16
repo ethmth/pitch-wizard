@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz_welcome.js') }}"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10" id="slide">
+      <h1>Time to begin the quiz!</h1>
+      <img alt="Tux, the penguin character, who is the Linux mascot."
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/265px-Tux.svg.png" />
+      <h2>
+        Bruh bruh bruh
+      </h2>
+    </div>
+
+    <div class="col-1" id="next-button-div">
+      <button type="button" class="btn btn-primary" id="next-button">Start</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

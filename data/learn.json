@@ -4,6 +4,7 @@
       "lessonName": "Introduction",
       "nextRoute": "/learn/1",
       "nextBehavior": "slide",
+      "nextText": "Next",
       "slides": [
         {
           "slideName": "What is a Pitch?",
@@ -40,6 +41,7 @@
       "lessonName": "Pitch 1: The Fastball",
       "nextRoute": "/quiz/0",
       "nextBehavior": "lesson",
+      "nextText": "Take MiniQuiz",
       "slides": [
         {
           "slideName": "Info",

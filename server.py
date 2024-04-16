@@ -34,6 +34,9 @@ def learn(learn_id):
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
     question_id = str(question_id)
+    if question_id == "0":
+        return render_template('quiz_welcome.html')
+
     question = questions[question_id]
     return render_template('quiz.html', question=question)
 

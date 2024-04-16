@@ -1,5 +1,5 @@
 function nextButtonClicked() {
-    window.location.href = "/learn/0";
+    window.location.href = "/quiz/1";
 }
 
 $(document).ready(function () {

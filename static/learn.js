@@ -1,16 +1,7 @@
-const VIDEO_DOMAIN = "https://droplet.ethanmt.com/videos/pitching/";
-const slideDiv = "#slide";
-const nextButton = "#next-button";
-const slideNavigation = "#slide-navigation";
 let slides = {};
 let currentSlide = 0;
 
 function nextButtonClicked(nextBehavior, nextRoute) {
-  // window.location.href = "/learn/1";
-  console.log("Next button clicked");
-
-  console.log("Next behavior " + nextBehavior);
-
   const slidesLength = Object.keys(slides).length;
 
   if (nextBehavior == "lesson" || currentSlide >= slidesLength - 1) {
@@ -25,31 +16,7 @@ function getSlideMediaDiv(slideMedia) {
   let slide_media_div = $("<div>").addClass("row");
 
   for (const media of slideMedia) {
-    const videoURL = VIDEO_DOMAIN + media["filename"];
-    const captionLocation = media["captionLocation"];
-
-    let slide_col = $("<div>").addClass("col-12");
-
-    let slide_video = $("<video>").addClass("");
-    let slide_source = $("<source>").addClass("");
-    let slide_caption;
-    if (captionLocation == "bottom") {
-      slide_caption = $("<span>").addClass("");
-    } else {
-      slide_caption = $("<h4>").addClass("");
-    }
-
-    slide_video.attr("controls", "controls");
-    slide_source.attr("type", "video/mp4");
-    slide_source.attr("src", videoURL);
-    slide_caption.text(media["caption"]);
-
-    slide_video.append(slide_source);
-    if (captionLocation == "bottom") {
-      slide_col.append(slide_video, slide_caption);
-    } else {
-      slide_col.append(slide_caption, slide_video);
-    }
+    let slide_col = genMediaDiv(media);
     slide_media_div.append(slide_col);
   }
 
@@ -101,7 +68,6 @@ function setSlide(slide_number) {
 }
 
 function genSlideNavigation() {
-  console.log(slides);
   $(slideNavigation).empty();
 
   for (const key in slides) {
@@ -121,6 +87,7 @@ function genSlideNavigation() {
 
 $(document).ready(function () {
   initializeSlides(lesson["slides"]);
+  setNextButtonText(lesson["nextText"]);
 
   genSlideNavigation();
 
