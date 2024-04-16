@@ -55,3 +55,8 @@ video {
   margin-left: 2px;
   margin-right: 2px;
 }
+
+.option-input {
+  width: 50px;
+  background-color: red;
+}

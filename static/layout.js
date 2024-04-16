@@ -56,9 +56,41 @@ function setNextButtonText(new_text) {
 }
 
 function genQuestionIdentify(question) {
-  let question_div = $("<div>").addClass("");
+  console.log(question);
 
-  question_div.text("Identify");
+  const options = question["options"];
+
+  console.log(options);
+
+  let question_div = $("<div>").addClass("btn-group row");
+
+  for (const key in options) {
+    const option = options[key];
+    console.log(key);
+    console.log(option);
+
+    let media_div = genMediaDiv(option["optionMedia"]);
+
+    let btn_div = $("<div>").addClass("");
+    // let selection_button = $("<button>").addClass("btn btn-primary");
+    let btn_input = $("<input>").addClass("btn-check option-input");
+    btn_input.attr("type", "radio");
+    btn_input.attr("name", "options");
+    btn_input.attr("id", `option-${key}`);
+    btn_input.attr("autocomplete", "off");
+
+    let btn_label = $("<label>").addClass("btn btn-secondary option-label");
+    btn_label.attr("for", `option-${key}`);
+    btn_label.text(`Option ${key}`);
+
+    btn_div.append(btn_input, btn_label);
+    // selection_button.text("This One")
+
+    question_div.append(media_div);
+    question_div.append(btn_div);
+    // question_div.append(btn_input);
+    // question_div.append(btn_label);
+  }
 
   return question_div;
 }
@@ -81,7 +113,6 @@ function genQuestionSelect(question) {
 
 function genQuestion(question) {
   const questionType = question["questionType"];
-  console.log(question);
 
   let questionText = "";
   if (question["questionText"]) {
