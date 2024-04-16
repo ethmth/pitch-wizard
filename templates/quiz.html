@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+<script>
+  let lesson = {{ lesson| tojson}}
+</script>
+
+<div class="container">
+
+  <div class="row">
+    <h1>{{lesson.lessonName}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-12" id="slide-navigation">
+      <button type="button" class="btn btn-secondary">ButtonHere</button>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-1"></div>
+    <div class="col-10" id="slide">
+    </div>
+
+    <div class="col-1" id="next-button-div">
+      <button type="button" class="btn btn-primary" id="next-button">Next</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

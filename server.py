@@ -31,6 +31,12 @@ def learn(learn_id):
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
 
+@app.route('/quiz/<int:question_id>')
+def quiz(question_id):
+    question_id = str(question_id)
+    question = questions[question_id]
+    return render_template('quiz.html', question=question)
+
 # AJAX FUNCTIONS
 
 # @app.route('/edit_data', methods=['GET', 'POST'])
