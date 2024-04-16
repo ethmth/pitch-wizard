@@ -2,7 +2,7 @@ const slideDiv = "#slide";
 const nextButton = "#next-button";
 const slideNavigation = "#slide-navigation";
 
-const VIDEO_DOMAIN = "https://droplet.ethanmt.com/videos/pitching/";
+const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
 function genMediaDiv(media) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
