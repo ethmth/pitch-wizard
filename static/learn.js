@@ -1,6 +1,7 @@
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/videos/pitching/";
 const slideDiv = "#slide";
 const nextButton = "#next-button";
+const slideNavigation = "#slide-navigation";
 let slides = {};
 let currentSlide = 0;
 
@@ -16,8 +17,7 @@ function nextButtonClicked(nextBehavior, nextRoute) {
     window.location.href = nextRoute;
     return;
   } else {
-    currentSlide += 1;
-    renderCurrentSlide();
+    setSlide(currentSlide + 1);
   }
 }
 
@@ -40,7 +40,7 @@ function getSlideMediaDiv(slideMedia) {
     slide_caption.text(media["caption"]);
 
     slide_video.append(slide_source);
-    if(captionLocation == "bottom") {
+    if (captionLocation == "bottom") {
       slide_col.append(slide_video, slide_caption);
     } else {
       slide_col.append(slide_caption, slide_video);
@@ -54,7 +54,10 @@ function getSlideMediaDiv(slideMedia) {
 function renderSlide(slide) {
   $(slideDiv).empty();
 
-  const slideText = slide["slideText"].replace("\n", "<br/>");
+  let slideText = "";
+  if (slide["slideText"]) {
+    slideText = slide["slideText"].replaceAll("\n", "<br/>");
+  }
 
   let slide_div = $("<div>").addClass("");
   let slide_title = $("<h1>").addClass("");
@@ -87,8 +90,34 @@ function initializeSlides(slides_array) {
   slides = slides_dict;
 }
 
+function setSlide(slide_number) {
+  currentSlide = Number(slide_number);
+  renderCurrentSlide();
+}
+
+function genSlideNavigation() {
+  console.log(slides);
+  $(slideNavigation).empty();
+
+  for (const key in slides) {
+    let slide = slides[key];
+
+    let slide_div = $("<div>").addClass("slide-button-div");
+    let slide_button = $("<button>").addClass("btn btn-secondary");
+    slide_button.click(function () {
+      setSlide(key);
+    });
+    slide_button.text(slide["slideName"]);
+    slide_div.append(slide_button);
+
+    $(slideNavigation).append(slide_div);
+  }
+}
+
 $(document).ready(function () {
   initializeSlides(lesson["slides"]);
+
+  genSlideNavigation();
 
   renderCurrentSlide();
 

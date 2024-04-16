@@ -42,3 +42,16 @@ video {
   display: flex;
   align-items: center;
 }
+
+#slide-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slide-button-div {
+  margin-left: 2px;
+  margin-right: 2px;
+}
