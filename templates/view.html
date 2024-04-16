@@ -1,0 +1,104 @@
+{% extends "layout.html" %} {% block content %}
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'view.js') }}"
+></script>
+
+<script>
+  let entry = {{entry|tojson}}
+  let others_family = {{others_family|tojson}}
+  let others_difficulty = {{others_difficulty|tojson}}
+</script>
+
+<div class="container-fluid">
+  <div class="view-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 view-entry-banner-left">
+          <div class="view-entry-title">{{entry.name}}</div>
+          <div id="view-entry-rating"></div>
+          <div id="view-entry-difficulty"></div>
+        </div>
+
+        <div class="col-6 view-entry-banner-right">
+          <img
+            class=""
+            src="{{entry.logo}}"
+            alt="The logo for the {{entry.name}} Linux Distribution"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8 view-entry-left">
+        <div class="view-entry-description">{{entry.description}}</div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Architectures:</div>
+          <div class="col-9 view-entry-table-right">
+            <div id="view-entry-arches"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Family:</div>
+          <div class="col-9 view-entry-table-right">{{entry.family}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Package Manager:</div>
+          <div class="col-9 view-entry-table-right">
+            {{entry.package_manager}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Default Desktop:</div>
+          <div class="col-9 view-entry-table-right">
+            {{entry.default_desktop}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Upgrade Style:</div>
+          <div class="col-9 view-entry-table-right">
+            {{entry.upgrade_style}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Init System:</div>
+          <div class="col-9 view-entry-table-right">{{entry.init_system}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Released:</div>
+          <div class="col-9 view-entry-table-right">{{entry.release_year}}</div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3 view-entry-right">
+        <button class="btn btn-primary" id="edit-entry-button">Edit</button>
+        <div class="view-entry-right-section">
+          <div class="view-entry-right-section-title">
+            Other "{{entry.experience_level}}" distros:
+          </div>
+          <div id="view-entry-other-distros-difficulty"></div>
+        </div>
+
+        <div class="view-entry-right-section">
+          <div class="view-entry-right-section-title">
+            Other {{entry.family}}-family distros:
+          </div>
+          <div id="view-entry-other-distros-family"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>

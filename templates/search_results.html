@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block content %}
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'search_results.js') }}"
+></script>
+
+<script>
+  let results = {{results|tojson}}
+  let search_term = "{{search_term}}"
+</script>
+
+<div class="container">
+  <div class="row title">
+    {{ results|length }} Search Results for "{{search_term}}"
+  </div>
+
+  {% if results|length > 0 %}
+  <div class="search-results-key">
+    <div class="row">
+      <div class="col-2">Distro Name</div>
+      <div class="col-2">Rating</div>
+      <div class="col-2">Difficulty</div>
+      <div class="col-6">Supported Architectures</div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div id="search-results"></div>
+</div>
+
+{% endblock %}

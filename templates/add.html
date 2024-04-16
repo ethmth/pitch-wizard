@@ -1,0 +1,121 @@
+{% extends "layout.html" %} {% block content %}
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'add.js') }}"
+></script>
+
+<script>
+  let family_options = {{family_options|tojson}}
+  let package_manager_options = {{package_manager_options|tojson}}
+  let default_desktop_options = {{default_desktop_options|tojson}}
+  let upgrade_style_options = {{upgrade_style_options|tojson}}
+  let init_system_options = {{init_system_options|tojson}}
+</script>
+
+<div class="container-fluid edit-page">
+  <div id="success-banner"></div>
+  <div class="view-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 view-entry-banner-left">
+          <!-- <label class="edit-label" for="edit-entry-title">Distro Name:</label> -->
+          <div>
+            <input
+              id="edit-entry-title"
+              type="text"
+              placeholder="Distro Name"
+            />
+            <span class="error" id="edit-entry-title-error">&nbsp;</span>
+          </div>
+          <div id="view-entry-rating"></div>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            value="5"
+            id="edit-entry-rating"
+          />
+          <div id="view-entry-difficulty"></div>
+          <label class="edit-label" for="edit-entry-difficulty"
+            >Difficulty:</label
+          >
+          <select id="edit-entry-difficulty">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate" selected>Intermediate</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+
+        <div class="col-6 view-entry-banner-right">
+          <div>
+            <input
+              id="edit-entry-image"
+              type="text"
+              placeholder="Logo Image URL"
+            />
+            <span class="error" id="edit-entry-image-error">&nbsp;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8 view-entry-left">
+        <div class="view-entry-description">
+          <textarea
+            id="edit-entry-description"
+            cols="30"
+            rows="7"
+            placeholder="Distro Description"
+          ></textarea>
+          <span class="error" id="edit-entry-description-error">&nbsp;</span>
+        </div>
+
+        <div class="row">
+          <div class="col-3 view-entry-table-left">
+            Architectures:
+            <div id="edit-entry-arch-div">
+              <input
+                id="edit-entry-arch-add"
+                type="text"
+                placeholder="Ex: arm64"
+                value=""
+              />
+              <button
+                id="edit-entry-arch-button"
+                type="button"
+                class="btn btn-success"
+              >
+                +
+              </button>
+            </div>
+            <div class="error" id="edit-entry-arch-error">&nbsp;</div>
+          </div>
+          <div class="col-9 view-entry-table-right">
+            <div id="view-entry-arches"></div>
+          </div>
+        </div>
+
+        <div id="edit-entry-dropdowns"></div>
+        <div class="row">
+          <div class="col-3 view-entry-table-left">Released:</div>
+          <div class="col-9 view-entry-table-right">
+            <input id="edit-entry-year" type="text" placeholder="Year" />
+            <span class="error" id="edit-entry-year-error">&nbsp;</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <button id="edit-entry-button" type="button" class="btn btn-primary">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>
