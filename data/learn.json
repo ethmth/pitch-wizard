@@ -1,7 +1,6 @@
 {
-  "lessons": [
-    {
-      "lessonId": 1,
+  "lessons": {
+    "1": {
       "lessonName": "Tips",
       "nextRoute": "/learn/1",
       "slides": [
@@ -33,8 +32,7 @@
         }
       ]
     },
-    {
-      "lessonId": 2,
+    "2": {
       "lessonName": "Fastball",
       "nextRoute": "/miniquiz/1",
       "slides": [
@@ -52,5 +50,5 @@
         }
       ]
     }
-  ]
+  }
 }

@@ -1,6 +1,6 @@
 {
-  "questions": [
-    {
+  "questions": {
+    "1": {
       "questionName": "Question 1",
       "questionType": "Identify",
       "questionText": "Which of these pitches is a fastball?",
@@ -18,7 +18,7 @@
         }
       ]
     },
-    {
+    "2": {
       "questionName": "Question 2",
       "questionType": "Match",
       "questionText": "Match these pitches to the correct video.",
@@ -36,5 +36,5 @@
         }
       ]
     }
-  ]
+  }
 }

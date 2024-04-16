@@ -49,6 +49,9 @@ def read_json():
     with open("data/quiz.json", 'r') as f:
         questions = json.load(f)
 
+    lessons = lessons['lessons']
+    questions = questions['questions']
+
 # current_id = 17
 
 # FUNCTIONS
@@ -80,12 +83,15 @@ def home():
 
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
-    # data_id = str(data_id)
+    learn_id = str(learn_id)
     # global data
     # entry = data[data_id]
     # others_family = get_others_same("family", entry)
     # others_difficulty = get_others_same("experience_level", entry)
-    return render_template('learn.html', lesson=lesson, next_route=next_route)
+
+    # lesson = get_lesson(learn_id)
+    lesson = lessons[learn_id]
+    return render_template('learn.html', lesson=lesson)
 
 # @app.route('/edit/<int:data_id>')
 # def edit(data_id):
@@ -145,6 +151,8 @@ def learn(learn_id):
 # DRIVER
 if __name__ == '__main__':
     read_json()
+    print(lessons)
+    print(questions)
     app.run(debug = True)
 
 
