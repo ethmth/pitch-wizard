@@ -32,7 +32,12 @@ function getSlideMediaDiv(slideMedia) {
 
     let slide_video = $("<video>").addClass("");
     let slide_source = $("<source>").addClass("");
-    let slide_caption = $("<span>").addClass("");
+    let slide_caption;
+    if (captionLocation == "bottom") {
+      slide_caption = $("<span>").addClass("");
+    } else {
+      slide_caption = $("<h4>").addClass("");
+    }
 
     slide_video.attr("controls", "controls");
     slide_source.attr("type", "video/mp4");
@@ -60,8 +65,8 @@ function renderSlide(slide) {
   }
 
   let slide_div = $("<div>").addClass("");
-  let slide_title = $("<h1>").addClass("");
-  let slide_text = $("<h2>").addClass("text-left");
+  let slide_title = $("<h2>").addClass("");
+  let slide_text = $("<h3>").addClass("text-left");
   let slide_media_div = $("<div>");
   if (slide["slideMedia"]) {
     slide_media_div = getSlideMediaDiv(slide["slideMedia"]);

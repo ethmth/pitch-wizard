@@ -1,7 +1,7 @@
 {
   "lessons": {
     "1": {
-      "lessonName": "Tips",
+      "lessonName": "Introduction",
       "nextRoute": "/learn/2",
       "nextBehavior": "slide",
       "slides": [
@@ -11,12 +11,12 @@
           "slideMedia": [
             {
               "filename": "Intro_SwingAndMiss.mp4",
-              "caption": "Make the batter swing and miss",
+              "caption": "Make the batter swing and miss:",
               "captionLocation": "top"
             },
             {
               "filename": "Intro_StrikeZone.mp4",
-              "caption": "Throw a pitch in the \"strike zone\" (white box)",
+              "caption": "Throw a pitch in the \"strike zone\" (white box):",
               "captionLocation": "top"
             }
           ],
@@ -37,8 +37,8 @@
       ]
     },
     "2": {
-      "lessonName": "Fastball",
-      "nextRoute": "/miniquiz/1",
+      "lessonName": "Pitch 1: The Fastball",
+      "nextRoute": "/quiz/0",
       "nextBehavior": "lesson",
       "slides": [
         {
