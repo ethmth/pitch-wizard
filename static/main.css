@@ -30,3 +30,7 @@ body {
 .banner {
   background-color: red;
 }
+
+video {
+  width: 100%;
+}
