@@ -53,30 +53,30 @@ def read_json():
 
 # FUNCTIONS
 
-def select_unique(field):
-    results = []
-    for data_id in data:
-        if data[data_id][field] not in results:
-            results.append(data[data_id][field])
+# def select_unique(field):
+#     results = []
+#     for data_id in data:
+#         if data[data_id][field] not in results:
+#             results.append(data[data_id][field])
 
-    if "None" in results:
-        results.remove("None")
-        results.insert(0, "None")
+#     if "None" in results:
+#         results.remove("None")
+#         results.insert(0, "None")
 
-    return results
+#     return results
 
-def get_others_same(search_key, entry):
-    results = []
-    for data_id in data:
-        if entry[search_key] == data[data_id][search_key] and entry != data[data_id]:
-            results.append({"id": data_id, "name": data[data_id]["name"]})
-    return results
+# def get_others_same(search_key, entry):
+#     results = []
+#     for data_id in data:
+#         if entry[search_key] == data[data_id][search_key] and entry != data[data_id]:
+#             results.append({"id": data_id, "name": data[data_id]["name"]})
+#     return results
 
 # ROUTES
 
 @app.route('/')
 def home():
-   return render_template('home.html', data=data)
+   return render_template('home.html')
 
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):

@@ -28,9 +28,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" />
-
-    <title>Distro Database</title>
+    <title>Pitch Wizard</title>
   </head>
 
   <body>
@@ -41,7 +39,7 @@
           src="{{ url_for('static', filename = 'layout.js') }}"
         ></script>
 
-        <a class="navbar-brand" href="/">Distro Database</a>
+        <a class="navbar-brand" href="/">Pitch Wizard</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -55,25 +53,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="/add">Add Distro</a>
+            <a class="nav-link" href="/learn/1">Intro</a>
+            <a class="nav-link" href="/learn/2">Learn Fastball</a>
+            <a class="nav-link" href="/learn/3">Learn Changeup</a>
+            <a class="nav-link" href="/learn/4">Learn Curveball</a>
+            <a class="nav-link" href="/learn/5">Learn Knuckleball</a>
+            <a class="nav-link" href="/quiz/0">Quiz</a>
           </div>
         </div>
-
-        <!-- CITATION: Bootstrap Search Example - https://mdbootstrap.com/docs/standard/extended/navbar-search/ -->
-        <form id="search-form" class="d-flex input-group w-auto">
-          <input
-            id="search-input"
-            type="search"
-            class="form-control"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <button id="search-button" class="btn btn-primary" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
       </div>
     </nav>
 

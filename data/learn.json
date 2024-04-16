@@ -1,7 +1,7 @@
 {
   "lessons": [
     {
-      "lessonId": 0,
+      "lessonId": 1,
       "lessonName": "Tips",
       "nextRoute": "/learn/1",
       "slides": [
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "lessonId": 1,
+      "lessonId": 2,
       "lessonName": "Fastball",
       "nextRoute": "/miniquiz/1",
       "slides": [
