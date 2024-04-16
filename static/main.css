@@ -37,3 +37,8 @@ video {
 .text-left {
   text-align: left;
 }
+
+#next-button-div {
+  display: flex;
+  align-items: center;
+}

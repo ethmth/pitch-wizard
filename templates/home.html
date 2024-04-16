@@ -1,5 +1,7 @@
 {% extends "layout.html" %} {% block content %}
 
+<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script>
+
 <div class="container">
   <div class="row">
     <div class="col-1"></div>
@@ -13,7 +15,9 @@
       </h2>
     </div>
 
-    <div class="col-1">Hi</div>
+    <div class="col-1" id="next-button-div">
+      <button type="button" class="btn btn-primary" id="next-button">Begin</button>
+    </div>
   </div>
 </div>
 

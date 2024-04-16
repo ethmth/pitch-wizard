@@ -1,11 +1,15 @@
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/videos/pitching/";
 const slideDiv = "#slide";
+const nextButton = "#next-button";
 let slides = {};
 let currentSlide = 0;
 
-function getSlideMediaDiv(slideMedia) {
-  console.log(slideMedia);
+function nextButtonClicked() {
+    // window.location.href = "/learn/1";
+    console.log("Next button clicked");
+}
 
+function getSlideMediaDiv(slideMedia) {
   let slide_media_div = $("<div>").addClass("row");
 
   for (const media of slideMedia) {
@@ -46,8 +50,6 @@ function renderSlide(slide) {
   slide_title.text(slide["slideName"]);
   slide_text.html(slideText);
 
-  console.log(slide["slideText"]);
-
   slide_div.append(slide_title, slide_text, slide_media_div);
 
   $(slideDiv).append(slide_div);
@@ -69,8 +71,11 @@ function initializeSlides(slides_array) {
 }
 
 $(document).ready(function () {
-  console.log(lesson);
   initializeSlides(lesson["slides"]);
 
   renderCurrentSlide();
+
+  $(nextButton).click(function() {
+    nextButtonClicked();
+  });
 });
