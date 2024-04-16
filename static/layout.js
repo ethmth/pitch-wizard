@@ -47,11 +47,65 @@ function genMediaDiv(media) {
   return slide_col;
 }
 
-
 function setNextButtonText(new_text) {
-    let message = "Next";
-    if(new_text) {
-        message = new_text;
-    }
-    $(nextButton).text(message);
+  let message = "Next";
+  if (new_text) {
+    message = new_text;
+  }
+  $(nextButton).text(message);
+}
+
+function genQuestionIdentify(question) {
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Identify");
+
+  return question_div;
+}
+
+function genQuestionMatch(question) {
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Match");
+
+  return question_div;
+}
+
+function genQuestionSelect(question) {
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Select");
+
+  return question_div;
+}
+
+function genQuestion(question) {
+  const questionType = question["questionType"];
+  console.log(question);
+
+  let questionText = "";
+  if (question["questionText"]) {
+    questionText = question["questionText"].replaceAll("\n", "<br/>");
+  }
+
+  $(slideDiv).empty();
+
+  let question_div = $("<div>").addClass("");
+  let question_title = $("<h2>").addClass("");
+  let question_text = $("<h3>").addClass("text-left");
+
+  question_title.text(question["questionName"]);
+  question_text.html(questionText);
+
+  let question_content;
+  if (questionType == "Identify") {
+    question_content = genQuestionIdentify(question);
+  } else if (questionType == "Match") {
+    question_content = genQuestionMatch(question);
+  } else if (questionType == "Select") {
+    question_content = genQuestionSelect(question);
+  }
+
+  question_div.append(question_title, question_text, question_content);
+  $(slideDiv).append(question_div);
 }
