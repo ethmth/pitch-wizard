@@ -31,21 +31,45 @@
 // }
 
 const slideDiv = "#slide"
+let slides = {};
+let currentSlide = 0;
 
-function renderSlide(slide_number) {
+function renderSlide(slide) {
+  $(slideDiv).empty();
 
+  let slide_div = $("<div>").addClass("");
+  let slide_title = $("<h1>").addClass("");
+
+  slide_title.text(slide["slideName"]);
+
+  slide_div.append(slide_title);
+
+  $(slideDiv).append(slide_div);
 }
 
+function renderCurrentSlide() {
+  const slide = slides[currentSlide]
+
+  // console.log(slide);
+  renderSlide(slide);
+}
+
+function initializeSlides(slides_array) {
+  // console.log(slides_array);
+
+  const slides_dict = slides_array.reduce((acc, currentValue, index) => {
+    acc[index] = currentValue;
+    return acc;
+  }, {});
+
+  // console.log(slides_dict);
+  slides = slides_dict;
+}
+
+
 $(document).ready(function () {
-  // set_rating(entry);
-  // set_difficulty(entry);
-  // set_arches(entry);
-  // set_others_family(others_family);
-  // set_others_difficulty(others_difficulty);
+  console.log(lesson);
+  initializeSlides(lesson['slides']);
 
-  // $("#edit-entry-button").click(function () {
-  //   window.location.href = `/edit/${entry.id}`;
-  // });
-
-  renderSlide(0);
+  renderCurrentSlide();
 });

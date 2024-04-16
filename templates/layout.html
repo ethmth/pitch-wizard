@@ -28,16 +28,14 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" />
+
     <title>Pitch Wizard</title>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <script
-          type="text/javascript"
-          src="{{ url_for('static', filename = 'layout.js') }}"
-        ></script>
 
         <a class="navbar-brand" href="/">Pitch Wizard</a>
         <button

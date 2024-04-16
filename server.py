@@ -4,38 +4,6 @@ from flask import Response, request, jsonify
 import json
 app = Flask(__name__)
 
-# Video URL - https://youtu.be/spuJfcKAZFk
-
-# DATA
-# data = {
-#     "1": {
-#         "id": "1",
-#         "name": "Debian",
-#         "logo": "https://www.debian.org/Pics/debian-logo-1024x576.png",
-#         "description": "Debian is a venerable and widely respected Linux distribution known for its stability, reliability, and commitment to free and open-source software principles. It boasts a vast repository of precompiled software packages, making it a versatile choice for users ranging from novices to experienced sysadmins. Debian's package management system, APT (Advanced Package Tool), simplifies software installation and updates. One of its defining features is its strict adherence to the Debian Free Software Guidelines (DFSG), ensuring that all included software is free to use, modify, and distribute. With multiple officially supported architectures and a vibrant community, Debian continues to be a cornerstone of the open-source ecosystem, powering everything from personal computers to enterprise servers.",
-#         "release_year": 1993,
-#         "expert_rating": 8,
-#         "family": "Debian",
-#         "package_manager": "APT",
-#         "architectures": [
-#             "aarch64",
-#             "armel",
-#             "armhf",
-#             "i386",
-#             "i686",
-#             "loongarch64",
-#             "mipsel",
-#             "ppc64el",
-#             "s390x",
-#             "x86_64"
-#         ],
-#         "default_desktop": "GNOME",
-#         "upgrade_style": "Stable",
-#         "init_system": "Systemd",
-#         "experience_level": "Intermediate"
-#     }
-# }
-
 lessons = []
 questions = []
 
@@ -52,31 +20,7 @@ def read_json():
     lessons = lessons['lessons']
     questions = questions['questions']
 
-# current_id = 17
-
-# FUNCTIONS
-
-# def select_unique(field):
-#     results = []
-#     for data_id in data:
-#         if data[data_id][field] not in results:
-#             results.append(data[data_id][field])
-
-#     if "None" in results:
-#         results.remove("None")
-#         results.insert(0, "None")
-
-#     return results
-
-# def get_others_same(search_key, entry):
-#     results = []
-#     for data_id in data:
-#         if entry[search_key] == data[data_id][search_key] and entry != data[data_id]:
-#             results.append({"id": data_id, "name": data[data_id]["name"]})
-#     return results
-
 # ROUTES
-
 @app.route('/')
 def home():
    return render_template('home.html')
@@ -84,38 +28,8 @@ def home():
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
     learn_id = str(learn_id)
-    # global data
-    # entry = data[data_id]
-    # others_family = get_others_same("family", entry)
-    # others_difficulty = get_others_same("experience_level", entry)
-
-    # lesson = get_lesson(learn_id)
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
-
-# @app.route('/edit/<int:data_id>')
-# def edit(data_id):
-#     data_id = str(data_id)
-#     global data
-#     entry = data[data_id]
-#     return render_template('edit.html', 
-#         entry=entry, 
-#         family_options=select_unique("family"), 
-#         package_manager_options=select_unique("package_manager"),
-#         default_desktop_options=select_unique("default_desktop"), 
-#         upgrade_style_options=select_unique("upgrade_style"),
-#         init_system_options=select_unique("init_system")
-#         )
-
-# @app.route('/add')
-# def add():
-#     return render_template('add.html',
-#         family_options=select_unique("family"), 
-#         package_manager_options=select_unique("package_manager"),
-#         default_desktop_options=select_unique("default_desktop"), 
-#         upgrade_style_options=select_unique("upgrade_style"),
-#         init_system_options=select_unique("init_system")
-#         )
 
 # AJAX FUNCTIONS
 
@@ -151,8 +65,6 @@ def learn(learn_id):
 # DRIVER
 if __name__ == '__main__':
     read_json()
-    print(lessons)
-    print(questions)
     app.run(debug = True)
 
 
