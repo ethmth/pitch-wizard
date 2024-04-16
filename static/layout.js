@@ -55,6 +55,10 @@ function setNextButtonText(new_text) {
   $(nextButton).text(message);
 }
 
+function showNextButtonErrorMessage(message) {
+  console.log("showNextButtonErrorMessage: " + message);
+}
+
 function genQuestionIdentify(question) {
   console.log(question);
 
@@ -72,7 +76,6 @@ function genQuestionIdentify(question) {
     let media_div = genMediaDiv(option["optionMedia"]);
 
     let btn_div = $("<div>").addClass("");
-    // let selection_button = $("<button>").addClass("btn btn-primary");
     let btn_input = $("<input>").addClass("btn-check option-input");
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
@@ -84,18 +87,16 @@ function genQuestionIdentify(question) {
     btn_label.text(`Option ${key}`);
 
     btn_div.append(btn_input, btn_label);
-    // selection_button.text("This One")
 
     question_div.append(media_div);
     question_div.append(btn_div);
-    // question_div.append(btn_input);
-    // question_div.append(btn_label);
   }
 
   return question_div;
 }
 
 function genQuestionMatch(question) {
+  // TODO
   let question_div = $("<div>").addClass("");
 
   question_div.text("Match");
@@ -104,6 +105,7 @@ function genQuestionMatch(question) {
 }
 
 function genQuestionSelect(question) {
+  // TODO
   let question_div = $("<div>").addClass("");
 
   question_div.text("Select");
@@ -141,7 +143,12 @@ function genQuestion(question) {
   $(slideDiv).append(question_div);
 }
 
+function checkIfAnswered(question) {
+  // TODO Check if question is answered
+  return true;
+}
 
 function checkAnswer(question) {
+  // TODO Check answer and display incorrect/correct answer, update score, etc.
   console.log("Checking answer");
 }

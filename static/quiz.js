@@ -1,10 +1,10 @@
-let answered = false;
+let checked = false;
 
 
 function nextButtonClicked() {
   console.log("Next button clicked");
 
-  if(answered) {
+  if(checked) {
     if(Number(question_id) < Number(last_question)) {
       window.location.href = `/quiz/${(1 + Number(question_id))}`;
       return
@@ -12,15 +12,21 @@ function nextButtonClicked() {
       window.location.href = '/quiz_results';
     }
   } else {
-    answered = true;
-    checkAnswer(question);
+    let answered = checkIfAnswered(question);
+
+    if(answered) {
+      checked = true;
+      setNextButtonText("Continue");
+      checkAnswer(question);
+    }
+    else {
+      showNextButtonErrorMessage("Please Answer the Question");
+    }
   }
 }
 
 
 $(document).ready(function () {
-
-  console.log(question_id);
   genQuestion(question);
 
   $(nextButton).click(function () {
