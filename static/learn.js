@@ -4,9 +4,21 @@ const nextButton = "#next-button";
 let slides = {};
 let currentSlide = 0;
 
-function nextButtonClicked() {
-    // window.location.href = "/learn/1";
-    console.log("Next button clicked");
+function nextButtonClicked(nextBehavior, nextRoute) {
+  // window.location.href = "/learn/1";
+  console.log("Next button clicked");
+
+  console.log("Next behavior " + nextBehavior);
+
+  const slidesLength = Object.keys(slides).length;
+
+  if (nextBehavior == "lesson" || currentSlide >= slidesLength - 1) {
+    window.location.href = nextRoute;
+    return;
+  } else {
+    currentSlide += 1;
+    renderCurrentSlide();
+  }
 }
 
 function getSlideMediaDiv(slideMedia) {
@@ -14,8 +26,9 @@ function getSlideMediaDiv(slideMedia) {
 
   for (const media of slideMedia) {
     const videoURL = VIDEO_DOMAIN + media["filename"];
+    const captionLocation = media["captionLocation"];
 
-    let slide_col = $("<div>").addClass("col-6");
+    let slide_col = $("<div>").addClass("col-12");
 
     let slide_video = $("<video>").addClass("");
     let slide_source = $("<source>").addClass("");
@@ -27,7 +40,11 @@ function getSlideMediaDiv(slideMedia) {
     slide_caption.text(media["caption"]);
 
     slide_video.append(slide_source);
-    slide_col.append(slide_video, slide_caption);
+    if(captionLocation == "bottom") {
+      slide_col.append(slide_video, slide_caption);
+    } else {
+      slide_col.append(slide_caption, slide_video);
+    }
     slide_media_div.append(slide_col);
   }
 
@@ -43,7 +60,7 @@ function renderSlide(slide) {
   let slide_title = $("<h1>").addClass("");
   let slide_text = $("<h2>").addClass("text-left");
   let slide_media_div = $("<div>");
-  if(slide["slideMedia"]) {
+  if (slide["slideMedia"]) {
     slide_media_div = getSlideMediaDiv(slide["slideMedia"]);
   }
 
@@ -75,7 +92,7 @@ $(document).ready(function () {
 
   renderCurrentSlide();
 
-  $(nextButton).click(function() {
-    nextButtonClicked();
+  $(nextButton).click(function () {
+    nextButtonClicked(lesson["nextBehavior"], lesson["nextRoute"]);
   });
 });

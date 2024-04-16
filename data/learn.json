@@ -2,7 +2,8 @@
   "lessons": {
     "1": {
       "lessonName": "Tips",
-      "nextRoute": "/learn/1",
+      "nextRoute": "/learn/2",
+      "nextBehavior": "slide",
       "slides": [
         {
           "slideName": "What is a Pitch?",
@@ -10,11 +11,13 @@
           "slideMedia": [
             {
               "filename": "Intro_SwingAndMiss.mp4",
-              "caption": "Make the batter swing and miss"
+              "caption": "Make the batter swing and miss",
+              "captionLocation": "top"
             },
             {
               "filename": "Intro_StrikeZone.mp4",
-              "caption": "Throw a pitch in the \"strike zone\" (white box)"
+              "caption": "Throw a pitch in the \"strike zone\" (white box)",
+              "captionLocation": "top"
             }
           ],
           "slideText": "In baseball, the pitcher’s goal is to get a strike, which leads to an out.\nThere are two ways to get a strike:"
@@ -25,7 +28,8 @@
           "slideMedia": [
             {
               "filename": "Intro_PitchVelocityEdited.mp4",
-              "caption": "Nick Pivetta, Boston Red Sox"
+              "caption": "Nick Pivetta, Boston Red Sox",
+              "captionLocation": "bottom"
             }
           ],
           "slideText": "Pitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
@@ -35,6 +39,7 @@
     "2": {
       "lessonName": "Fastball",
       "nextRoute": "/miniquiz/1",
+      "nextBehavior": "lesson",
       "slides": [
         {
           "slideName": "Info",
@@ -45,8 +50,14 @@
         {
           "slideName": "Example 1",
           "slideType": "Example",
-          "slideMedia": ["FastballExample1_ReidDetmers.mp4"],
-          "slideText": "Reid Detmers, Los Angeles Angels"
+          "slideMedia": [
+            {
+              "filename": "FastballExample1_ReidDetmers.mp4",
+              "caption": "Reid Deters, Los Angeles Angels",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
         }
       ]
     }
