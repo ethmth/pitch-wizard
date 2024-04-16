@@ -140,3 +140,8 @@ function genQuestion(question) {
   question_div.append(question_title, question_text, question_content);
   $(slideDiv).append(question_div);
 }
+
+
+function checkAnswer(question) {
+  console.log("Checking answer");
+}

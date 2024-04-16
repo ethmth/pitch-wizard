@@ -38,7 +38,7 @@ def quiz(question_id):
         return render_template('quiz_welcome.html')
 
     question = questions[question_id]
-    return render_template('quiz.html', question=question)
+    return render_template('quiz.html', question=question, question_id=question_id, last_question=len(questions))
 
 # AJAX FUNCTIONS
 
