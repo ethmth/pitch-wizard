@@ -1,188 +1,154 @@
-let global_architectures = [];
+const slideDiv = "#slide";
+const nextButton = "#next-button";
+const slideNavigation = "#slide-navigation";
 
-function isNumeric(str) {
-  if (typeof str != "string") return false; // we only process strings!
-  return (
-    !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-    !isNaN(parseFloat(str))
-  ); // ...and ensure strings of whitespace fail
-}
+const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
-function get_link_div(value) {
-  let div_entry = $("<div>").addClass("view-link");
+function genMediaDiv(media) {
+  const videoURL = VIDEO_DOMAIN + media["filename"];
 
-  let link_entry = $("<a>")
-    .addClass("")
-    .attr("href", `/view/${value.id}`)
-    .text(value.name);
-  div_entry.append(link_entry);
-
-  div_entry.data("id", value.id);
-
-  return div_entry;
-}
-
-function select_n_entries(data, n, random = false) {
-  let temp_list = [];
-  for (let list_entry in data) {
-    temp_list.push(data[list_entry]);
+  let captionLocation = "bottom";
+  if (media["captionLocation"]) {
+    captionLocation = media["captionLocation"];
   }
 
-  if (random) {
-    temp_list = temp_list.sort(() => 0.5 - Math.random());
-  }
-  let selected = temp_list.slice(0, n);
+  let slide_col = $("<div>").addClass("col-12");
 
-  return selected;
-}
+  let slide_video = $("<video>").addClass("");
+  let slide_source = $("<source>").addClass("");
 
-function get_rating_div(rating) {
-  let div = $("<div>").addClass("star-row");
-
-  let starContent = $("<div>");
-
-  let star1 = $("<i>").addClass("bi bi-star-fill");
-  let star2 = $("<i>").addClass("bi bi-star-fill");
-  let star3 = $("<i>").addClass("bi bi-star-fill");
-  let star4 = $("<i>").addClass("bi bi-star-fill");
-  let star5 = $("<i>").addClass("bi bi-star-fill");
-
-  switch (rating) {
-    case 0:
-      star1.removeClass("bi-star-fill");
-      star1.addClass("bi-star");
-    case 1:
-      star1.removeClass("bi-star-half bi-star-fill");
-      star1.addClass("bi-star-half");
-    case 2:
-      star2.removeClass("bi-star-fill");
-      star2.addClass("bi-star");
-    case 3:
-      star2.removeClass("bi-star-half bi-star-fill");
-      star2.addClass("bi-star-half");
-    case 4:
-      star3.removeClass("bi-star-fill");
-      star3.addClass("bi-star");
-    case 5:
-      star3.removeClass("bi-star-half bi-star-fill");
-      star3.addClass("bi-star-half");
-    case 6:
-      star4.removeClass("bi-star-fill");
-      star4.addClass("bi-star");
-    case 7:
-      star4.removeClass("bi-star-half bi-star-fill");
-      star4.addClass("bi-star-half");
-    case 8:
-      star5.removeClass("bi-star-fill");
-      star5.addClass("bi-star");
-    case 9:
-      star5.removeClass("bi-star-half bi-star-fill");
-      star5.addClass("bi-star-half");
-  }
-
-  starContent.append(star1, star2, star3, star4, star5);
-
-  div.append(starContent);
-
-  return div;
-}
-
-function get_experience_div(experience_level, link = false) {
-  let container_div = $("<div>").addClass("experience-tag");
-  let div = $("<div>").addClass("");
-
-  let span = $("<span>").addClass("").text(experience_level);
-
-  switch (experience_level) {
-    case "Beginner":
-      div.addClass("experience-tag-beginner");
-      break;
-    case "Intermediate":
-      div.addClass("experience-tag-intermediate");
-      break;
-    case "Expert":
-      div.addClass("experience-tag-expert");
-      break;
-  }
-
-  div.append(span);
-  let link_element = $("<a>")
-    .addClass("experience-tag-link")
-    .attr("href", `/search_results/${experience_level}`);
-  link_element.append(div);
-  container_div.append(link_element);
-  if (link) {
+  let slide_caption;
+  if (captionLocation == "bottom") {
+    slide_caption = $("<span>").addClass("");
   } else {
-    container_div.append(div);
+    slide_caption = $("<h4>").addClass("");
   }
 
-  return container_div;
-}
+  slide_video.attr("controls", "controls");
+  slide_source.attr("type", "video/mp4");
+  slide_source.attr("src", videoURL);
+  if (media["caption"]) {
+    slide_caption.text(media["caption"]);
+  }
 
-function delete_arch(arch) {
-  console.log(global_architectures);
-  global_architectures = global_architectures.filter((item) => item !== arch);
-  console.log("after");
-  console.log(global_architectures);
-  set_arches(global_architectures);
-}
-
-function get_architectures_div(
-  architectures,
-  separator = "",
-  link = false,
-  remove = false
-) {
-  let div_arch = $("<div>").addClass("");
-
-  for (const arch of architectures) {
-    let arch_entry = $("<span>").addClass("").text(`${arch}${separator}`);
-    if (remove) {
-      let arch_button = $("<button>")
-        .attr("type", "button")
-        .addClass("btn btn-warning arch-remove-button")
-        .text("");
-      arch_button.data("architecture", arch);
-      arch_button.append(arch_entry);
-      arch_button.click(function () {
-        delete_arch(arch);
-      });
-      div_arch.append(arch_button);
-    } else if (link) {
-      let arch_link = $("<a>")
-        .addClass("")
-        .attr("href", `/search_results/${arch}`);
-      arch_link.append(arch_entry);
-      div_arch.append(arch_link);
-    } else {
-      div_arch.append(arch_entry);
+  slide_video.append(slide_source);
+  if (captionLocation == "bottom") {
+    slide_col.append(slide_video);
+    if (media["caption"]) {
+      slide_col.append(slide_caption);
     }
-  }
-
-  return div_arch;
-}
-
-function get_similar_links(entries) {
-  let div = $("<div>").addClass("view-links");
-
-  for (const entry of entries) {
-    div.append(get_link_div(entry));
-  }
-
-  return div;
-}
-
-$(document).ready(function () {
-  $("#search-form").on("submit", function (event) {
-    event.preventDefault();
-
-    const value = $("#search-input").val().trim();
-
-    if (value == "") {
-      $("#search-input").val("");
-      $("#search-input").focus();
-    } else {
-      window.location.href = `/search_results/` + encodeURIComponent(value);
+  } else {
+    if (media["caption"]) {
+      slide_col.append(slide_caption);
     }
-  });
-});
+    slide_col.append(slide_video);
+  }
+
+  return slide_col;
+}
+
+function setNextButtonText(new_text) {
+  let message = "Next";
+  if (new_text) {
+    message = new_text;
+  }
+  $(nextButton).text(message);
+}
+
+function showNextButtonErrorMessage(message) {
+  console.log("showNextButtonErrorMessage: " + message);
+}
+
+function genQuestionIdentify(question) {
+  console.log(question);
+
+  const options = question["options"];
+
+  console.log(options);
+
+  let question_div = $("<div>").addClass("btn-group row");
+
+  for (const key in options) {
+    const option = options[key];
+    console.log(key);
+    console.log(option);
+
+    let media_div = genMediaDiv(option["optionMedia"]);
+
+    let btn_div = $("<div>").addClass("");
+    let btn_input = $("<input>").addClass("btn-check option-input");
+    btn_input.attr("type", "radio");
+    btn_input.attr("name", "options");
+    btn_input.attr("id", `option-${key}`);
+    btn_input.attr("autocomplete", "off");
+
+    let btn_label = $("<label>").addClass("btn btn-secondary option-label");
+    btn_label.attr("for", `option-${key}`);
+    btn_label.text(`Option ${key}`);
+
+    btn_div.append(btn_input, btn_label);
+
+    question_div.append(media_div);
+    question_div.append(btn_div);
+  }
+
+  return question_div;
+}
+
+function genQuestionMatch(question) {
+  // TODO
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Match");
+
+  return question_div;
+}
+
+function genQuestionSelect(question) {
+  // TODO
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Select");
+
+  return question_div;
+}
+
+function genQuestion(question) {
+  const questionType = question["questionType"];
+
+  let questionText = "";
+  if (question["questionText"]) {
+    questionText = question["questionText"].replaceAll("\n", "<br/>");
+  }
+
+  $(slideDiv).empty();
+
+  let question_div = $("<div>").addClass("");
+  let question_title = $("<h2>").addClass("");
+  let question_text = $("<h3>").addClass("text-left");
+
+  question_title.text(question["questionName"]);
+  question_text.html(questionText);
+
+  let question_content;
+  if (questionType == "Identify") {
+    question_content = genQuestionIdentify(question);
+  } else if (questionType == "Match") {
+    question_content = genQuestionMatch(question);
+  } else if (questionType == "Select") {
+    question_content = genQuestionSelect(question);
+  }
+
+  question_div.append(question_title, question_text, question_content);
+  $(slideDiv).append(question_div);
+}
+
+function checkIfAnswered(question) {
+  // TODO Check if question is answered
+  return true;
+}
+
+function checkAnswer(question) {
+  // TODO Check answer and display incorrect/correct answer, update score, etc.
+  console.log("Checking answer");
+}

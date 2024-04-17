@@ -1,0 +1,91 @@
+{
+  "questions": {
+    "1": {
+      "questionName": "Question 1",
+      "questionType": "Identify",
+      "questionText": "Which of these pitches is a fastball?",
+      "questionMedia": null,
+      "questionPitcher": "Tyler Glasnow, Los Angeles Dodgers",
+      "options": [
+        {
+          "optionMedia": {
+            "filename": "Question1Option1_TylerGlasnow.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": null,
+          "optionCorrect": true
+        },
+        {
+          "optionMedia": {
+            "filename": "Question1Option3_TylerGlasnow.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": null,
+          "optionCorrect": false
+        }
+      ]
+    },
+    "2": {
+      "questionName": "Question 2",
+      "questionType": "Match",
+      "questionText": "Match these pitches to the correct video.",
+      "questionMedia": null,
+      "questionPitcher": "Framber Valdez, Houston Astros",
+      "options": [
+        {
+          "optionMedia": {
+            "filename": "Question2Option1_FramberValdez.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Fastball",
+          "optionCorrect": null
+        },
+        {
+          "optionMedia": {
+            "filename": "Question2Option2_FramberValdez.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Changeup",
+          "optionCorrect": null
+        }
+      ]
+    },
+    "3": {
+      "questionName": "Question 3",
+      "questionType": "Select",
+      "questionText": "What is this pitch?",
+      "questionMedia": {
+        "filename": "Question3_CorbinBurnes.mp4",
+        "caption": "Corbin Burnes, Baltimore Orioles",
+        "captionLocation": "bottom"
+      },
+      "questionPitcher": null,
+      "options": [
+        {
+          "optionMedia": null,
+          "optionPitchType": "Fastball",
+          "optionCorrect": false
+        },
+        {
+          "optionMedia": null,
+          "optionPitchType": "Curveball",
+          "optionCorrect": true
+        },
+        {
+          "optionMedia": null,
+          "optionPitchType": "Changeup",
+          "optionCorrect": false
+        },
+        {
+          "optionMedia": null,
+          "optionPitchType": "Knuckleball",
+          "optionCorrect": false
+        }
+      ]
+    }
+  }
+}

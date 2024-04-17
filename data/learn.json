@@ -1,0 +1,67 @@
+{
+  "lessons": {
+    "0": {
+      "lessonName": "Introduction",
+      "nextRoute": "/learn/1",
+      "nextBehavior": "slide",
+      "nextText": "Next",
+      "slides": [
+        {
+          "slideName": "What is a Pitch?",
+          "slideType": "Information",
+          "slideMedia": [
+            {
+              "filename": "Intro_SwingAndMiss.mp4",
+              "caption": "Make the batter swing and miss:",
+              "captionLocation": "top"
+            },
+            {
+              "filename": "Intro_StrikeZone.mp4",
+              "caption": "Throw a pitch in the \"strike zone\" (white box):",
+              "captionLocation": "top"
+            }
+          ],
+          "slideText": "In baseball, the pitcher’s goal is to get a strike, which leads to an out.\nThere are two ways to get a strike:"
+        },
+        {
+          "slideName": "Pitch Velocity",
+          "slideType": "Information",
+          "slideMedia": [
+            {
+              "filename": "Intro_PitchVelocityEdited.mp4",
+              "caption": "Nick Pivetta, Boston Red Sox",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": "Pitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
+        }
+      ]
+    },
+    "1": {
+      "lessonName": "Pitch 1: The Fastball",
+      "nextRoute": "/quiz/0",
+      "nextBehavior": "lesson",
+      "nextText": "Take MiniQuiz",
+      "slides": [
+        {
+          "slideName": "Info",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "Velocity: 92-105 mph\nMovement: Straight line; little to no curve.\nGoal: So fast that the batter can’t react in time.\nMost common baseball pitch."
+        },
+        {
+          "slideName": "Example 1",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "FastballExample1_ReidDetmers.mp4",
+              "caption": "Reid Deters, Los Angeles Angels",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        }
+      ]
+    }
+  }
+}
