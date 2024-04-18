@@ -4,23 +4,27 @@ const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
-function deterministicShuffle(array, seed = 42) {
-  const shuffledArray = array.slice();
-  let currentIndex = shuffledArray.length;
-
-  const seededRandom = (max) =>
-    Math.floor(Math.abs(Math.sin(seed++) * 10000) % max);
-
-  while (currentIndex !== 0) {
-    const randomIndex = seededRandom(currentIndex);
-    currentIndex--;
-
-    const temporaryValue = shuffledArray[currentIndex];
-    shuffledArray[currentIndex] = shuffledArray[randomIndex];
-    shuffledArray[randomIndex] = temporaryValue;
+// CITATION - https://github.com/yixizhang/seed-shuffle/blob/master/index.js
+function deterministicShuffle(array, seed = 44) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+  seed = seed || 1;
+  let random = function () {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
   }
-
-  return shuffledArray;
+  return array;
 }
 
 function genMediaDiv(media) {
@@ -79,18 +83,12 @@ function showNextButtonErrorMessage(message) {
 }
 
 function genQuestionIdentify(question) {
-  // console.log(question);
-
-  const options = question["options"];
-
-  // console.log(options);
+  const options = deterministicShuffle(question["options"]);
 
   let question_div = $("<div>").addClass("btn-group row");
 
   for (const key in options) {
     const option = options[key];
-    // console.log(key);
-    // console.log(option);
 
     let media_div = genMediaDiv(option["optionMedia"]);
 
@@ -122,35 +120,55 @@ function genQuestionMatch(question) {
   let drag_div = $("<div>").addClass("col-3");
   let drop_div = $("<div>").addClass("col-9");
 
+  let warning_div = $("<div>").addClass("col-12 warning-div");
+  warning_div.text("Dragging and Dropping not yet implemented");
+
   let pitch_options = [];
 
   for (const key in options) {
     const option = options[key];
     let media_div = genMediaDiv(option["optionMedia"]);
     drop_div.append(media_div);
-    
+
     pitch_options.push(option["optionPitchType"]);
   }
 
-  console.log(pitch_options);
-
   pitch_options = deterministicShuffle(pitch_options);
+
   for (const key in pitch_options) {
     let option_div = $("<div>").addClass("answer-option draggable-answer");
     option_div.text(pitch_options[key]);
     drag_div.append(option_div);
   }
 
+  question_div.append(warning_div);
   question_div.append(drag_div, drop_div);
 
   return question_div;
 }
 
 function genQuestionSelect(question) {
-  // TODO
-  let question_div = $("<div>").addClass("");
+  const options = deterministicShuffle(question["options"]);
 
-  question_div.text("Select");
+  let question_div = $("<div>").addClass("btn-group row");
+
+  let options_div = $("<div>").addClass("col-3");
+  let media_container = $("<div>").addClass("col-9");
+  let media_div = genMediaDiv(question["questionMedia"]);
+  media_container.append(media_div);
+
+  let warning_div = $("<div>").addClass("col-12 warning-div");
+  warning_div.text("Option Selection not yet implemented");
+
+
+  for (const key in options) {
+    let option_div = $("<div>").addClass("answer-option");
+    option_div.text(options[key]["optionPitchType"]);
+    options_div.append(option_div);
+  }
+
+  question_div.append(warning_div);
+  question_div.append(options_div, media_container);
 
   return question_div;
 }

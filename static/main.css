@@ -67,3 +67,11 @@ video {
 
   border: solid 1px black;
 }
+
+
+.warning-div {
+  font-size: 20px;
+  color: red;
+
+  padding-bottom: 10px;
+}
