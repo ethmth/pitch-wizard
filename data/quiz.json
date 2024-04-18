@@ -62,11 +62,100 @@
       "questionName": "Question 3",
       "questionType": "Select",
       "questionText": "What is this pitch?",
-      "questionMedia": {
-        "filename": "Question3_CorbinBurnes.mp4",
-        "caption": "Corbin Burnes, Baltimore Orioles",
-        "captionLocation": "bottom"
-      },
+      "questionMedia": [
+        {
+          "mediaId": 1,
+          "filename": "Question3_CorbinBurnes.mp4",
+          "caption": "Corbin Burnes, Baltimore Orioles",
+          "captionLocation": "bottom"
+        }
+      ],
+      "questionPitcher": null,
+      "options": [
+        {
+          "optionId": 1,
+          "optionMedia": null,
+          "optionPitchType": "Fastball",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 2,
+          "optionMedia": null,
+          "optionPitchType": "Curveball",
+          "optionCorrect": true
+        },
+        {
+          "optionId": 3,
+          "optionMedia": null,
+          "optionPitchType": "Changeup",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 4,
+          "optionMedia": null,
+          "optionPitchType": "Knuckleball",
+          "optionCorrect": false
+        }
+      ]
+    },
+    "4": {
+      "questionName": "Fastball Question 1",
+      "questionType": "Sentence",
+      "questionText": "Fill in the blanks.",
+      "questionMedia": [
+        {
+          "mediaId": 1,
+          "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
+          "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
+          "captionLocation": "bottom"
+        }
+      ],
+      "questionPitcher": null,
+      "options": [
+        {
+          "optionId": 1,
+          "optionMedia": null,
+          "optionPitchType": "Fastball",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 2,
+          "optionMedia": null,
+          "optionPitchType": "Curveball",
+          "optionCorrect": true
+        },
+        {
+          "optionId": 3,
+          "optionMedia": null,
+          "optionPitchType": "Changeup",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 4,
+          "optionMedia": null,
+          "optionPitchType": "Knuckleball",
+          "optionCorrect": false
+        }
+      ]
+    },
+    "5": {
+      "questionName": "Knuckleball Question 1",
+      "questionType": "Sentence",
+      "questionText": "Fill in the blanks.",
+      "questionMedia": [
+        {
+          "mediaId": 1,
+          "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
+          "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
+          "captionLocation": "bottom"
+        },
+        {
+          "mediaId": 2,
+          "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
+          "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+          "captionLocation": "bottom"
+        }
+      ],
       "questionPitcher": null,
       "options": [
         {

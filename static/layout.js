@@ -165,8 +165,11 @@ function genQuestionSelect(question) {
 
   let options_div = $("<div>").addClass("col-3");
   let media_container = $("<div>").addClass("col-9");
-  let media_div = genMediaDiv(question["questionMedia"]);
-  media_container.append(media_div);
+  for (const key in question["questionMedia"]) {
+    const media = question["questionMedia"][key];
+    let media_div = genMediaDiv(media, media["media_id"]);
+    media_container.append(media_div);
+  }
 
   for (const key in options) {
     const option = options[key];
@@ -190,6 +193,14 @@ function genQuestionSelect(question) {
   }
 
   question_div.append(options_div, media_container);
+
+  return question_div;
+}
+
+function genQuestionSentence(question) {
+  let question_div = $("<div>").addClass("");
+
+  question_div.text("Sentence question");
 
   return question_div;
 }
@@ -218,6 +229,8 @@ function genQuestion(question) {
     question_content = genQuestionMatch(question);
   } else if (questionType == "Select") {
     question_content = genQuestionSelect(question);
+  } else if (questionType == "Sentence") {
+    question_content = genQuestionSentence(question);
   }
 
   question_div.append(question_title, question_text, question_content);
