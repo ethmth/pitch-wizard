@@ -168,20 +168,27 @@ function genQuestionSelect(question) {
   let media_div = genMediaDiv(question["questionMedia"]);
   media_container.append(media_div);
 
-  let warning_div = $("<div>").addClass("col-12 warning-div");
-  warning_div.text("Option Selection not yet implemented");
-
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let option_div = $("<div>").addClass("answer-option");
-    option_div.text(option["optionPitchType"]);
-    option_div.data("option_id", option_id);
-    options_div.append(option_div);
+    let btn_div = $("<div>").addClass("");
+    btn_div.data("option_id", option_id);
+    let btn_input = $("<input>").addClass("");
+    btn_input.attr("type", "radio");
+    btn_input.attr("name", "options");
+    btn_input.attr("id", `${option["optionPitchType"]}`);
+    btn_input.attr("autocomplete", "off");
+
+    let btn_label = $("<label>").addClass("");
+    btn_label.attr("for", `${option["optionPitchType"]}`);
+    btn_label.text(`${option["optionPitchType"]}`);
+
+    btn_div.append(btn_input, btn_label);
+
+    options_div.append(btn_div);
   }
 
-  question_div.append(warning_div);
   question_div.append(options_div, media_container);
 
   return question_div;
