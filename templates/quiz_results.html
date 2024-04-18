@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz_results.js') }}"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10" id="slide">
+      <h1>Congratulations</h1>
+      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
+        src="https://droplet.ethanmt.com/pitching/media/congratulations.gif" />
+      <h2>
+        You've completed Pitch Wizard with the score X/X.
+      </h2>
+    </div>
+
+    <div class="col-1" id="next-button-div">
+      <button type="button" class="btn btn-primary" id="next-button">Home</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

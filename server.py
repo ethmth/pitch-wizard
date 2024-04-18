@@ -40,6 +40,11 @@ def quiz(question_id):
     question = questions[question_id]
     return render_template('quiz.html', question=question, question_id=question_id, last_question=len(questions))
 
+@app.route('/quiz_results')
+def quiz_results():
+    # TODO - show actual user results
+    return render_template('quiz_results.html')
+
 # AJAX FUNCTIONS
 
 # @app.route('/edit_data', methods=['GET', 'POST'])
