@@ -105,38 +105,32 @@
       "questionMedia": [
         {
           "mediaId": 1,
-          "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
+          "filename": "Fastball_MiniQuiz_Question1.mp4",
           "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
           "captionLocation": "bottom"
         }
       ],
       "questionPitcher": null,
-      "options": [
+      "sentences": [
         {
-          "optionId": 1,
-          "optionMedia": null,
-          "optionPitchType": "Fastball",
-          "optionCorrect": false
-        },
-        {
-          "optionId": 2,
-          "optionMedia": null,
-          "optionPitchType": "Curveball",
-          "optionCorrect": true
-        },
-        {
-          "optionId": 3,
-          "optionMedia": null,
-          "optionPitchType": "Changeup",
-          "optionCorrect": false
-        },
-        {
-          "optionId": 4,
-          "optionMedia": null,
-          "optionPitchType": "Knuckleball",
-          "optionCorrect": false
+          "sentenceId": 1,
+          "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
+          "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+          "sentenceOptions": [
+            {
+              "optionId": 1,
+              "optionName": "Top",
+              "optionCorrect": false
+            },
+            {
+              "optionId": 2,
+              "optionName": "Bottom",
+              "optionCorrect": true
+            }
+          ]
         }
-      ]
+      ],
+      "options": null
     },
     "5": {
       "questionName": "Knuckleball Question 1",
@@ -157,32 +151,26 @@
         }
       ],
       "questionPitcher": null,
-      "options": [
+      "sentences": [
         {
-          "optionId": 1,
-          "optionMedia": null,
-          "optionPitchType": "Fastball",
-          "optionCorrect": false
-        },
-        {
-          "optionId": 2,
-          "optionMedia": null,
-          "optionPitchType": "Curveball",
-          "optionCorrect": true
-        },
-        {
-          "optionId": 3,
-          "optionMedia": null,
-          "optionPitchType": "Changeup",
-          "optionCorrect": false
-        },
-        {
-          "optionId": 4,
-          "optionMedia": null,
-          "optionPitchType": "Knuckleball",
-          "optionCorrect": false
+          "sentenceId": 1,
+          "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
+          "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+          "sentenceOptions": [
+            {
+              "optionId": 1,
+              "optionName": "Top",
+              "optionCorrect": false
+            },
+            {
+              "optionId": 2,
+              "optionName": "Bottom",
+              "optionCorrect": true
+            }
+          ]
         }
-      ]
+      ],
+      "options": null
     }
   }
 }
