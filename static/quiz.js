@@ -1,4 +1,5 @@
-let checked = false;
+// let checked = false;
+let checked = true;
 
 
 function nextButtonClicked() {

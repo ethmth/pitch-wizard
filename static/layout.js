@@ -4,6 +4,25 @@ const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
+function deterministicShuffle(array, seed = 42) {
+  const shuffledArray = array.slice();
+  let currentIndex = shuffledArray.length;
+
+  const seededRandom = (max) =>
+    Math.floor(Math.abs(Math.sin(seed++) * 10000) % max);
+
+  while (currentIndex !== 0) {
+    const randomIndex = seededRandom(currentIndex);
+    currentIndex--;
+
+    const temporaryValue = shuffledArray[currentIndex];
+    shuffledArray[currentIndex] = shuffledArray[randomIndex];
+    shuffledArray[randomIndex] = temporaryValue;
+  }
+
+  return shuffledArray;
+}
+
 function genMediaDiv(media) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
@@ -60,18 +79,18 @@ function showNextButtonErrorMessage(message) {
 }
 
 function genQuestionIdentify(question) {
-  console.log(question);
+  // console.log(question);
 
   const options = question["options"];
 
-  console.log(options);
+  // console.log(options);
 
   let question_div = $("<div>").addClass("btn-group row");
 
   for (const key in options) {
     const option = options[key];
-    console.log(key);
-    console.log(option);
+    // console.log(key);
+    // console.log(option);
 
     let media_div = genMediaDiv(option["optionMedia"]);
 
@@ -96,10 +115,33 @@ function genQuestionIdentify(question) {
 }
 
 function genQuestionMatch(question) {
-  // TODO
-  let question_div = $("<div>").addClass("");
+  const options = deterministicShuffle(question["options"]);
 
-  question_div.text("Match");
+  let question_div = $("<div>").addClass("btn-group row");
+
+  let drag_div = $("<div>").addClass("col-3");
+  let drop_div = $("<div>").addClass("col-9");
+
+  let pitch_options = [];
+
+  for (const key in options) {
+    const option = options[key];
+    let media_div = genMediaDiv(option["optionMedia"]);
+    drop_div.append(media_div);
+    
+    pitch_options.push(option["optionPitchType"]);
+  }
+
+  console.log(pitch_options);
+
+  pitch_options = deterministicShuffle(pitch_options);
+  for (const key in pitch_options) {
+    let option_div = $("<div>").addClass("answer-option draggable-answer");
+    option_div.text(pitch_options[key]);
+    drag_div.append(option_div);
+  }
+
+  question_div.append(drag_div, drop_div);
 
   return question_div;
 }
