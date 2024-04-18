@@ -93,13 +93,13 @@ function genQuestionIdentify(question) {
     let media_div = genMediaDiv(option["optionMedia"]);
 
     let btn_div = $("<div>").addClass("");
-    let btn_input = $("<input>").addClass("btn-check option-input");
+    let btn_input = $("<input>").addClass("");
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
     btn_input.attr("id", `option-${key}`);
     btn_input.attr("autocomplete", "off");
 
-    let btn_label = $("<label>").addClass("btn btn-secondary option-label");
+    let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${key}`);
     btn_label.text(`Option ${key}`);
 
