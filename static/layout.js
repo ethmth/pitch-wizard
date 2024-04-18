@@ -27,7 +27,7 @@ function deterministicShuffle(array, seed = 44) {
   return array;
 }
 
-function genMediaDiv(media) {
+function genMediaDiv(media, option_id = -1) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
   let captionLocation = "bottom";
@@ -67,6 +67,9 @@ function genMediaDiv(media) {
     slide_col.append(slide_video);
   }
 
+  if (option_id >= 0) {
+    slide_col.data("option_id", option_id);
+  }
   return slide_col;
 }
 
@@ -89,19 +92,21 @@ function genQuestionIdentify(question) {
 
   for (const key in options) {
     const option = options[key];
+    const option_id = option["optionId"];
 
-    let media_div = genMediaDiv(option["optionMedia"]);
+    let media_div = genMediaDiv(option["optionMedia"], option_id);
 
     let btn_div = $("<div>").addClass("");
+    btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
-    btn_input.attr("id", `option-${key}`);
+    btn_input.attr("id", `option-${option_id}`);
     btn_input.attr("autocomplete", "off");
 
     let btn_label = $("<label>").addClass("");
-    btn_label.attr("for", `option-${key}`);
-    btn_label.text(`Option ${key}`);
+    btn_label.attr("for", `option-${option_id}`);
+    btn_label.text(`Option ${Number(key) + 1}`);
 
     btn_div.append(btn_input, btn_label);
 
@@ -127,17 +132,23 @@ function genQuestionMatch(question) {
 
   for (const key in options) {
     const option = options[key];
-    let media_div = genMediaDiv(option["optionMedia"]);
+    const option_id = option["optionId"];
+
+    let media_div = genMediaDiv(option["optionMedia"], option_id);
     drop_div.append(media_div);
 
-    pitch_options.push(option["optionPitchType"]);
+    pitch_options.push({
+      pitchType: option["optionPitchType"],
+      optionId: option_id,
+    });
   }
 
   pitch_options = deterministicShuffle(pitch_options);
 
   for (const key in pitch_options) {
     let option_div = $("<div>").addClass("answer-option draggable-answer");
-    option_div.text(pitch_options[key]);
+    option_div.text(pitch_options[key]["pitchType"]);
+    option_div.data("option_id", pitch_options[key]["optionId"]);
     drag_div.append(option_div);
   }
 
@@ -160,10 +171,13 @@ function genQuestionSelect(question) {
   let warning_div = $("<div>").addClass("col-12 warning-div");
   warning_div.text("Option Selection not yet implemented");
 
-
   for (const key in options) {
+    const option = options[key];
+    const option_id = option["optionId"];
+
     let option_div = $("<div>").addClass("answer-option");
-    option_div.text(options[key]["optionPitchType"]);
+    option_div.text(option["optionPitchType"]);
+    option_div.data("option_id", option_id);
     options_div.append(option_div);
   }
 
