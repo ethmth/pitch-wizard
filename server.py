@@ -65,7 +65,7 @@ def learn(learn_id):
     return render_template('learn.html', lesson=lesson)
 
 
-def render_quiz(quiz_id, question_id):
+def render_quiz(session, quiz_id, question_id):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
@@ -87,17 +87,24 @@ def render_quiz(quiz_id, question_id):
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
-    return render_quiz("main", question_id)
+    return render_quiz(session, "main", question_id)
 
 
 @app.route('/quiz/<quiz_id>/<int:question_id>')
 def quiz_general(quiz_id, question_id):
-    return render_quiz(quiz_id, question_id)
+    return render_quiz(session, quiz_id, question_id)
+
+def render_quiz_results(session, quiz_id):
+    # TODO - show actual user results
+    return render_template('quiz_results.html')
 
 @app.route('/quiz_results')
 def quiz_results():
-    # TODO - show actual user results
-    return render_template('quiz_results.html')
+    return render_quiz_results(session, "main")
+
+@app.route('/quiz_results/<quiz_id>')
+def quiz_results_general(quiz_id):
+    return render_quiz_results(session, quiz_id)
 
 # AJAX FUNCTIONS
 
