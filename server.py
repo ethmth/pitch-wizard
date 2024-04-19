@@ -5,6 +5,8 @@ import json
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
 
+# HW10 Video - https://youtu.be/1TmIuiQQ9YM
+
 lessons = []
 questions = []
 correct_answers = {}
