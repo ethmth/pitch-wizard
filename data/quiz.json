@@ -114,18 +114,45 @@
       "sentences": [
         {
           "sentenceId": 1,
-          "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
-          "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+          "sentenceBefore": "This Fastball is ",
+          "sentenceAfter": "",
           "sentenceOptions": [
             {
               "optionId": 1,
-              "optionName": "Top",
+              "optionName": "91 mph",
               "optionCorrect": false
             },
             {
               "optionId": 2,
-              "optionName": "Bottom",
+              "optionName": "93 mph",
               "optionCorrect": true
+            },
+            {
+              "optionId": 3,
+              "optionName": "95 mph",
+              "optionCorrect": false
+            },
+            {
+              "optionId": 4,
+              "optionName": "100 mph",
+              "optionCorrect": false
+            }
+          ]
+        },
+        {
+          "sentenceId": 2,
+          "sentenceBefore": ", which is ",
+          "sentenceAfter": " speed for an MLB fastball.",
+          "sentenceOptions": [
+            {
+              "optionId": 1,
+              "optionName": "Below Average",
+              "optionCorrect": true
+            },
+            {
+              "optionId": 2,
+              "optionName": "Above Average",
+              "optionCorrect": false
             }
           ]
         }
