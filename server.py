@@ -1,11 +1,16 @@
-from flask import Flask
+from flask import Flask, session
 from flask import render_template, redirect
 from flask import Response, request, jsonify
 import json
 app = Flask(__name__)
+app.secret_key = "super_secret_key"
 
 lessons = []
 questions = []
+
+# session_temp = {
+#     "answers"
+# }
 
 def read_json():
     global lessons
@@ -18,7 +23,7 @@ def read_json():
         questions = json.load(f)
 
     lessons = lessons['lessons']
-    questions = questions['questions']
+    # questions = questions['questions']
 
 # ROUTES
 @app.route('/')
@@ -31,14 +36,27 @@ def learn(learn_id):
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
 
-@app.route('/quiz/<int:question_id>')
-def quiz(question_id):
+
+def render_quiz(quiz_id, question_id):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
-    question = questions[question_id]
-    return render_template('quiz.html', question=question, question_id=question_id, last_question=len(questions))
+    question = questions[quiz_id]["questions"][question_id]
+    return render_template('quiz.html', 
+        question=question, 
+        question_id=question_id, 
+        last_question=len(questions[quiz_id]["questions"]), 
+        answer=None)
+
+@app.route('/quiz/<int:question_id>')
+def quiz(question_id):
+    return render_quiz("main", question_id)
+
+
+@app.route('/quiz/<quiz_id>/<int:question_id>')
+def quiz_general(quiz_id, question_id):
+    return render_quiz(quiz_id, question_id)
 
 @app.route('/quiz_results')
 def quiz_results():
@@ -51,7 +69,11 @@ def quiz_results():
 def check_answer():
     global questions
 
-    json_data = request.get_json()  
+    json_data = request.get_json()
+
+    # if not session['answers']:
+    #     session['answers'] = {}
+
     # data_id = json_data["id"] 
 
     # data[data_id] = json_data
