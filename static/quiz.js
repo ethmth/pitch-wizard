@@ -163,7 +163,6 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
   const request = {
     quiz_id: quiz_id,
     question_id: question_id,
-    // question: question,
     user_answer: user_answer,
   };
 
@@ -174,9 +173,11 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify(request),
     success: function (response) {
-      // window.location.href = `/view/${entry.id}`;
-      console.log("Response is " + response);
-      console.log(response);
+      if (response["success"]) {
+        window.location.reload(true);
+      } else {
+        console.log("Error setting your answer");
+      }
     },
     error: function (request, status, error) {
       console.log("Error");
@@ -193,10 +194,19 @@ function sendAnswerRadio(quiz_id, question_id, question) {
   );
 
   if (!user_answer) {
-    user_answer = null;
+    user_answer = "unanswered";
   }
 
-  console.log("value is " + user_answer);
+  sendAJAX(quiz_id, question_id, question, user_answer);
+}
+
+function sendAnswerMatch(quiz_id, question_id, question) {
+  let user_answer = "unanswered"
+  sendAJAX(quiz_id, question_id, question, user_answer);
+}
+
+function sendAnswerSentence(quiz_id, question_id, question) {
+  let user_answer = "unanswered"
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
@@ -206,7 +216,9 @@ function sendAnswer(quiz_id, question_id, question) {
   if (questionType == "Identify" || questionType == "Select") {
     sendAnswerRadio(quiz_id, question_id, question);
   } else if (questionType == "Match") {
+    sendAnswerMatch(quiz_id, question_id, question);
   } else if (questionType == "Sentence") {
+    sendAnswerSentence(quiz_id, question_id, question);
   }
 }
 
@@ -231,7 +243,6 @@ function nextButtonClicked() {
     let answer_selected = checkIfAnswerSelected(question);
     if (answer_selected) {
       sendAnswer(quiz_id, question_id, question);
-      window.location.reload(true);
     } else {
       showNextButtonErrorMessage("Please Answer the Question");
     }

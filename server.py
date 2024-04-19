@@ -131,26 +131,17 @@ def quiz_results_general(quiz_id):
 def check_answer():
     global questions
 
-    json_data = request.get_json()
-    user_answer = json_data['user_answer']
-    quiz_id = json_data['quiz_id']
-    question_id = json_data['question_id']
+    try:
+        json_data = request.get_json()
+        user_answer = json_data['user_answer']
+        quiz_id = json_data['quiz_id']
+        question_id = json_data['question_id']
 
-    print("check_answer: before set_answer")
-    print_answer_key(session)
-    set_answer(session, quiz_id, question_id, user_answer)
-    print("check_answer: after set_answer")
-    print_answer_key(session)
-    # print("User answer is ", user_answer)
+        set_answer(session, quiz_id, question_id, user_answer)
 
-
-    print("check_answer: before get_answer")
-    print_answer_key(session)
-    user_answer = get_answer(session, quiz_id, question_id)
-    print("check_answer: after get_answer")
-    print_answer_key(session)
-
-    return jsonify(success=True)
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
 
 @app.route('/clear_session', methods=['GET', 'POST'])
 def clear_session():
