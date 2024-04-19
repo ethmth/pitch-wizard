@@ -30,8 +30,11 @@ def print_answer_key(session):
 
 def get_answer(session, quiz_id, question_id):
     answer_key = session.get("answer_key")
-    new_answer_key = answer_key
     res = None
+
+    new_answer_key = None
+    if answer_key:
+        new_answer_key = answer_key.copy()
 
     if not new_answer_key:
         new_answer_key = {}
@@ -51,7 +54,11 @@ def get_answer(session, quiz_id, question_id):
 
 def set_answer(session, quiz_id, question_id, answer):
     answer_key = session.get("answer_key")
-    new_answer_key = answer_key
+    res = None
+
+    new_answer_key = None
+    if answer_key:
+        new_answer_key = answer_key.copy()
 
     if not new_answer_key:
         new_answer_key = {}
@@ -60,10 +67,7 @@ def set_answer(session, quiz_id, question_id, answer):
         new_answer_key[quiz_id] = {}
 
     new_answer_key[quiz_id][question_id] = answer
-    # print("set answer to ", answer)
-    # print(new_answer_key)
     session["answer_key"] = new_answer_key
-    # print(session["answer_key"])
 
 # ROUTES
 @app.route('/')
@@ -84,8 +88,11 @@ def render_quiz(session, quiz_id, question_id):
 
     question = questions[quiz_id]["questions"][question_id]
 
+    print("render_quiz: before get_answer")
     print_answer_key(session)
     user_answer = get_answer(session, quiz_id, question_id)
+    print("render_quiz: after get_answer")
+    print_answer_key(session)
     user_answered = False
     if user_answer:
         user_answered = True
@@ -120,7 +127,6 @@ def quiz_results_general(quiz_id):
     return render_quiz_results(session, quiz_id)
 
 # AJAX FUNCTIONS
-
 @app.route('/check_answer', methods=['GET', 'POST'])
 def check_answer():
     global questions
@@ -129,17 +135,20 @@ def check_answer():
     user_answer = json_data['user_answer']
     quiz_id = json_data['quiz_id']
     question_id = json_data['question_id']
-    # answer = session.get('answers')
 
+    print("check_answer: before set_answer")
+    print_answer_key(session)
     set_answer(session, quiz_id, question_id, user_answer)
-    print("User answer is ", user_answer)
+    print("check_answer: after set_answer")
+    print_answer_key(session)
+    # print("User answer is ", user_answer)
 
-    # if not session['answers']:
-    #     session['answers'] = {}
 
-    # data_id = json_data["id"] 
-
-    # data[data_id] = json_data
+    print("check_answer: before get_answer")
+    print_answer_key(session)
+    user_answer = get_answer(session, quiz_id, question_id)
+    print("check_answer: after get_answer")
+    print_answer_key(session)
 
     return jsonify(success=True)
 
@@ -150,24 +159,6 @@ def clear_session():
         return jsonify(success=True)
     except:
         return jsonify(success=False)
-
-# @app.route('/add_data', methods=['GET', 'POST'])
-# def add_data():
-#     global data
-#     global current_id
-
-#     data_id = str(current_id)
-
-#     result_dict = {"id": data_id}
-#     json_data = request.get_json()
-#     for key in json_data:
-#         result_dict[key] = json_data[key]
-
-#     data[data_id] = result_dict
-#     current_id += 1
-
-#     return jsonify(id=data_id, name=data[data_id]["name"], success=True)
-
 
 # DRIVER
 if __name__ == '__main__':

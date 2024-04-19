@@ -231,7 +231,7 @@ function nextButtonClicked() {
     let answer_selected = checkIfAnswerSelected(question);
     if (answer_selected) {
       sendAnswer(quiz_id, question_id, question);
-      window.location.reload();
+      window.location.reload(true);
     } else {
       showNextButtonErrorMessage("Please Answer the Question");
     }

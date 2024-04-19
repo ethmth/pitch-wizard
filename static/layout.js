@@ -94,7 +94,7 @@ $(document).ready(function () {
       data: JSON.stringify(request),
       success: function (response) {
         if (response["success"]) {
-          window.location.reload();
+          window.location.reload(true);
         } else {
           console.log("Clearning session failed");
         }
