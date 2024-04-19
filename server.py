@@ -43,10 +43,8 @@ def get_answer(session, quiz_id, question_id):
         new_answer_key[quiz_id] = {}
 
     if question_id in new_answer_key[quiz_id]:
-        print("Question id in there")
         res = new_answer_key[quiz_id][question_id]
     else:
-        print("Question id not in theree")
         res = None
 
     session["answer_key"] = new_answer_key
@@ -87,12 +85,7 @@ def render_quiz(session, quiz_id, question_id):
         return render_template('quiz_welcome.html')
 
     question = questions[quiz_id]["questions"][question_id]
-
-    print("render_quiz: before get_answer")
-    print_answer_key(session)
     user_answer = get_answer(session, quiz_id, question_id)
-    print("render_quiz: after get_answer")
-    print_answer_key(session)
     user_answered = False
     if user_answer:
         user_answered = True
@@ -115,6 +108,8 @@ def quiz_general(quiz_id, question_id):
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
+
+    print_answer_key(session)
     # TODO - show actual user results
     return render_template('quiz_results.html')
 

@@ -95,6 +95,7 @@ function genQuestionSelect(question) {
     let btn_div = $("<div>").addClass("");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
+    btn_input.data("option_id", option["optionPitchType"])
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
     btn_input.attr("id", `${option["optionPitchType"]}`);
@@ -174,7 +175,8 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
     data: JSON.stringify(request),
     success: function (response) {
       if (response["success"]) {
-        window.location.reload(true);
+        // window.location.reload(true);
+        nextPage(quiz_id, question_id);
       } else {
         console.log("Error setting your answer");
       }
@@ -222,23 +224,27 @@ function sendAnswer(quiz_id, question_id, question) {
   }
 }
 
+function nextPage(quiz_id, question_id) {
+  if (Number(question_id) < Number(last_question)) {
+    if (quiz_id == "main") {
+      window.location.href = `/quiz/${1 + Number(question_id)}`;
+    } else {
+      window.location.href = `/quiz/${quiz_id}/${1 + Number(question_id)}`;
+    }
+  } else {
+    if (quiz_id == "main") {
+      window.location.href = "/quiz_results";
+    } else {
+      window.location.href = `/quiz_results/${quiz_id}`;
+    }
+  }
+}
+
 function nextButtonClicked() {
   console.log("Next button clicked");
 
   if (answered) {
-    if (Number(question_id) < Number(last_question)) {
-      if (quiz_id == "main") {
-        window.location.href = `/quiz/${1 + Number(question_id)}`;
-      } else {
-        window.location.href = `/quiz/${quiz_id}/${1 + Number(question_id)}`;
-      }
-    } else {
-      if (quiz_id == "main") {
-        window.location.href = "/quiz_results";
-      } else {
-        window.location.href = `/quiz_results/${quiz_id}`;
-      }
-    }
+    nextPage(quiz_id, question_id);
   } else {
     let answer_selected = checkIfAnswerSelected(question);
     if (answer_selected) {
@@ -247,34 +253,14 @@ function nextButtonClicked() {
       showNextButtonErrorMessage("Please Answer the Question");
     }
   }
-
-  // if(checked) {
-  //   sendAnswer(question);
-  //   return;
-  // if(Number(question_id) < Number(last_question)) {
-  //   window.location.href = `/quiz/${(1 + Number(question_id))}`;
-  //   return
-  // } else {
-  //   window.location.href = '/quiz_results';
-  // }
-  // } else {
-  //   let answer_selected = checkIfAnswerSelected(question);
-
-  //   if(answered) {
-  //     checked = true;
-  //     setNextButtonText("Continue");
-  //     checkAnswer(question);
-  //   }
-  //   else {
-  //     showNextButtonErrorMessage("Please Answer the Question");
-  //   }
-  // }
 }
 
 $(document).ready(function () {
   genQuestion(question);
 
   if (answered) {
+    setNextButtonText("Next");
+  } else {
     setNextButtonText("Next");
   }
 

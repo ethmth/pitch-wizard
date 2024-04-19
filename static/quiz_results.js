@@ -1,5 +1,5 @@
 function nextButtonClicked() {
-    window.location.href = "/";
+    clearSession("/quiz/0")
 }
 
 $(document).ready(function () {

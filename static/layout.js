@@ -83,28 +83,36 @@ function showNextButtonErrorMessage(message) {
   console.log("showNextButtonErrorMessage: " + message);
 }
 
+function clearSession(newPage = null) {
+  let request = { clear: "me" };
+  $.ajax({
+    type: "POST",
+    url: "/clear_session",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(request),
+    success: function (response) {
+      if (response["success"]) {
+        if (newPage) {
+          window.location.href = newPage;
+        } else {
+          window.location.reload(true);
+        }
+      } else {
+        console.log("Clearning session failed");
+      }
+    },
+    error: function (request, status, error) {
+      console.log("Error");
+      console.log(request);
+      console.log(status);
+      console.log(error);
+    },
+  });
+}
+
 $(document).ready(function () {
   $(clearSessionButton).click(function () {
-    let request = { clear: "me" };
-    $.ajax({
-      type: "POST",
-      url: "/clear_session",
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(request),
-      success: function (response) {
-        if (response["success"]) {
-          window.location.reload(true);
-        } else {
-          console.log("Clearning session failed");
-        }
-      },
-      error: function (request, status, error) {
-        console.log("Error");
-        console.log(request);
-        console.log(status);
-        console.log(error);
-      },
-    });
+    clearSession();
   });
 });
