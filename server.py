@@ -8,11 +8,7 @@ app.secret_key = "super_secret_key"
 lessons = []
 questions = []
 
-# session_temp = {
-#     "answers"
-# }
-
-
+# FUNCTIONS
 def read_json():
     global lessons
     global questions
@@ -24,7 +20,38 @@ def read_json():
         questions = json.load(f)
 
     lessons = lessons['lessons']
-    # questions = questions['questions']
+
+def get_answer(session, quiz_id, question_id):
+    answer_key = session.get("answer_key")
+    new_answer_key = answer_key
+    res = None
+
+    if not new_answer_key:
+        new_answer_key = {}
+
+    if not quiz_id in new_answer_key:
+        new_answer_key[quiz_id] = {}
+
+    if not question_id in new_answer_key[quiz_id]:
+        res = None
+    else:
+        res = new_answer_key[quiz_id][question_id]
+
+    session["answer_key"] = new_answer_key
+    return res
+
+def set_answer(session, quiz_id, question_id, answer):
+    answer_key = session.get("answer_key")
+    new_answer_key = answer_key
+
+    if not new_answer_key:
+        new_answer_key = {}
+
+    if not quiz_id in new_answer_key:
+        new_answer_key[quiz_id] = {}
+
+    new_answer_key[quiz_id][question_id] = answer
+    session["answer_key"] = new_answer_key
 
 # ROUTES
 @app.route('/')
@@ -44,12 +71,19 @@ def render_quiz(quiz_id, question_id):
         return render_template('quiz_welcome.html')
 
     question = questions[quiz_id]["questions"][question_id]
+
+    user_answer = get_answer(session, quiz_id, question_id)
+    user_answered = False
+    if user_answer:
+        user_answered = True
+
     return render_template('quiz.html', 
         question=question,
         quiz_id=quiz_id,
         question_id=question_id,
         last_question=len(questions[quiz_id]["questions"]),
-        answer=None)
+        answered=user_answered,
+        answer=user_answer)
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):

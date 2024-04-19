@@ -189,9 +189,6 @@ function sendAJAX(question, answer) {
 }
 
 function sendAnswerRadio(question) {
-  // $('input[type="radio"][name="options"]').change(function() {
-  //   selectedRadioValue =
-  // })
   let answer = $('input[type="radio"][name="options"]:checked').data(
     "option_id"
   );
@@ -199,6 +196,7 @@ function sendAnswerRadio(question) {
   if (!answer) {
     answer = null;
   }
+
   console.log("value is " + answer);
   sendAJAX(question, answer);
 }
@@ -219,7 +217,7 @@ function nextButtonClicked() {
 
   if(checked) {
     sendAnswer(question);
-    // return;
+    return;
     if(Number(question_id) < Number(last_question)) {
       window.location.href = `/quiz/${(1 + Number(question_id))}`;
       return
@@ -239,7 +237,6 @@ function nextButtonClicked() {
     }
   }
 }
-
 
 $(document).ready(function () {
   genQuestion(question);
