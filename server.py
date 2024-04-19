@@ -12,6 +12,7 @@ questions = []
 #     "answers"
 # }
 
+
 def read_json():
     global lessons
     global questions
@@ -44,9 +45,10 @@ def render_quiz(quiz_id, question_id):
 
     question = questions[quiz_id]["questions"][question_id]
     return render_template('quiz.html', 
-        question=question, 
-        question_id=question_id, 
-        last_question=len(questions[quiz_id]["questions"]), 
+        question=question,
+        quiz_id=quiz_id,
+        question_id=question_id,
+        last_question=len(questions[quiz_id]["questions"]),
         answer=None)
 
 @app.route('/quiz/<int:question_id>')
@@ -70,6 +72,8 @@ def check_answer():
     global questions
 
     json_data = request.get_json()
+
+    answer = session.get('answers')
 
     # if not session['answers']:
     #     session['answers'] = {}
