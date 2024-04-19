@@ -47,16 +47,16 @@ def quiz_results():
 
 # AJAX FUNCTIONS
 
-# @app.route('/edit_data', methods=['GET', 'POST'])
-# def edit_data():
-#     global data
+@app.route('/check_answer', methods=['GET', 'POST'])
+def check_answer():
+    global questions
 
-#     json_data = request.get_json()  
-#     data_id = json_data["id"] 
+    json_data = request.get_json()  
+    # data_id = json_data["id"] 
 
-#     data[data_id] = json_data
+    # data[data_id] = json_data
 
-#     return jsonify(success=True)
+    return jsonify(success=True)
 
 # @app.route('/add_data', methods=['GET', 'POST'])
 # def add_data():

@@ -4,6 +4,8 @@ const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
+// let selectedRadioValue = null;
+
 // CITATION - https://github.com/yixizhang/seed-shuffle/blob/master/index.js
 function deterministicShuffle(array, seed = 44) {
   let currentIndex = array.length,
@@ -99,6 +101,7 @@ function genQuestionIdentify(question) {
     let btn_div = $("<div>").addClass("");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
+    btn_input.data("option_id", option_id);
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
     btn_input.attr("id", `option-${option_id}`);
@@ -245,4 +248,52 @@ function checkIfAnswered(question) {
 function checkAnswer(question) {
   // TODO Check answer and display incorrect/correct answer, update score, etc.
   console.log("Checking answer");
+}
+
+function sendAJAX(question, answer) {
+  const request = {question: question, answer: answer};
+
+  $.ajax({
+    type: "POST",
+    url: "/check_answer",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(request),
+    success: function (response) {
+      // window.location.href = `/view/${entry.id}`;
+      console.log("Response is " + response);
+      console.log(response);
+    },
+    error: function (request, status, error) {
+      console.log("Error");
+      console.log(request);
+      console.log(status);
+      console.log(error);
+    },
+  });
+}
+
+function sendAnswerRadio(question) {
+  // $('input[type="radio"][name="options"]').change(function() {
+  //   selectedRadioValue =
+  // })
+  let answer = $('input[type="radio"][name="options"]:checked').data(
+    "option_id"
+  );
+
+  if (!answer) {
+    answer = null;
+  }
+  console.log("value is " + answer);
+  sendAJAX(question, answer);
+}
+
+function sendAnswer(question) {
+  const questionType = question["questionType"];
+
+  if (questionType == "Identify" || questionType == "Select") {
+    sendAnswerRadio(question);
+  } else if (questionType == "Match") {
+  } else if (questionType == "Sentence") {
+  }
 }

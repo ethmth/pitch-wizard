@@ -6,6 +6,8 @@ function nextButtonClicked() {
   console.log("Next button clicked");
 
   if(checked) {
+    sendAnswer(question);
+    return;
     if(Number(question_id) < Number(last_question)) {
       window.location.href = `/quiz/${(1 + Number(question_id))}`;
       return
