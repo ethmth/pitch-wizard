@@ -24,6 +24,12 @@
           "slideText": "In baseball, the pitcher’s goal is to get a strike, which leads to an out.\nThere are two ways to get a strike:"
         },
         {
+          "slideName": "What are Pitch Types?",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "To throw off the batter, pitchers throw different “types” of pitches.\nSome are really fast (Fastball).\nSome are meant to throw off the batter's timing (Changeup).\nSome move a lot (Curveball).\nOthers move almost randomly (Knuckleball).\nThese are the four pitch types we will learn how to identify."
+        },
+        {
           "slideName": "Pitch Velocity",
           "slideType": "Information",
           "slideMedia": [
@@ -34,14 +40,31 @@
             }
           ],
           "slideText": "Pitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
+        },
+        {
+          "slideName": "Pitch Movement",
+          "slideType": "Information",
+          "slideMedia": [
+            {
+              "filename": "Intro_PitchMovement1.mp4",
+              "caption": "The Pitch Arches:",
+              "captionLocation": "top"
+            },
+            {
+              "filename": "Intro_PitchMovement2.mp4",
+              "caption": "The Pitch is Straight:",
+              "captionLocation": "top"
+            }
+          ],
+          "slideText": "Pitch movement, or the amount it “breaks” down or to the side, is a great indicator of what pitch type it is.\nFocus on the pitch trajectory; whether it arches, or if it is straight:"
         }
       ]
     },
     "1": {
       "lessonName": "Pitch 1: The Fastball",
-      "nextRoute": "/quiz/0",
+      "nextRoute": "/learn/2",
       "nextBehavior": "lesson",
-      "nextText": "Take MiniQuiz",
+      "nextText": "Next Pitch",
       "slides": [
         {
           "slideName": "Info",
@@ -56,6 +79,228 @@
             {
               "filename": "FastballExample1_ReidDetmers.mp4",
               "caption": "Reid Deters, Los Angeles Angels",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 2",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "FastballExample2_ColeRagans.mp4",
+              "caption": "Cole Ragans, Kansas City Royals",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 3",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "FastballExample3_YuDarvish.mp4",
+              "caption": "Yu Darvish, San Diego Padres",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 4",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "FastballExample4_AroldisChapman.mp4",
+              "caption": "Aroldis Chapman, Pittsburg Pirates",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        }
+      ]
+    },
+    "2": {
+      "lessonName": "Pitch 2: The Changeup",
+      "nextRoute": "/learn/3",
+      "nextBehavior": "lesson",
+      "nextText": "Next Pitch",
+      "slides": [
+        {
+          "slideName": "Info",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "Velocity: 70-90 mph\nMovement: Mostly a straight line; sometimes curves a little.\nGoal: A pitch that looks like a fastball to the hitter, but is slower to throw off his timing."
+        },
+        {
+          "slideName": "Example 1",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "ChangeupExample1_ReidDetmers.mp4",
+              "caption": "Reid Deters, Los Angeles Angels",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 2",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "ChangeupExample2_ColeRagans.mp4",
+              "caption": "Cole Ragans, Kansas City Royals",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 3",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "ChangeupExample3_LoganWebb.mp4",
+              "caption": "Logan Webb, San Francisco Giants",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 4",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "ChangeupExample4_JoseBerros.mp4",
+              "caption": "Jose Berrios, Toronto Blue Jays",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        }
+      ]
+    },
+    "3": {
+      "lessonName": "Pitch 3: The Curveball",
+      "nextRoute": "/learn/4",
+      "nextBehavior": "lesson",
+      "nextText": "Next Pitch",
+      "slides": [
+        {
+          "slideName": "Info",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "Velocity: 75-85 mph\nMovement: Makes a large arc with a sharp drop downwards, sometimes to the sides too.\nGoal: Make the batter swing and miss."
+        },
+        {
+          "slideName": "Example 1",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "CurveballExample1_ReidDetmers.mp4",
+              "caption": "Reid Deters, Los Angeles Angels",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 2",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "CurveballExample2_ColeRagans.mp4",
+              "caption": "Cole Ragans, Kansas City Royals",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 3",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "CurveballExample3_YuDarvish.mp4",
+              "caption": "Yu Darvish, San Diego Padres",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 4",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "CurveballExample4_NickPivetta.mp4",
+              "caption": "Nick Pivetta, Boston Red Sox",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        }
+      ]
+    },
+    "4": {
+      "lessonName": "Pitch 4: The Knuckleball",
+      "nextRoute": "/quiz/0",
+      "nextBehavior": "lesson",
+      "nextText": "Take Quiz",
+      "slides": [
+        {
+          "slideName": "Info",
+          "slideType": "Information",
+          "slideMedia": null,
+          "slideText": "Velocity: 65-80 mph\nMovement: Almost random; can jump from side to side, up to down.\nGoal: A pitch so unpredictable that a batter cannot accurately guess where to swing.\nThe \"unicorn\" of baseball pitches. Very rare, and no active MLB players throw it."
+        },
+        {
+          "slideName": "Example 1",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "KnuckleballExample1_MickeyJanis.mp4",
+              "caption": "Mickey Janis, Baltimore Orioles",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 2",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "KnuckleballExample2_StevenWright.mp4",
+              "caption": "Steven Wright, Boston Red Sox",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 3",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "KnuckleballExample3_RADickey.mp4",
+              "caption": "R.A. Dickey, Atlanta Braves",
+              "captionLocation": "bottom"
+            }
+          ],
+          "slideText": null
+        },
+        {
+          "slideName": "Example 4",
+          "slideType": "Example",
+          "slideMedia": [
+            {
+              "filename": "KnuckleballExample4_RyanFeierabend.mp4",
+              "caption": "Ryan Feierabend, Toronto Blue Jays",
               "captionLocation": "bottom"
             }
           ],

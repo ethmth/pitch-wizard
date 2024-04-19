@@ -1,10 +1,31 @@
 const slideDiv = "#slide";
 const nextButton = "#next-button";
+const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
-function genMediaDiv(media) {
+// CITATION - https://github.com/yixizhang/seed-shuffle/blob/master/index.js
+function deterministicShuffle(array, seed = 44) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+  seed = seed || 1;
+  let random = function () {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+function genMediaDiv(media, option_id = -1) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
   let captionLocation = "bottom";
@@ -44,6 +65,9 @@ function genMediaDiv(media) {
     slide_col.append(slide_video);
   }
 
+  if (option_id >= 0) {
+    slide_col.data("option_id", option_id);
+  }
   return slide_col;
 }
 
@@ -59,96 +83,36 @@ function showNextButtonErrorMessage(message) {
   console.log("showNextButtonErrorMessage: " + message);
 }
 
-function genQuestionIdentify(question) {
-  console.log(question);
-
-  const options = question["options"];
-
-  console.log(options);
-
-  let question_div = $("<div>").addClass("btn-group row");
-
-  for (const key in options) {
-    const option = options[key];
-    console.log(key);
-    console.log(option);
-
-    let media_div = genMediaDiv(option["optionMedia"]);
-
-    let btn_div = $("<div>").addClass("");
-    let btn_input = $("<input>").addClass("btn-check option-input");
-    btn_input.attr("type", "radio");
-    btn_input.attr("name", "options");
-    btn_input.attr("id", `option-${key}`);
-    btn_input.attr("autocomplete", "off");
-
-    let btn_label = $("<label>").addClass("btn btn-secondary option-label");
-    btn_label.attr("for", `option-${key}`);
-    btn_label.text(`Option ${key}`);
-
-    btn_div.append(btn_input, btn_label);
-
-    question_div.append(media_div);
-    question_div.append(btn_div);
-  }
-
-  return question_div;
+function clearSession(newPage = null) {
+  let request = { clear: "me" };
+  $.ajax({
+    type: "POST",
+    url: "/clear_session",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(request),
+    success: function (response) {
+      if (response["success"]) {
+        if (newPage) {
+          window.location.href = newPage;
+        } else {
+          window.location.reload(true);
+        }
+      } else {
+        console.log("Clearning session failed");
+      }
+    },
+    error: function (request, status, error) {
+      console.log("Error");
+      console.log(request);
+      console.log(status);
+      console.log(error);
+    },
+  });
 }
 
-function genQuestionMatch(question) {
-  // TODO
-  let question_div = $("<div>").addClass("");
-
-  question_div.text("Match");
-
-  return question_div;
-}
-
-function genQuestionSelect(question) {
-  // TODO
-  let question_div = $("<div>").addClass("");
-
-  question_div.text("Select");
-
-  return question_div;
-}
-
-function genQuestion(question) {
-  const questionType = question["questionType"];
-
-  let questionText = "";
-  if (question["questionText"]) {
-    questionText = question["questionText"].replaceAll("\n", "<br/>");
-  }
-
-  $(slideDiv).empty();
-
-  let question_div = $("<div>").addClass("");
-  let question_title = $("<h2>").addClass("");
-  let question_text = $("<h3>").addClass("text-left");
-
-  question_title.text(question["questionName"]);
-  question_text.html(questionText);
-
-  let question_content;
-  if (questionType == "Identify") {
-    question_content = genQuestionIdentify(question);
-  } else if (questionType == "Match") {
-    question_content = genQuestionMatch(question);
-  } else if (questionType == "Select") {
-    question_content = genQuestionSelect(question);
-  }
-
-  question_div.append(question_title, question_text, question_content);
-  $(slideDiv).append(question_div);
-}
-
-function checkIfAnswered(question) {
-  // TODO Check if question is answered
-  return true;
-}
-
-function checkAnswer(question) {
-  // TODO Check answer and display incorrect/correct answer, update score, etc.
-  console.log("Checking answer");
-}
+$(document).ready(function () {
+  $(clearSessionButton).click(function () {
+    clearSession();
+  });
+});
