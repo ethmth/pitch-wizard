@@ -99,105 +99,161 @@
       ]
     },
     "4": {
-      "questionName": "Fastball Question 1",
-      "questionType": "Sentence",
-      "questionText": "Fill in the blanks.",
-      "questionMedia": [
+      "questionName": "Question 4",
+      "questionType": "Match",
+      "questionText": "Match these pitches to the correct video.",
+      "questionMedia": null,
+      "questionPitcher": "Spencer Strider, Atlanta Braves",
+      "options": [
         {
-          "mediaId": 1,
-          "filename": "Fastball_MiniQuiz_Question1.mp4",
-          "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
-          "captionLocation": "bottom"
-        }
-      ],
-      "questionPitcher": null,
-      "sentences": [
-        {
-          "sentenceId": 1,
-          "sentenceBefore": "This Fastball is ",
-          "sentenceAfter": "",
-          "sentenceOptions": [
-            {
-              "optionId": 1,
-              "optionName": "91 mph",
-              "optionCorrect": false
-            },
-            {
-              "optionId": 2,
-              "optionName": "93 mph",
-              "optionCorrect": true
-            },
-            {
-              "optionId": 3,
-              "optionName": "95 mph",
-              "optionCorrect": false
-            },
-            {
-              "optionId": 4,
-              "optionName": "100 mph",
-              "optionCorrect": false
-            }
-          ]
+          "optionId": 1,
+          "optionMedia": {
+            "filename": "Question4Option1_SpencerStrider.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Fastball",
+          "optionCorrect": null
         },
         {
-          "sentenceId": 2,
-          "sentenceBefore": ", which is ",
-          "sentenceAfter": " speed for an MLB fastball.",
-          "sentenceOptions": [
-            {
-              "optionId": 1,
-              "optionName": "Below Average",
-              "optionCorrect": true
-            },
-            {
-              "optionId": 2,
-              "optionName": "Above Average",
-              "optionCorrect": false
-            }
-          ]
+          "optionId": 2,
+          "optionMedia": {
+            "filename": "Question4Option2_SpencerStrider.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Curveball",
+          "optionCorrect": null
+        },
+        {
+          "optionId": 3,
+          "optionMedia": {
+            "filename": "Question4Option3_SpencerStrider.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Changeup",
+          "optionCorrect": null
         }
-      ],
-      "options": null
+      ]
     },
     "5": {
-      "questionName": "Knuckleball Question 1",
-      "questionType": "Sentence",
-      "questionText": "Fill in the blanks.",
+      "questionName": "Question 5",
+      "questionType": "Match",
+      "questionText": "Match these pitches to the correct video.",
+      "questionMedia": null,
+      "questionPitcher": null,
+      "options": [
+        {
+          "optionId": 1,
+          "optionMedia": {
+            "filename": "Question5Option1_LoganGilbert.mp4",
+            "caption": "Logan Gilbert, Seattle Mariners",
+            "captionLocation": "bottom"
+          },
+          "optionPitchType": "Fastball",
+          "optionCorrect": null
+        },
+        {
+          "optionId": 2,
+          "optionMedia": {
+            "filename": "Question5Option4_Yamamoto.mp4",
+            "caption": "Yoshinobu Yamamoto, Los Angeles Dodgers",
+            "captionLocation": "bottom"
+          },
+          "optionPitchType": "Curveball",
+          "optionCorrect": null
+        },
+        {
+          "optionId": 3,
+          "optionMedia": {
+            "filename": "Question5Option5_RADickey.mp4",
+            "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+            "captionLocation": "bottom"
+          },
+          "optionPitchType": "Knuckleball",
+          "optionCorrect": null
+        }
+      ]
+    },
+    "6": {
+      "questionName": "Question 6",
+      "questionType": "Match",
+      "questionText": "Match these pitches to the correct video.",
+      "questionMedia": null,
+      "questionPitcher": "Grayson Rodriguez, Baltimore Orioles",
+      "options": [
+        {
+          "optionId": 1,
+          "optionMedia": {
+            "filename": "Question6Option1_GraysonRodriguez.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Fastball",
+          "optionCorrect": null
+        },
+        {
+          "optionId": 2,
+          "optionMedia": {
+            "filename": "Question6Option2_GraysonRodriguez.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Curveball",
+          "optionCorrect": null
+        },
+        {
+          "optionId": 3,
+          "optionMedia": {
+            "filename": "Question6Option3_GraysonRodriguez.mp4",
+            "caption": null,
+            "captionLocation": null
+          },
+          "optionPitchType": "Changeup",
+          "optionCorrect": null
+        }
+      ]
+    },
+    "7": {
+      "questionName": "Question 7",
+      "questionType": "Select",
+      "questionText": "What is this pitch?",
       "questionMedia": [
         {
           "mediaId": 1,
-          "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
-          "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
-          "captionLocation": "bottom"
-        },
-        {
-          "mediaId": 2,
-          "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
-          "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+          "filename": "Question7_JaredJones.mp4",
+          "caption": "Jared Jones, Pittsburgh Pirates",
           "captionLocation": "bottom"
         }
       ],
       "questionPitcher": null,
-      "sentences": [
+      "options": [
         {
-          "sentenceId": 1,
-          "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
-          "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
-          "sentenceOptions": [
-            {
-              "optionId": 1,
-              "optionName": "Top",
-              "optionCorrect": false
-            },
-            {
-              "optionId": 2,
-              "optionName": "Bottom",
-              "optionCorrect": true
-            }
-          ]
+          "optionId": 1,
+          "optionMedia": null,
+          "optionPitchType": "Fastball",
+          "optionCorrect": true
+        },
+        {
+          "optionId": 2,
+          "optionMedia": null,
+          "optionPitchType": "Curveball",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 3,
+          "optionMedia": null,
+          "optionPitchType": "Changeup",
+          "optionCorrect": false
+        },
+        {
+          "optionId": 4,
+          "optionMedia": null,
+          "optionPitchType": "Knuckleball",
+          "optionCorrect": false
         }
-      ],
-      "options": null
+      ]
     }
   }
 }
