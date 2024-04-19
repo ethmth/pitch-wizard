@@ -95,7 +95,7 @@ function genQuestionSelect(question) {
     let btn_div = $("<div>").addClass("");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
-    btn_input.data("option_id", option["optionPitchType"])
+    btn_input.data("option_id", option_id);
     btn_input.attr("type", "radio");
     btn_input.attr("name", "options");
     btn_input.attr("id", `${option["optionPitchType"]}`);

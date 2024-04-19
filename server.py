@@ -7,6 +7,7 @@ app.secret_key = "super_secret_key"
 
 lessons = []
 questions = []
+correct_answers = {}
 
 # FUNCTIONS
 def read_json():
@@ -20,6 +21,70 @@ def read_json():
         questions = json.load(f)
 
     lessons = lessons['lessons']
+
+def get_correct_answer(quiz_id, question_id):
+    global correct_answers
+    answer_key = correct_answers
+    res = None
+
+    new_answer_key = None
+    if answer_key:
+        new_answer_key = answer_key.copy()
+
+    if not new_answer_key:
+        new_answer_key = {}
+
+    if not quiz_id in new_answer_key:
+        new_answer_key[quiz_id] = {}
+
+    if question_id in new_answer_key[quiz_id]:
+        res = new_answer_key[quiz_id][question_id]
+    else:
+        res = None
+
+    correct_answers = new_answer_key
+    return res
+
+def set_correct_answer(quiz_id, question_id, answer):
+    global correct_answers
+    answer_key = correct_answers
+    res = None
+
+    new_answer_key = None
+    if answer_key:
+        new_answer_key = answer_key.copy()
+
+    if not new_answer_key:
+        new_answer_key = {}
+
+    if not quiz_id in new_answer_key:
+        new_answer_key[quiz_id] = {}
+
+    new_answer_key[quiz_id][question_id] = answer
+    correct_answers = new_answer_key
+
+def set_correct_answers_radio(quiz_id, question_id, question):
+    for option in question["options"]:
+        if option["optionCorrect"]:
+            set_correct_answer(quiz_id, question_id, option["optionId"])
+
+def set_correct_answers():
+    global questions
+    global correct_answers
+
+    for quiz_id in questions:
+        for question_id in questions[quiz_id]["questions"]:
+            question = questions[quiz_id]["questions"][question_id]
+            questionType = question["questionType"]
+
+            if questionType == "Identify":
+                set_correct_answers_radio(quiz_id, question_id, question)
+            elif questionType == "Match":
+                pass
+            elif questionType == "Select":
+                set_correct_answers_radio(quiz_id, question_id, question)
+            elif questionType == "Sentence":
+                pass
 
 def print_answer_key(session):
     answer_key = session.get("answer_key")
@@ -67,6 +132,17 @@ def set_answer(session, quiz_id, question_id, answer):
     new_answer_key[quiz_id][question_id] = answer
     session["answer_key"] = new_answer_key
 
+def calculate_number_correct(session, quiz_id):
+    correct_count = 0
+    for question_id in questions[quiz_id]["questions"]:
+        user_answer = get_answer(session, quiz_id, question_id)
+        correct_answer = get_correct_answer(quiz_id, question_id)
+
+        if user_answer == correct_answer:
+            correct_count += 1
+
+    return correct_count
+
 # ROUTES
 @app.route('/')
 def home():
@@ -108,10 +184,18 @@ def quiz_general(quiz_id, question_id):
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
-
+    print("User Answers:")
     print_answer_key(session)
-    # TODO - show actual user results
-    return render_template('quiz_results.html')
+    print("Correct Answers:")
+    print(correct_answers)
+
+    total_questions = len(questions[quiz_id]["questions"])
+    number_correct = calculate_number_correct(session, quiz_id)
+
+    return render_template('quiz_results.html',
+        quiz_id=quiz_id,
+        number_correct=number_correct,
+        total_questions=total_questions)
 
 @app.route('/quiz_results')
 def quiz_results():
@@ -149,6 +233,7 @@ def clear_session():
 # DRIVER
 if __name__ == '__main__':
     read_json()
+    set_correct_answers()
     app.run(debug = True)
 
 
