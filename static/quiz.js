@@ -1,7 +1,6 @@
 // let checked = false;
 let checked = true;
 
-
 function genQuestionIdentify(question) {
   const options = deterministicShuffle(question["options"]);
 
@@ -155,18 +154,18 @@ function genQuestion(question) {
   $(slideDiv).append(question_div);
 }
 
-function checkIfAnswered(question) {
+function checkIfAnswerSelected(question) {
   // TODO Check if question is answered
   return true;
 }
 
-function checkAnswer(question) {
-  // TODO Check answer and display incorrect/correct answer, update score, etc.
-  console.log("Checking answer");
-}
-
-function sendAJAX(question, answer) {
-  const request = {question: question, answer: answer};
+function sendAJAX(quiz_id, question_id, question, user_answer) {
+  const request = {
+    quiz_id: quiz_id,
+    question_id: question_id,
+    // question: question,
+    user_answer: user_answer,
+  };
 
   $.ajax({
     type: "POST",
@@ -188,58 +187,85 @@ function sendAJAX(question, answer) {
   });
 }
 
-function sendAnswerRadio(question) {
-  let answer = $('input[type="radio"][name="options"]:checked').data(
+function sendAnswerRadio(quiz_id, question_id, question) {
+  let user_answer = $('input[type="radio"][name="options"]:checked').data(
     "option_id"
   );
 
-  if (!answer) {
-    answer = null;
+  if (!user_answer) {
+    user_answer = null;
   }
 
-  console.log("value is " + answer);
-  sendAJAX(question, answer);
+  console.log("value is " + user_answer);
+  sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
-function sendAnswer(question) {
+function sendAnswer(quiz_id, question_id, question) {
   const questionType = question["questionType"];
 
   if (questionType == "Identify" || questionType == "Select") {
-    sendAnswerRadio(question);
+    sendAnswerRadio(quiz_id, question_id, question);
   } else if (questionType == "Match") {
   } else if (questionType == "Sentence") {
   }
 }
 
-
 function nextButtonClicked() {
   console.log("Next button clicked");
 
-  if(checked) {
-    sendAnswer(question);
-    return;
-    if(Number(question_id) < Number(last_question)) {
-      window.location.href = `/quiz/${(1 + Number(question_id))}`;
-      return
+  if (answered) {
+    if (Number(question_id) < Number(last_question)) {
+      if (quiz_id == "main") {
+        window.location.href = `/quiz/${1 + Number(question_id)}`;
+      } else {
+        window.location.href = `/quiz/${quiz_id}/${1 + Number(question_id)}`;
+      }
     } else {
-      window.location.href = '/quiz_results';
+      if (quiz_id == "main") {
+        window.location.href = "/quiz_results";
+      } else {
+        window.location.href = `/quiz_results/${quiz_id}`;
+      }
     }
   } else {
-    let answered = checkIfAnswered(question);
-
-    if(answered) {
-      checked = true;
-      setNextButtonText("Continue");
-      checkAnswer(question);
-    }
-    else {
+    let answer_selected = checkIfAnswerSelected(question);
+    if (answer_selected) {
+      sendAnswer(quiz_id, question_id, question);
+      window.location.reload();
+    } else {
       showNextButtonErrorMessage("Please Answer the Question");
     }
   }
+
+  // if(checked) {
+  //   sendAnswer(question);
+  //   return;
+  // if(Number(question_id) < Number(last_question)) {
+  //   window.location.href = `/quiz/${(1 + Number(question_id))}`;
+  //   return
+  // } else {
+  //   window.location.href = '/quiz_results';
+  // }
+  // } else {
+  //   let answer_selected = checkIfAnswerSelected(question);
+
+  //   if(answered) {
+  //     checked = true;
+  //     setNextButtonText("Continue");
+  //     checkAnswer(question);
+  //   }
+  //   else {
+  //     showNextButtonErrorMessage("Please Answer the Question");
+  //   }
+  // }
 }
 
 $(document).ready(function () {
   genQuestion(question);
+
+  if (answered) {
+    setNextButtonText("Next");
+  }
 
   $(nextButton).click(function () {
     nextButtonClicked();

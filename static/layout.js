@@ -1,5 +1,6 @@
 const slideDiv = "#slide";
 const nextButton = "#next-button";
+const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
@@ -81,3 +82,29 @@ function setNextButtonText(new_text) {
 function showNextButtonErrorMessage(message) {
   console.log("showNextButtonErrorMessage: " + message);
 }
+
+$(document).ready(function () {
+  $(clearSessionButton).click(function () {
+    let request = { clear: "me" };
+    $.ajax({
+      type: "POST",
+      url: "/clear_session",
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(request),
+      success: function (response) {
+        if (response["success"]) {
+          window.location.reload();
+        } else {
+          console.log("Clearning session failed");
+        }
+      },
+      error: function (request, status, error) {
+        console.log("Error");
+        console.log(request);
+        console.log(status);
+        console.log(error);
+      },
+    });
+  });
+});

@@ -21,6 +21,13 @@ def read_json():
 
     lessons = lessons['lessons']
 
+def print_answer_key(session):
+    answer_key = session.get("answer_key")
+    if answer_key:
+        print(answer_key)
+    else:
+        print(None)
+
 def get_answer(session, quiz_id, question_id):
     answer_key = session.get("answer_key")
     new_answer_key = answer_key
@@ -32,10 +39,12 @@ def get_answer(session, quiz_id, question_id):
     if not quiz_id in new_answer_key:
         new_answer_key[quiz_id] = {}
 
-    if not question_id in new_answer_key[quiz_id]:
-        res = None
-    else:
+    if question_id in new_answer_key[quiz_id]:
+        print("Question id in there")
         res = new_answer_key[quiz_id][question_id]
+    else:
+        print("Question id not in theree")
+        res = None
 
     session["answer_key"] = new_answer_key
     return res
@@ -51,7 +60,10 @@ def set_answer(session, quiz_id, question_id, answer):
         new_answer_key[quiz_id] = {}
 
     new_answer_key[quiz_id][question_id] = answer
+    # print("set answer to ", answer)
+    # print(new_answer_key)
     session["answer_key"] = new_answer_key
+    # print(session["answer_key"])
 
 # ROUTES
 @app.route('/')
@@ -72,6 +84,7 @@ def render_quiz(session, quiz_id, question_id):
 
     question = questions[quiz_id]["questions"][question_id]
 
+    print_answer_key(session)
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
     if user_answer:
@@ -113,8 +126,12 @@ def check_answer():
     global questions
 
     json_data = request.get_json()
-    user_answer = json_data['answer']
-    answer = session.get('answers')
+    user_answer = json_data['user_answer']
+    quiz_id = json_data['quiz_id']
+    question_id = json_data['question_id']
+    # answer = session.get('answers')
+
+    set_answer(session, quiz_id, question_id, user_answer)
     print("User answer is ", user_answer)
 
     # if not session['answers']:
@@ -125,6 +142,14 @@ def check_answer():
     # data[data_id] = json_data
 
     return jsonify(success=True)
+
+@app.route('/clear_session', methods=['GET', 'POST'])
+def clear_session():
+    try:
+        session.clear()
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
 
 # @app.route('/add_data', methods=['GET', 'POST'])
 # def add_data():
