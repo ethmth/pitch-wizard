@@ -113,8 +113,9 @@ def check_answer():
     global questions
 
     json_data = request.get_json()
-
+    user_answer = json_data['answer']
     answer = session.get('answers')
+    print("User answer is ", user_answer)
 
     # if not session['answers']:
     #     session['answers'] = {}
