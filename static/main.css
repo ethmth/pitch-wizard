@@ -20,11 +20,11 @@
   text-align: center;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  /* height: 100%; */
-}
+/* body, html { */
+/* margin: 0; */
+/* padding: 0; */
+/* height: 100%; */
+/* } */
 
 body {
   background-color: var(--base-color);
@@ -46,7 +46,7 @@ body {
   border: solid 4px var(--accent-color);
 }
 .nav-link {
-  color:  var(--dark-grey) !important;
+  color: var(--dark-grey) !important;
 }
 .nav-link:hover {
   color: var(--dark-dark-grey) !important;
@@ -113,25 +113,48 @@ video {
   padding-bottom: 10px;
 }
 
-
-.content {
-  /* min-height: 100%; */
-  /* box-sizing: border-box; */
-  /* padding-bottom: 50px; Space for the footer */
-  background-color: yellow;
-}
-
 .footer {
-  /* position: fixed; */
-  height: 50px;
+  /* height: 50px; */
+
   width: 100%;
   bottom: 0;
-  background-color: #333;
-  color: white;
+  /* background-color: #333; */
+  /* color: white; */
   text-align: center;
-  line-height: 50px;
+  /* line-height: 50px; */
+  /* padding-bottom: 10px; */
 }
+
+/* .footer .container { */
+/* background-color: red; */
+/* background-color: white; */
+/* height: 10px; */
+/* border: solid 1px black; */
+
+/* border-bottom-left-radius: 100px; */
+/* border-bottom-right-radius: 100px; */
+/* } */
 
 .footer-fixed {
   position: fixed;
+  left: 0;
+}
+
+/* .footer-fixed .container { */
+/* background-color:red; */
+/* width: 50%; */
+/* margin-left: 100px; */
+/* } */
+
+.footer .container div {
+  padding-top: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-top: 1px solid var(--dark-grey);
+}
+
+.footer-fixed .container div {
+  background-color: var(--white);
+
+  padding-bottom: 10px;
 }

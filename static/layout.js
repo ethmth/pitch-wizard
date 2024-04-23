@@ -1,6 +1,7 @@
 const slideDiv = "#slide";
 const nextButton = "#next-button";
 const navLinkDiv = "#nav-link-div";
+const footerDiv = "#footer";
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
@@ -138,7 +139,19 @@ function genNavLinks(current = "") {
   }
 }
 
+function handleResizeFooter() {
+  if (document.body.clientHeight <= window.innerHeight + 20) {
+    $(footerDiv).removeClass("footer-fixed");
+  } else {
+    $(footerDiv).addClass("footer-fixed");
+  }
+}
+
 $(document).ready(function () {
+  handleResizeFooter();
+  $(window).on("resize", function () {
+    handleResizeFooter();
+  });
   $(clearSessionButton).click(function () {
     clearSession();
   });
