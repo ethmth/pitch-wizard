@@ -2,6 +2,7 @@ const slideDiv = "#slide";
 const nextButton = "#next-button";
 const navLinkDiv = "#nav-link-div";
 const footerDiv = "#footer";
+const footerHolder = "#footer-holder";
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
@@ -140,10 +141,12 @@ function genNavLinks(current = "") {
 }
 
 function handleResizeFooter() {
-  if (document.body.clientHeight <= window.innerHeight + 20) {
+  if (document.body.clientHeight <= window.innerHeight + 10) {
     $(footerDiv).removeClass("footer-fixed");
+    $(footerHolder).removeClass("footer-holder-active");
   } else {
     $(footerDiv).addClass("footer-fixed");
+    $(footerHolder).addClass("footer-holder-active");
   }
 }
 
