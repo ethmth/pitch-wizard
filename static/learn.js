@@ -1,6 +1,14 @@
 let slides = {};
 let currentSlide = 0;
 
+const lessonToRoute = {
+  Introduction: "Intro",
+  Fastball: "Learn Fastball",
+  Changeup: "Learn Changeup",
+  Curveball: "Learn Curveball",
+  Knuckleball: "Learn Knuckleball",
+};
+
 function nextButtonClicked(nextBehavior, nextRoute) {
   const slidesLength = Object.keys(slides).length;
 
@@ -86,6 +94,8 @@ function genSlideNavigation() {
 }
 
 $(document).ready(function () {
+  genNavLinks(lessonToRoute[lesson["lessonName"]]);
+
   initializeSlides(lesson["slides"]);
   setNextButtonText(lesson["nextText"]);
 

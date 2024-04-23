@@ -203,12 +203,12 @@ function sendAnswerRadio(quiz_id, question_id, question) {
 }
 
 function sendAnswerMatch(quiz_id, question_id, question) {
-  let user_answer = "unanswered"
+  let user_answer = "unanswered";
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
 function sendAnswerSentence(quiz_id, question_id, question) {
-  let user_answer = "unanswered"
+  let user_answer = "unanswered";
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
@@ -256,6 +256,7 @@ function nextButtonClicked() {
 }
 
 $(document).ready(function () {
+  genNavLinks("Quiz");
   genQuestion(question);
 
   if (answered) {

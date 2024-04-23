@@ -139,7 +139,6 @@ function genNavLinks(current = "") {
 }
 
 $(document).ready(function () {
-  genNavLinks("Learn Fastball");
   $(clearSessionButton).click(function () {
     clearSession();
   });

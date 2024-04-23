@@ -61,7 +61,7 @@
       ]
     },
     "1": {
-      "lessonName": "Pitch 1: The Fastball",
+      "lessonName": "Fastball",
       "nextRoute": "/learn/2",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
@@ -123,7 +123,7 @@
       ]
     },
     "2": {
-      "lessonName": "Pitch 2: The Changeup",
+      "lessonName": "Changeup",
       "nextRoute": "/learn/3",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
@@ -185,7 +185,7 @@
       ]
     },
     "3": {
-      "lessonName": "Pitch 3: The Curveball",
+      "lessonName": "Curveball",
       "nextRoute": "/learn/4",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
@@ -247,7 +247,7 @@
       ]
     },
     "4": {
-      "lessonName": "Pitch 4: The Knuckleball",
+      "lessonName": "Knuckleball",
       "nextRoute": "/quiz/0",
       "nextBehavior": "lesson",
       "nextText": "Take Quiz",

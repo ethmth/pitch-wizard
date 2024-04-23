@@ -3,7 +3,7 @@ function nextButtonClicked() {
 }
 
 $(document).ready(function () {
-
+  genNavLinks("Quiz");
   $(nextButton).click(function() {
     nextButtonClicked();
   });
