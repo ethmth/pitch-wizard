@@ -150,6 +150,10 @@ def calculate_number_correct(session, quiz_id):
 def home():
    return render_template('home.html')
 
+@app.route('/test')
+def test():
+   return render_template('test.html')
+
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
     learn_id = str(learn_id)

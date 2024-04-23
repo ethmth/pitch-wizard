@@ -1,32 +1,35 @@
 /* Variables/Colors */
 
-/* https://coolors.co/219ed2-ffc43d-695958-c8ead3-cfffe5 */
+@import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap");
 
 :root {
-  --base-color: #3fa0d6;
-  --accent-color: #ffb60a;
+  --base-color: #d9edbf;
+  --accent-color: #b99470;
   --accent-color-light: #ffc43d;
-  --light-grey: #f7f7f9;
-  --dark-grey: #93a0ab;
+  --light-grey: #b7b7b7;
+  --dark-grey: #434343;
   --dark-dark-grey: #4a4e52;
-  --black: #141414;
+  --black: #000000;
   --white: #ffffff;
-  --beginner-color: var(--accent-color);
-  --intermediate-color: var(--accent-color);
-  --expert-color: var(--accent-color);
 }
 
 /* Styles applied to all*/
 
 * {
+  font-family: "Arvo", sans-serif;
   text-align: center;
 }
 
-body {
-  background-color: var(--light-grey);
-  color: var(--black);
+.bfont {
+  font-family: "Bowlby One", sans-serif;
+  text-transform: uppercase;
 }
 
+body {
+  background-color: var(--base-color);
+  color: var(--black);
+}
 
 /* Global Styles */
 
@@ -61,13 +64,11 @@ video {
   background-color: red;
 }
 
-
 .answer-option {
   padding: 5px;
 
   border: solid 1px black;
 }
-
 
 .warning-div {
   font-size: 20px;
