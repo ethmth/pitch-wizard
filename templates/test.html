@@ -3,36 +3,11 @@
 <script type="text/javascript" src="{{ url_for('static', filename = 'test.js') }}"></script>
 
 <div class="container container-main">
-    <div class="row">
-        <div id="slide">
-            <h1 class="bfont">Test Page</h1>
-            <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-                src="https://droplet.ethanmt.com/pitching/media/home.gif" />
-            <h2 class="">
-                Learn how to identify 4 common Baseball pitches:
-                <br />
-                Fastball, Changeup, Curveball, and Knuckleball!
-            </h2>
-        </div>
-
-        <div id="footer-holder" class="footer-holder"></div>
-
-        <div id="footer" class="footer">
-            <div class="container">
-                <div class="footer-div">
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-3" id="next-button-div">
-                            <button type="button" id="next-button" class="button button-accent button-bottom">Learn</button>
-                        </div>
-                        <div class="col-3" id="second-button-div">
-                            <button type="button" id="second-button" class="button button-bottom">Quiz</button>
-                        </div>
-                        <div class="col-3"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="videoContainer" class="video-container">
+        <video id="videoPlayer" width="320" height="240" controls>
+            <source src="http://droplet.ethanmt.com/pitching/media/Question1Option3_TylerGlasnow.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 </div>
 

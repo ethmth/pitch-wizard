@@ -5,6 +5,8 @@ const navLinkDiv = "#nav-link-div";
 const navTitle = "#navbar-title";
 const footerDiv = "#footer";
 const footerHolder = "#footer-holder";
+const overlay = "#overlay";
+const videoPlayer = "#video-player"
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
@@ -126,9 +128,9 @@ function clearSession(newPage = null) {
 }
 
 function genNavLinks(current = "") {
-  if(current == "Home") {
+  if (current == "Home") {
     $(navTitle).addClass("navbar-title-active");
-  }else {
+  } else {
     $(navTitle).removeClass("navbar-title-active");
   }
 
@@ -170,4 +172,19 @@ $(document).ready(function () {
   $(clearSessionButton).click(function () {
     clearSession();
   });
+
+  $(videoPlayer).on("play", function () {
+    $(overlay).addClass("overlay-shown");
+  })
+
+  $(videoPlayer).on("ended", function () {
+    $(overlay).removeClass("overlay-shown");
+  })
+  // videoPlayer.addEventListener("play", () => {
+  //   videoContainer.classList.add("active");
+  // });
+
+  // videoPlayer.addEventListener("ended", () => {
+  //   videoContainer.classList.remove("active");
+  // });
 });
