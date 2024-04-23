@@ -20,6 +20,12 @@
   text-align: center;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  /* height: 100%; */
+}
+
 body {
   background-color: var(--base-color);
   color: var(--black);
@@ -105,4 +111,27 @@ video {
   color: red;
 
   padding-bottom: 10px;
+}
+
+
+.content {
+  /* min-height: 100%; */
+  /* box-sizing: border-box; */
+  /* padding-bottom: 50px; Space for the footer */
+  background-color: yellow;
+}
+
+.footer {
+  /* position: fixed; */
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+
+.footer-fixed {
+  position: fixed;
 }
