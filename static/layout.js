@@ -6,7 +6,7 @@ const navTitle = "#navbar-title";
 const footerDiv = "#footer";
 const footerHolder = "#footer-holder";
 const overlay = "#overlay";
-const videoPlayer = "#video-player"
+const videoPlayer = "#video-player";
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
@@ -41,7 +41,21 @@ function deterministicShuffle(array, seed = 44) {
   return array;
 }
 
-function genMediaDiv(media, option_id = -1) {
+function playVideo(video_div) {
+  video_div.trigger("play");
+  video_div.data("playing", true);
+}
+function pauseVideo(video_div) {
+  video_div.trigger("pause");
+  video_div.data("playing", false);
+}
+
+function setOverlay(media) {
+  console.log("Setting overlay to ");
+  console.log(media);
+}
+
+function genMediaDiv(media, option_id = -1, restart_on_end = true) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
   let captionLocation = "bottom";
@@ -81,7 +95,58 @@ function genMediaDiv(media, option_id = -1) {
     slide_col.append(slide_video);
   }
 
-  // TODO GEN MEDIA CONTROLS
+  slide_video.on("ended", function () {
+    if (restart_on_end) {
+      playVideo(slide_video);
+    }
+  });
+
+  // MEDIA CONTROLS
+  let media_controls = $("<div>").addClass("media-controls");
+  media_controls.attr("id", `media-controls-${option_id}`);
+
+  let play_button = $("<button>").addClass("play-button");
+  play_button.text("Play");
+  play_button.click(function () {
+    if (slide_video.data("playing")) {
+      pauseVideo(slide_video);
+    } else {
+      playVideo(slide_video);
+    }
+  });
+
+  let restart_button = $("<button>").addClass("restart-button");
+  restart_button.text("Restart");
+  restart_button.click(function () {
+    slide_video.get(0).currentTime = 0;
+    playVideo(slide_video);
+  });
+
+  let speed_slider = $("<input>").addClass("speed-slider");
+  speed_slider.attr("type", "range");
+  speed_slider.attr("min", "0.25");
+  speed_slider.attr("max", "2");
+  speed_slider.attr("step", "0.1");
+  speed_slider.attr("value", 1);
+  speed_slider.on("input", function () {
+    slide_video.get(0).playbackRate = parseFloat(this.value);
+  });
+
+  let fullscreen_button = $("<button>").addClass("fullscreen-button");
+  fullscreen_button.text("Fullscreen");
+  fullscreen_button.click(function () {
+    pauseVideo(slide_video);
+    setOverlay(media);
+  });
+
+  media_controls.append(
+    play_button,
+    restart_button,
+    speed_slider,
+    fullscreen_button
+  );
+
+  slide_col.append(media_controls);
 
   if (option_id >= 0) {
     slide_col.data("option_id", option_id);
@@ -177,11 +242,11 @@ $(document).ready(function () {
 
   $(videoPlayer).on("play", function () {
     $(overlay).addClass("overlay-shown");
-  })
+  });
 
   $(videoPlayer).on("ended", function () {
     $(overlay).removeClass("overlay-shown");
-  })
+  });
   // videoPlayer.addEventListener("play", () => {
   //   videoContainer.classList.add("active");
   // });
