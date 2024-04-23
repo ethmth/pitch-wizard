@@ -81,6 +81,8 @@ function genMediaDiv(media, option_id = -1) {
     slide_col.append(slide_video);
   }
 
+  // TODO GEN MEDIA CONTROLS
+
   if (option_id >= 0) {
     slide_col.data("option_id", option_id);
   }

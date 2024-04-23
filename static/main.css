@@ -42,6 +42,10 @@ h2 {
   margin-bottom: 1rem;
 }
 
+video {
+  width: 100%;
+}
+
 /* General Classes */
 
 .bfont {
@@ -86,10 +90,6 @@ h2 {
 }
 
 /* Global Styles TODO */
-
-/* video {
-  width: 100%;
-} */
 
 .text-left {
   text-align: left;
