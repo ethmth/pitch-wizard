@@ -6,10 +6,9 @@
 :root {
   --base-color: #d9edbf;
   --accent-color: #b99470;
-  --accent-color-light: #ffc43d;
   --light-grey: #b7b7b7;
   --dark-grey: #434343;
-  --dark-dark-grey: #4a4e52;
+  --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
 }
@@ -21,14 +20,45 @@
   text-align: center;
 }
 
+body {
+  background-color: var(--base-color);
+  color: var(--black);
+}
+
+/* General Classes */
+
 .bfont {
   font-family: "Bowlby One", sans-serif;
   text-transform: uppercase;
 }
 
-body {
-  background-color: var(--base-color);
-  color: var(--black);
+/* Bootstrap Overrides */
+
+/* Navbar */
+.navbar {
+  background-color: var(--white);
+  border: solid 4px var(--accent-color);
+}
+.nav-link {
+  color:  var(--dark-grey) !important;
+}
+.nav-link:hover {
+  color: var(--dark-dark-grey) !important;
+}
+.nav-link.nav-link-current {
+  font-weight: bold;
+  color: var(--black) !important;
+  border: solid 1px var(--accent-color);
+}
+
+.container-main {
+  background-color: var(--white);
+  margin-top: 10px;
+
+  border-radius: 100px;
+  border: solid 2px var(--dark-grey);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* Global Styles */

@@ -1,9 +1,19 @@
 const slideDiv = "#slide";
 const nextButton = "#next-button";
+const navLinkDiv = "#nav-link-div";
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
+
+const navRoutes = {
+  Intro: "/learn/0",
+  "Learn Fastball": "/learn/1",
+  "Learn Changeup": "/learn/2",
+  "Learn Curveball": "/learn/3",
+  "Learn Knuckleball": "/learn/4",
+  Quiz: "/quiz/0",
+};
 
 // CITATION - https://github.com/yixizhang/seed-shuffle/blob/master/index.js
 function deterministicShuffle(array, seed = 44) {
@@ -111,7 +121,25 @@ function clearSession(newPage = null) {
   });
 }
 
+function genNavLinks(current = "") {
+  $(navLinkDiv).empty();
+
+  for (const navRoute in navRoutes) {
+    const href = navRoutes[navRoute];
+
+    let navLink = $("<a>").addClass("nav-link");
+    navLink.text(navRoute);
+    navLink.attr("href", href);
+    if (navRoute == current) {
+      navLink.addClass("nav-link-current");
+    }
+
+    $(navLinkDiv).append(navLink);
+  }
+}
+
 $(document).ready(function () {
+  genNavLinks("Learn Fastball");
   $(clearSessionButton).click(function () {
     clearSession();
   });

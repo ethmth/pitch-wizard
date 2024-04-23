@@ -2,24 +2,22 @@
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'test.js') }}"></script>
 
-<div class="container">
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10" id="slide">
-      <h1>Test Page</h1>
-      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-        src="https://droplet.ethanmt.com/pitching/media/home.gif" />
-      <h2 class="">
-        Learn how to identify 4 common Baseball pitches: 
-        <br/>
-        Fastball, Changeup, Curveball, and Knuckleball!
-      </h2>
-    </div>
+<div class="container container-main">
+    <div class="row">
+        <div class="" id="slide">
+            <h1 class="bfont">Test Page</h1>
+            <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
+                src="https://droplet.ethanmt.com/pitching/media/home.gif" />
+            <h2 class="">
+                Learn how to identify 4 common Baseball pitches:
+                <br />
+                Fastball, Changeup, Curveball, and Knuckleball!
+            </h2>
+            <button type="button" class="btn btn-primary" id="next-button">Begin</button>
 
-    <div class="col-1" id="next-button-div">
-      <button type="button" class="btn btn-primary" id="next-button">Begin</button>
+        </div>
+
     </div>
-  </div>
 </div>
 
 {% endblock %}
