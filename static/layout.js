@@ -1,6 +1,8 @@
 const slideDiv = "#slide";
 const nextButton = "#next-button";
+const secondButton = "#second-button";
 const navLinkDiv = "#nav-link-div";
+const navTitle = "#navbar-title";
 const footerDiv = "#footer";
 const footerHolder = "#footer-holder";
 const clearSessionButton = "#clear-session-button";
@@ -124,6 +126,12 @@ function clearSession(newPage = null) {
 }
 
 function genNavLinks(current = "") {
+  if(current == "Home") {
+    $(navTitle).addClass("navbar-title-active");
+  }else {
+    $(navTitle).removeClass("navbar-title-active");
+  }
+
   $(navLinkDiv).empty();
 
   for (const navRoute in navRoutes) {
@@ -151,6 +159,10 @@ function handleResizeFooter() {
 }
 
 $(document).ready(function () {
+  $("img").on("dragstart", function (event) {
+    event.preventDefault();
+  });
+
   handleResizeFooter();
   $(window).on("resize", function () {
     handleResizeFooter();
