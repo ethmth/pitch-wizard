@@ -213,6 +213,7 @@ video {
   }
 }
 #overlay.overlay-shown {
+  display: block;
   background-color: purple;
 }
 

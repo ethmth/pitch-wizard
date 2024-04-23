@@ -50,9 +50,34 @@ function pauseVideo(video_div) {
   video_div.data("playing", false);
 }
 
-function setOverlay(media) {
+
+function showOverlay() {
+  $(overlay).addClass("overlay-shown");
+  $('body').css("pointer-events", 'none');
+  $(overlay).css("pointer-events", 'auto');
+}
+
+function hideOverlay() {
+  $(overlay).removeClass("overlay-shown");
+  $('body').css("pointer-events", 'auto');
+  $(overlay).css("pointer-events", 'none');
+}
+
+function setOverlay(media, option_id = -1) {
   console.log("Setting overlay to ");
   console.log(media);
+
+  $(overlay).empty();
+  let container_div = $("<div>").addClass("container");
+  let row_div = $("<div>").addClass("row");
+  let media_div = genMediaDiv(media, option_id, true);
+
+  row_div.append(media_div);
+  container_div.append(row_div);
+  $(overlay).append(container_div);
+
+  // $(overlay).addClass("overlay-shown");
+  showOverlay();
 }
 
 function genMediaDiv(media, option_id = -1, restart_on_end = true) {
@@ -136,7 +161,7 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
   fullscreen_button.text("Fullscreen");
   fullscreen_button.click(function () {
     pauseVideo(slide_video);
-    setOverlay(media);
+    setOverlay(media, option_id);
   });
 
   media_controls.append(
@@ -240,13 +265,13 @@ $(document).ready(function () {
     clearSession();
   });
 
-  $(videoPlayer).on("play", function () {
-    $(overlay).addClass("overlay-shown");
-  });
+  // $(videoPlayer).on("play", function () {
+  //   $(overlay).addClass("overlay-shown");
+  // });
 
-  $(videoPlayer).on("ended", function () {
-    $(overlay).removeClass("overlay-shown");
-  });
+  // $(videoPlayer).on("ended", function () {
+  //   $(overlay).removeClass("overlay-shown");
+  // });
   // videoPlayer.addEventListener("play", () => {
   //   videoContainer.classList.add("active");
   // });
