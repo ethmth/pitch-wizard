@@ -53,6 +53,18 @@ video {
   text-transform: uppercase;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
 /* Bootstrap Overrides */
 
 /* Navbar */
@@ -91,9 +103,6 @@ video {
 
 /* Global Styles TODO */
 
-.text-left {
-  text-align: left;
-}
 
 #slide-navigation {
   display: flex;
@@ -215,6 +224,23 @@ video {
 #overlay.overlay-shown {
   display: block;
   background-color: purple;
+}
+
+#backdrop {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  
+  z-index: 100000;
+  display: none;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#backdrop.backdrop-shown {
+  display: block;
 }
 
 /* TESTING STUFF */

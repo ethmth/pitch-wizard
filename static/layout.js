@@ -6,6 +6,7 @@ const navTitle = "#navbar-title";
 const footerDiv = "#footer";
 const footerHolder = "#footer-holder";
 const overlay = "#overlay";
+const backdrop = "#backdrop";
 const videoPlayer = "#video-player";
 const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
@@ -50,17 +51,20 @@ function pauseVideo(video_div) {
   video_div.data("playing", false);
 }
 
-
 function showOverlay() {
   $(overlay).addClass("overlay-shown");
-  $('body').css("pointer-events", 'none');
-  $(overlay).css("pointer-events", 'auto');
+  $("body").css("pointer-events", "none");
+  $("body").addClass("no-scroll");
+  $(overlay).css("pointer-events", "auto");
+  $(backdrop).addClass("backdrop-shown");
 }
 
 function hideOverlay() {
   $(overlay).removeClass("overlay-shown");
-  $('body').css("pointer-events", 'auto');
-  $(overlay).css("pointer-events", 'none');
+  $("body").css("pointer-events", "auto");
+  $("body").removeClass("no-scroll");
+  $(overlay).css("pointer-events", "none");
+  $(backdrop).removeClass("backdrop-shown");
 }
 
 function setOverlay(media, option_id = -1) {
@@ -69,14 +73,23 @@ function setOverlay(media, option_id = -1) {
 
   $(overlay).empty();
   let container_div = $("<div>").addClass("container");
+  let row_x = $("<div>").addClass("row float-right");
+  let btn_div = $("<div>").addClass();
+  let btn_x = $("<button>").text("X");
+  btn_x.click(function () {
+    hideOverlay();
+  });
+
+  btn_div.append(btn_x);
+  row_x.append(btn_div);
+
   let row_div = $("<div>").addClass("row");
   let media_div = genMediaDiv(media, option_id, true);
 
   row_div.append(media_div);
-  container_div.append(row_div);
+  container_div.append(row_x, row_div);
   $(overlay).append(container_div);
 
-  // $(overlay).addClass("overlay-shown");
   showOverlay();
 }
 
@@ -126,7 +139,6 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
     }
   });
 
-  // MEDIA CONTROLS
   let media_controls = $("<div>").addClass("media-controls");
   media_controls.attr("id", `media-controls-${option_id}`);
 
@@ -265,18 +277,9 @@ $(document).ready(function () {
     clearSession();
   });
 
-  // $(videoPlayer).on("play", function () {
-  //   $(overlay).addClass("overlay-shown");
-  // });
-
-  // $(videoPlayer).on("ended", function () {
-  //   $(overlay).removeClass("overlay-shown");
-  // });
-  // videoPlayer.addEventListener("play", () => {
-  //   videoContainer.classList.add("active");
-  // });
-
-  // videoPlayer.addEventListener("ended", () => {
-  //   videoContainer.classList.remove("active");
-  // });
+  $(document).keydown(function (e) {
+    if (e.key === "Escape") {
+      hideOverlay();
+    }
+  });
 });
