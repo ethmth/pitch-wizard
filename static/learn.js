@@ -1,3 +1,4 @@
+const lessonName = "#lesson-name"
 let slides = {};
 let currentSlide = 0;
 
@@ -117,8 +118,16 @@ function genSlideNavigation() {
   }
 }
 
+function hideLessonName() {
+  $(lessonName).addClass("hidden");
+}
+
 $(document).ready(function () {
   genNavLinks(lessonToRoute[lesson["lessonName"]]);
+
+  if(lesson["lessonName"] == "Introduction") {
+    hideLessonName();
+  }
 
   initializeSlides(lesson["slides"]);
   setNextButtonText(lesson["nextText"]);
