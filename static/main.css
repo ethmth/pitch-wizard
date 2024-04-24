@@ -32,8 +32,8 @@ body {
 }
 
 h1 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 h2 {
@@ -107,6 +107,9 @@ video {
 
 /* Global Styles TODO */
 
+/* #slide {
+  min-height: 600px;
+} */
 
 #slide-navigation {
   display: flex;
@@ -119,6 +122,12 @@ video {
 .slide-button-div {
   margin-left: 2px;
   margin-right: 2px;
+}
+
+.image-pitch-info {
+  border: solid 5px var(--accent-color);
+  border-radius: 10px;
+  height: 450px;
 }
 
 .option-input {
@@ -179,12 +188,15 @@ video {
 /* Buttons */
 
 .button {
-  font-size: 18px;
+  font-size: 16px;
   background-color: var(--light-grey);
   color: var(--white);
-  width: 130px;
+  width: 160px;
   padding-top: 8px;
   padding-bottom: 8px;
+}
+.button.nav-button {
+  width: 110px;
 }
 .button:hover {
   background-color: var(--light-grey-dark);
@@ -201,33 +213,21 @@ video {
 #overlay {
   position: absolute;
   z-index: 1000000;
-  /* background-color: red; */
   display: none;
   margin-top: 50px;
 
-  /* margin-left: 5%; */
-  /* margin-right: 5%; */
   width: 100%;
-
-  /* width: 100vw;
-  height: 100vh; */
 
   align-items: center;
   text-align: center;
 
   video {
     width: 100%;
-    /* height: 600px; */
     height: auto;
-  }
-
-  .container {
-    background-color: yellow;
   }
 }
 #overlay.overlay-shown {
   display: block;
-  background-color: purple;
 }
 
 #backdrop {
@@ -246,22 +246,3 @@ video {
 #backdrop.backdrop-shown {
   display: block;
 }
-
-/* TESTING STUFF */
-
-/* .video-container {
-  position: relative;
-  width: 320px;
-  height: 240px;
-  transition: all 0.5s ease; 
-}
-
-.video-container.active {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 80%; 
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-} */

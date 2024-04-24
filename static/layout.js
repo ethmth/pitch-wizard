@@ -68,8 +68,6 @@ function hideOverlay() {
 }
 
 function setOverlay(media, option_id = -1) {
-  console.log("Setting overlay to ");
-  console.log(media);
 
   $(overlay).empty();
   let container_div = $("<div>").addClass("container");
@@ -124,11 +122,11 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
   if (captionLocation == "bottom") {
     slide_col.append(slide_video);
     if (media["caption"]) {
-      slide_col.append(slide_caption);
+      // slide_col.append(slide_caption);
     }
   } else {
     if (media["caption"]) {
-      slide_col.append(slide_caption);
+      // slide_col.append(slide_caption);
     }
     slide_col.append(slide_video);
   }
@@ -199,6 +197,14 @@ function setNextButtonText(new_text) {
   $(nextButton).text(message);
 }
 
+function setSecondButtonText(new_text) {
+  let message = "Next";
+  if (new_text) {
+    message = new_text;
+  }
+  $(secondButton).text(message);
+}
+
 function showNextButtonErrorMessage(message) {
   console.log("showNextButtonErrorMessage: " + message);
 }
@@ -219,7 +225,7 @@ function clearSession(newPage = null) {
           window.location.reload(true);
         }
       } else {
-        console.log("Clearning session failed");
+        console.log("Clearing session failed");
       }
     },
     error: function (request, status, error) {

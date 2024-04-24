@@ -10,10 +10,14 @@ const lessonToRoute = {
   Knuckleball: "Learn Knuckleball",
 };
 
-function nextButtonClicked(nextBehavior, nextRoute) {
+function secondButtonClicked(nextRoute) {
+    window.location.href = nextRoute;
+}
+
+function nextButtonClicked(nextRoute) {
   const slidesLength = Object.keys(slides).length;
 
-  if (nextBehavior == "lesson" || currentSlide >= slidesLength - 1) {
+  if (currentSlide >= slidesLength - 1) {
     window.location.href = nextRoute;
     return;
   } else {
@@ -24,10 +28,12 @@ function nextButtonClicked(nextBehavior, nextRoute) {
 function getSlideMediaDiv(slideMedia) {
   let slide_media_div = $("<div>").addClass("row");
 
-  console.log(slideMedia);
   if(slideMedia.includes(".svg")) {
     let slide_col = $("<div>").addClass("col-12");
-    let image = $("<img>");
+    let image = $("<img>").addClass("image-pitch-info");
+    image.on("dragstart", function (event) {
+      event.preventDefault();
+    });
     image.attr("src", `${VIDEO_DOMAIN}/${slideMedia}`);
     slide_col.append(image);
     slide_media_div.append(slide_col);
@@ -81,6 +87,7 @@ function renderCurrentSlide() {
   else {
     renderSlide(slide);
   }
+  genSlideNavigation();
 }
 
 function initializeSlides(slides_array) {
@@ -98,6 +105,7 @@ function setSlide(slide_number) {
 }
 
 function genSlideNavigation() {
+  console.log("genning");
   $(slideNavigation).empty();
   if(lesson["lessonName"] == "Introduction") {
     return;
@@ -107,7 +115,10 @@ function genSlideNavigation() {
     let slide = slides[key];
 
     let slide_div = $("<div>").addClass("slide-button-div");
-    let slide_button = $("<button>").addClass("btn btn-secondary");
+    let slide_button = $("<button>").addClass("button nav-button");
+    if(key == currentSlide) {
+      slide_button.addClass("button-accent")
+    }
     slide_button.click(function () {
       setSlide(key);
     });
@@ -123,6 +134,7 @@ function hideLessonName() {
 }
 
 $(document).ready(function () {
+
   genNavLinks(lessonToRoute[lesson["lessonName"]]);
 
   if(lesson["lessonName"] == "Introduction") {
@@ -130,13 +142,16 @@ $(document).ready(function () {
   }
 
   initializeSlides(lesson["slides"]);
-  setNextButtonText(lesson["nextText"]);
-
-  genSlideNavigation();
+  setNextButtonText("Next");
+  setSecondButtonText(`${lesson["lessonName"]} Quiz`)
 
   renderCurrentSlide();
 
   $(nextButton).click(function () {
-    nextButtonClicked(lesson["nextBehavior"], lesson["nextRoute"]);
+    nextButtonClicked(lesson["nextRoute"]);
+  });
+
+  $(secondButton).click(function () {
+    secondButtonClicked(lesson["nextRoute"]);
   });
 });
