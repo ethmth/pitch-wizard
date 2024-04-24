@@ -10,7 +10,7 @@ function genQuestionIdentify(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let media_div = genMediaDiv(option["optionMedia"], option_id);
+    let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
 
     let btn_div = $("<div>").addClass("");
     btn_div.data("option_id", option_id);
@@ -51,7 +51,7 @@ function genQuestionMatch(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let media_div = genMediaDiv(option["optionMedia"], option_id);
+    let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
     drop_div.append(media_div);
 
     pitch_options.push({
@@ -78,13 +78,13 @@ function genQuestionMatch(question) {
 function genQuestionSelect(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group row");
+  let question_div = $("<div>").addClass("btn-group");
 
-  let options_div = $("<div>").addClass("col-3");
-  let media_container = $("<div>").addClass("col-9");
+  let options_div = $("<div>").addClass("row");
+  let media_container = $("<div>").addClass("row");
   for (const key in question["questionMedia"]) {
     const media = question["questionMedia"][key];
-    let media_div = genMediaDiv(media, media["media_id"]);
+    let media_div = genMediaDiv(media, 1, media["media_id"], true, false);
     media_container.append(media_div);
   }
 
@@ -203,12 +203,12 @@ function sendAnswerRadio(quiz_id, question_id, question) {
 }
 
 function sendAnswerMatch(quiz_id, question_id, question) {
-  let user_answer = "unanswered"
+  let user_answer = "unanswered";
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
 function sendAnswerSentence(quiz_id, question_id, question) {
-  let user_answer = "unanswered"
+  let user_answer = "unanswered";
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
@@ -256,6 +256,7 @@ function nextButtonClicked() {
 }
 
 $(document).ready(function () {
+  genNavLinks("Quiz");
   genQuestion(question);
 
   if (answered) {

@@ -1,23 +1,55 @@
 {% extends "layout.html" %} {% block content %}
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'home.js') }}"
+></script>
 
-<div class="container">
+<div class="container container-main">
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10" id="slide">
-      <h1>Welcome to Pitch Wizard!</h1>
-      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-        src="https://droplet.ethanmt.com/pitching/media/home.gif" />
-      <h2>
-        Learn how to identify 4 common Baseball pitches: 
-        <br/>
+    <h1 class="bfont">Pitch Wizard</h1>
+  </div>
+  <div class="row">
+    <div id="slide">
+      <img
+        alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
+        src="https://droplet.ethanmt.com/pitching/media/home.gif"
+      />
+      <h2 class="">
+        Learn how to identify 4 common Baseball pitches:
+        <br />
         Fastball, Changeup, Curveball, and Knuckleball!
       </h2>
     </div>
 
-    <div class="col-1" id="next-button-div">
-      <button type="button" class="btn btn-primary" id="next-button">Begin</button>
+    <div id="footer-holder" class="footer-holder"></div>
+    <div id="footer" class="footer">
+      <div class="container">
+        <div class="footer-div">
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-3" id="next-button-div">
+              <button
+                type="button"
+                id="next-button"
+                class="button button-accent button-bottom"
+              >
+                Learn
+              </button>
+            </div>
+            <div class="col-3" id="second-button-div">
+              <button
+                type="button"
+                id="second-button"
+                class="button button-bottom"
+              >
+                Quiz
+              </button>
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
