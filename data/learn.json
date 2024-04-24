@@ -69,7 +69,7 @@
         {
           "slideName": "Info",
           "slideType": "Information",
-          "slideMedia": null,
+          "slideMedia": "fastball.svg",
           "slideText": "Velocity: 92-105 mph\nMovement: Straight line; little to no curve.\nGoal: So fast that the batter can’t react in time.\nMost common baseball pitch."
         },
         {
@@ -131,7 +131,7 @@
         {
           "slideName": "Info",
           "slideType": "Information",
-          "slideMedia": null,
+          "slideMedia": "changeup.svg",
           "slideText": "Velocity: 70-90 mph\nMovement: Mostly a straight line; sometimes curves a little.\nGoal: A pitch that looks like a fastball to the hitter, but is slower to throw off his timing."
         },
         {
@@ -193,7 +193,7 @@
         {
           "slideName": "Info",
           "slideType": "Information",
-          "slideMedia": null,
+          "slideMedia": "curveball.svg",
           "slideText": "Velocity: 75-85 mph\nMovement: Makes a large arc with a sharp drop downwards, sometimes to the sides too.\nGoal: Make the batter swing and miss."
         },
         {
@@ -255,7 +255,7 @@
         {
           "slideName": "Info",
           "slideType": "Information",
-          "slideMedia": null,
+          "slideMedia": "knuckleball.svg",
           "slideText": "Velocity: 65-80 mph\nMovement: Almost random; can jump from side to side, up to down.\nGoal: A pitch so unpredictable that a batter cannot accurately guess where to swing.\nThe \"unicorn\" of baseball pitches. Very rare, and no active MLB players throw it."
         },
         {

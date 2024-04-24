@@ -23,6 +23,17 @@ function nextButtonClicked(nextBehavior, nextRoute) {
 function getSlideMediaDiv(slideMedia) {
   let slide_media_div = $("<div>").addClass("row");
 
+  console.log(slideMedia);
+  if(slideMedia.includes(".svg")) {
+    let slide_col = $("<div>").addClass("col-12");
+    let image = $("<img>");
+    image.attr("src", `${VIDEO_DOMAIN}/${slideMedia}`);
+    slide_col.append(image);
+    slide_media_div.append(slide_col);
+    
+    return slide_media_div
+  }
+
   for (const media of slideMedia) {
     let slide_col = genMediaDiv(media);
     slide_media_div.append(slide_col);
@@ -31,7 +42,7 @@ function getSlideMediaDiv(slideMedia) {
   return slide_media_div;
 }
 
-function renderSlide(slide) {
+function renderSlide(slide, showTitle=false) {
   $(slideDiv).empty();
 
   let slideText = "";
@@ -44,21 +55,31 @@ function renderSlide(slide) {
   let slide_text = $("<h3>").addClass("text-left");
   let slide_media_div = $("<div>");
   if (slide["slideMedia"]) {
+    if(slide["slideMedia"].includes(".svg")) {
+      slideText = "";
+    }
     slide_media_div = getSlideMediaDiv(slide["slideMedia"]);
   }
 
   slide_title.text(slide["slideName"]);
   slide_text.html(slideText);
 
-  slide_div.append(slide_title, slide_text, slide_media_div);
+  if(showTitle) {
+    slide_div.append(slide_title);
+  }
+  slide_div.append( slide_text, slide_media_div);
 
   $(slideDiv).append(slide_div);
 }
 
 function renderCurrentSlide() {
   const slide = slides[currentSlide];
-
-  renderSlide(slide);
+  if(lesson["lessonName"] == "Introduction") {
+    renderSlide(slide, true);
+  }
+  else {
+    renderSlide(slide);
+  }
 }
 
 function initializeSlides(slides_array) {
@@ -77,6 +98,9 @@ function setSlide(slide_number) {
 
 function genSlideNavigation() {
   $(slideNavigation).empty();
+  if(lesson["lessonName"] == "Introduction") {
+    return;
+  }
 
   for (const key in slides) {
     let slide = slides[key];
