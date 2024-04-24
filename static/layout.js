@@ -68,7 +68,6 @@ function hideOverlay() {
 }
 
 function setOverlay(media, option_id = -1) {
-
   $(overlay).empty();
   let container_div = $("<div>").addClass("container");
   let row_x = $("<div>").addClass("row float-right");
@@ -82,7 +81,7 @@ function setOverlay(media, option_id = -1) {
   row_x.append(btn_div);
 
   let row_div = $("<div>").addClass("row");
-  let media_div = genMediaDiv(media, option_id, true);
+  let media_div = genMediaDiv(media, 1, option_id, true, false);
 
   row_div.append(media_div);
   container_div.append(row_x, row_div);
@@ -91,7 +90,13 @@ function setOverlay(media, option_id = -1) {
   showOverlay();
 }
 
-function genMediaDiv(media, option_id = -1, restart_on_end = true) {
+function genMediaDiv(
+  media,
+  vids_in_row = 1,
+  option_id = -1,
+  restart_on_end = true,
+  fullscreen_option = false
+) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
   let captionLocation = "bottom";
@@ -100,6 +105,11 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
   }
 
   let slide_col = $("<div>").addClass("col-12");
+  if (vids_in_row == 2) {
+    slide_col = $("<div>").addClass("col-6");
+  } else if (vids_in_row == 3) {
+    slide_col = $("<div>").addClass("col-4");
+  }
 
   let slide_video = $("<video>").addClass("");
   let slide_source = $("<source>").addClass("");
@@ -126,7 +136,7 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
     }
   } else {
     if (media["caption"]) {
-      // slide_col.append(slide_caption);
+      slide_col.append(slide_caption);
     }
     slide_col.append(slide_video);
   }
@@ -174,12 +184,11 @@ function genMediaDiv(media, option_id = -1, restart_on_end = true) {
     setOverlay(media, option_id);
   });
 
-  media_controls.append(
-    play_button,
-    restart_button,
-    speed_slider,
-    fullscreen_button
-  );
+  media_controls.append(play_button, restart_button, speed_slider);
+
+  if (fullscreen_option) {
+    media_controls.append(fullscreen_button);
+  }
 
   slide_col.append(media_controls);
 
@@ -269,7 +278,6 @@ function handleResizeFooter() {
     $(footerHolder).addClass("footer-holder-active");
   }
 }
-
 
 $(document).ready(function () {
   $("img").on("dragstart", function (event) {

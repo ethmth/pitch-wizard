@@ -42,7 +42,7 @@ function getSlideMediaDiv(slideMedia) {
   }
 
   for (const media of slideMedia) {
-    let slide_col = genMediaDiv(media);
+    let slide_col = genMediaDiv(media, 1);
     slide_media_div.append(slide_col);
   }
 
