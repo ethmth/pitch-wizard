@@ -261,14 +261,32 @@ video {
   display: block;
 }
 
+.media-controls {
+  display: flex;
+  flex-direction: row;
+  /* background-color: yellow; */
+  /* margin-left: 1px; */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.media-button-div {
+  display: flex;
+  flex: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.speed-slider-div {
+  display: flex;
+  flex: 3;
+}
+
+.media-button {
+  width: 50px !important;
+}
+
 .speed-slider {
   accent-color: var(--accent-color-dark);
-  /* background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) 50%, #fff 50%, #fff 100%);
-  border: solid 1px var(--accent-color);
-  border-radius: 8px;
-  height: 7px;
-  width: 356px;
-  outline: none;
-  transition: background 450ms ease-in; */
   width: 100%;
 }

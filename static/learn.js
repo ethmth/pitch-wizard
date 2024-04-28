@@ -105,7 +105,6 @@ function setSlide(slide_number) {
 }
 
 function genSlideNavigation() {
-  console.log("genning");
   $(slideNavigation).empty();
   if(lesson["lessonName"] == "Introduction") {
     return;

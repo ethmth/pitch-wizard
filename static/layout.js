@@ -54,24 +54,6 @@ function pauseVideo(video_div) {
   video_div.data("playing", false);
 }
 
-// async function add_window_click_handler() {
-//   await new Promise(resolve => setTimeout(resolve, 1000));
-
-//   $(window).click(function () {
-//     hideOverlay();
-//   })
-//   $(overlay).click(function (event) {
-//     event.stopPropagation();
-//   })
-// }
-
-// async function remove_window_click_handler() {
-//   $(window).click(function () {
-//   })
-//   $(overlay).click(function () {
-//   })
-// }
-
 async function setOverlayShown(new_value) {
   await new Promise(resolve => setTimeout(resolve, 50));
 
@@ -79,49 +61,41 @@ async function setOverlayShown(new_value) {
 }
 
 function showOverlay() {
-  console.log("Showing overlay");
   $(overlay).addClass("overlay-shown");
   $("body").css("pointer-events", "none");
   $("body").addClass("no-scroll");
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
-  // overlayShown = true;
-
   setOverlayShown(true);
-
-  // add_window_click_handler();
 }
 
 function hideOverlay() {
-  console.log("Hiding overlay");
   overlayShown = false;
   $(overlay).removeClass("overlay-shown");
   $("body").css("pointer-events", "auto");
   $("body").removeClass("no-scroll");
   $(overlay).css("pointer-events", "none");
   $(backdrop).removeClass("backdrop-shown");
-
-  // remove_window_click_handler();
 }
 
 function setOverlay(media, option_id = -1) {
   $(overlay).empty();
   let container_div = $("<div>").addClass("container container-main");
-  let row_x = $("<div>").addClass("row float-right");
-  let btn_div = $("<div>").addClass();
-  let btn_x = $("<button>").text("X");
-  btn_x.click(function () {
-    hideOverlay();
-  });
+  // let row_x = $("<div>").addClass("row float-right");
+  // let btn_div = $("<div>").addClass();
+  // let btn_x = $("<button>").addClass("button media-button").text("X");
+  // btn_x.click(function () {
+  //   hideOverlay();
+  // });
 
-  btn_div.append(btn_x);
-  row_x.append(btn_div);
+  // btn_div.append(btn_x);
+  // row_x.append(btn_div);
 
   let row_div = $("<div>").addClass("row");
   let media_div = genMediaDiv(media, 1, option_id, true, false);
 
   row_div.append(media_div);
-  container_div.append(row_x, row_div);
+  container_div.append(row_div);
   $(overlay).append(container_div);
 
   showOverlay();
@@ -187,47 +161,60 @@ function genMediaDiv(
   let media_controls = $("<div>").addClass("media-controls row");
   media_controls.attr("id", `media-controls-${option_id}`);
 
-  let play_div = $("<div>").addClass("col-2");
+  let play_div = $("<div>").addClass("media-button-div");
   let play_button = $("<button>").addClass("play-button button media-button button-accent");
-  play_button.text("Play");
+  let play_icon = $("<i>").addClass("fa fa-play");
+  // play_button.text("Play");
+  play_button.append(play_icon);
   play_button.click(function () {
     if (slide_video.data("playing")) {
-      play_button.text("Play");
+      // play_button.text("Play");
+      play_icon.removeClass("fa-pause");
+      play_icon.addClass("fa-play");
       pauseVideo(slide_video);
     } else {
-      play_button.text("Pause");
+      // play_button.text("Pause");
+      play_icon.removeClass("fa-play");
+      play_icon.addClass("fa-pause");
       playVideo(slide_video);
     }
   });
   play_div.append(play_button);
 
-  let restart_div = $("<div>").addClass("col-2")
+  let restart_div = $("<div>").addClass("media-button-div")
   let restart_button = $("<button>").addClass("restart-button button media-button");
-  restart_button.text("Restart");
+  let restart_icon = $("<i>").addClass("fa fa-arrows-spin");
+  // restart_button.text("Restart");
+  restart_button.append(restart_icon);
   restart_button.click(function () {
     slide_video.get(0).currentTime = 0;
-    play_button.text("Pause");
+    // play_button.text("Pause");
+    play_icon.removeClass("fa-play");
+    play_icon.addClass("fa-pause");
     playVideo(slide_video);
   });
   restart_div.append(restart_button);
 
-  let speed_div = $("<div>").addClass("col-6")
+  let speed_div = $("<div>").addClass("speed-slider-div");
+  // let speed_label =$("<span>").addClass("").text("Speed:");
+  let speed_value =$("<span>").addClass("").text("Speed: 1.00x");
   let speed_slider = $("<input>").addClass("speed-slider");
   speed_slider.attr("type", "range");
   speed_slider.attr("min", "0.25");
-  speed_slider.attr("max", "2");
+  speed_slider.attr("max", "2.00");
   speed_slider.attr("step", "0.1");
   speed_slider.attr("value", 1);
   speed_slider.on("input", function () {
-    // var value = (this.value - this.min) / (this.max - this.min) * 100
-    // this.style.background = `linear-gradient(to right, #${ACCENT_COLOR} 0%, #${ACCENT_COLOR} ` + value + '%, #fff ' + value + '%, white 100%)'
+    speed_value.text(`Speed: ${this.value}x`);
     slide_video.get(0).playbackRate = parseFloat(this.value);
   });
-  speed_div.append(speed_slider);
+  speed_div.append(speed_value, speed_slider);
 
-  let fullscreen_div = $("<div>").addClass("col-2")
+  let fullscreen_div = $("<div>").addClass("media-button-div")
   let fullscreen_button = $("<button>").addClass("fullscreen-button button media-button");
-  fullscreen_button.text("Max");
+  let fullscreen_icon = $("<i>").addClass("fa fa-expand");
+  // fullscreen_button.text("Max");
+  fullscreen_button.append(fullscreen_icon);
   fullscreen_button.click(function () {
     pauseVideo(slide_video);
     setOverlay(media, option_id);
@@ -332,8 +319,6 @@ function handleResizeFooter() {
 $(document).ready(function () {
   overlayShown = false;
 
-  console.log(overlayShown);
-
   $("img").on("dragstart", function (event) {
     event.preventDefault();
   });
@@ -354,7 +339,6 @@ $(document).ready(function () {
 
   $(window).click(function () {
     if (overlayShown) {
-      console.log("Hide overlay");
       hideOverlay();
     }
   })
