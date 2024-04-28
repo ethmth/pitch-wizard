@@ -24,7 +24,14 @@ function genQuestionIdentify(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let radio_container = $("<div>").addClass("answer-div col-6 radio-container");
+
+    let radio_container = $("<div>").addClass("answer-div radio-container");
+    if (options.length == 2) {
+      radio_container.addClass("col-6");
+    } else if (options.length == 3) {
+      radio_container.addClass("col-4");
+    }
+
     let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
@@ -62,10 +69,9 @@ function genQuestionIdentify(question) {
 function genQuestionMatch(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group row");
+  let container_div = $("<div>").addClass("");
 
-  let drag_div = $("<div>").addClass("col-3");
-  let drop_div = $("<div>").addClass("col-9");
+  let questions_div = $("<div>").addClass("questions-div row");
 
   let warning_div = $("<div>").addClass("col-12 warning-div");
   warning_div.text("Dragging and Dropping not yet implemented");
@@ -77,7 +83,9 @@ function genQuestionMatch(question) {
     const option_id = option["optionId"];
 
     let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
-    drop_div.append(media_div);
+    media_div.addClass("question-div");
+
+    questions_div.append(media_div);
 
     pitch_options.push({
       pitchType: option["optionPitchType"],
@@ -85,19 +93,26 @@ function genQuestionMatch(question) {
     });
   }
 
+  let answers_div = $("<div>").addClass("answers-div row");
+
   pitch_options = deterministicShuffle(pitch_options);
 
   for (const key in pitch_options) {
-    let option_div = $("<div>").addClass("answer-option draggable-answer");
-    option_div.text(pitch_options[key]["pitchType"]);
-    option_div.data("option_id", pitch_options[key]["optionId"]);
-    drag_div.append(option_div);
+    let answer_div = $("<div>").addClass("answer-div answer-div-match");
+    if (pitch_options.length == 2) {
+      answer_div.addClass("col-6");
+    } else if (pitch_options.length == 3) {
+      answer_div.addClass("col-4");
+    }
+    answer_div.text(pitch_options[key]["pitchType"]);
+    answer_div.data("option_id", pitch_options[key]["optionId"]);
+    answers_div.append(answer_div);
   }
 
-  question_div.append(warning_div);
-  question_div.append(drag_div, drop_div);
+  container_div.append(warning_div);
+  container_div.append(questions_div, answers_div);
 
-  return question_div;
+  return container_div;
 }
 
 function genQuestionSelect(question) {
