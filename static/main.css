@@ -105,6 +105,11 @@ video {
   padding-bottom: 10px;
 }
 
+#overlay .container-main {
+  padding-bottom: 70px;
+  padding-top: 70px;
+}
+
 /* Global Styles TODO */
 
 /* #slide {
@@ -182,6 +187,12 @@ video {
 .footer-fixed .footer-div {
   background-color: var(--white);
 
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
   padding-bottom: 10px;
 }
 
@@ -197,6 +208,9 @@ video {
 }
 .button.nav-button {
   width: 110px;
+}
+.button.media-button {
+  width: 100%;
 }
 .button:hover {
   background-color: var(--light-grey-dark);
@@ -245,4 +259,16 @@ video {
 }
 #backdrop.backdrop-shown {
   display: block;
+}
+
+.speed-slider {
+  accent-color: var(--accent-color-dark);
+  /* background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) 50%, #fff 50%, #fff 100%);
+  border: solid 1px var(--accent-color);
+  border-radius: 8px;
+  height: 7px;
+  width: 356px;
+  outline: none;
+  transition: background 450ms ease-in; */
+  width: 100%;
 }

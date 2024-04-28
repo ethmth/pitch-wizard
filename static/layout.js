@@ -12,6 +12,7 @@ const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
+// const ACCENT_COLOR = "B99470"
 
 const navRoutes = {
   Intro: "/learn/0",
@@ -21,6 +22,8 @@ const navRoutes = {
   "Learn Knuckleball": "/learn/4",
   Quiz: "/quiz/0",
 };
+
+let overlayShown = false;
 
 // CITATION - https://github.com/yixizhang/seed-shuffle/blob/master/index.js
 function deterministicShuffle(array, seed = 44) {
@@ -51,25 +54,59 @@ function pauseVideo(video_div) {
   video_div.data("playing", false);
 }
 
+// async function add_window_click_handler() {
+//   await new Promise(resolve => setTimeout(resolve, 1000));
+
+//   $(window).click(function () {
+//     hideOverlay();
+//   })
+//   $(overlay).click(function (event) {
+//     event.stopPropagation();
+//   })
+// }
+
+// async function remove_window_click_handler() {
+//   $(window).click(function () {
+//   })
+//   $(overlay).click(function () {
+//   })
+// }
+
+async function setOverlayShown(new_value) {
+  await new Promise(resolve => setTimeout(resolve, 50));
+
+  overlayShown = new_value;
+}
+
 function showOverlay() {
+  console.log("Showing overlay");
   $(overlay).addClass("overlay-shown");
   $("body").css("pointer-events", "none");
   $("body").addClass("no-scroll");
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
+  // overlayShown = true;
+
+  setOverlayShown(true);
+
+  // add_window_click_handler();
 }
 
 function hideOverlay() {
+  console.log("Hiding overlay");
+  overlayShown = false;
   $(overlay).removeClass("overlay-shown");
   $("body").css("pointer-events", "auto");
   $("body").removeClass("no-scroll");
   $(overlay).css("pointer-events", "none");
   $(backdrop).removeClass("backdrop-shown");
+
+  // remove_window_click_handler();
 }
 
 function setOverlay(media, option_id = -1) {
   $(overlay).empty();
-  let container_div = $("<div>").addClass("container");
+  let container_div = $("<div>").addClass("container container-main");
   let row_x = $("<div>").addClass("row float-right");
   let btn_div = $("<div>").addClass();
   let btn_x = $("<button>").text("X");
@@ -121,7 +158,7 @@ function genMediaDiv(
     slide_caption = $("<h4>").addClass("");
   }
 
-  slide_video.attr("controls", "controls");
+  // slide_video.attr("controls", "controls");
   slide_source.attr("type", "video/mp4");
   slide_source.attr("src", videoURL);
   if (media["caption"]) {
@@ -147,26 +184,34 @@ function genMediaDiv(
     }
   });
 
-  let media_controls = $("<div>").addClass("media-controls");
+  let media_controls = $("<div>").addClass("media-controls row");
   media_controls.attr("id", `media-controls-${option_id}`);
 
-  let play_button = $("<button>").addClass("play-button");
+  let play_div = $("<div>").addClass("col-2");
+  let play_button = $("<button>").addClass("play-button button media-button button-accent");
   play_button.text("Play");
   play_button.click(function () {
     if (slide_video.data("playing")) {
+      play_button.text("Play");
       pauseVideo(slide_video);
     } else {
+      play_button.text("Pause");
       playVideo(slide_video);
     }
   });
+  play_div.append(play_button);
 
-  let restart_button = $("<button>").addClass("restart-button");
+  let restart_div = $("<div>").addClass("col-2")
+  let restart_button = $("<button>").addClass("restart-button button media-button");
   restart_button.text("Restart");
   restart_button.click(function () {
     slide_video.get(0).currentTime = 0;
+    play_button.text("Pause");
     playVideo(slide_video);
   });
+  restart_div.append(restart_button);
 
+  let speed_div = $("<div>").addClass("col-6")
   let speed_slider = $("<input>").addClass("speed-slider");
   speed_slider.attr("type", "range");
   speed_slider.attr("min", "0.25");
@@ -174,20 +219,25 @@ function genMediaDiv(
   speed_slider.attr("step", "0.1");
   speed_slider.attr("value", 1);
   speed_slider.on("input", function () {
+    // var value = (this.value - this.min) / (this.max - this.min) * 100
+    // this.style.background = `linear-gradient(to right, #${ACCENT_COLOR} 0%, #${ACCENT_COLOR} ` + value + '%, #fff ' + value + '%, white 100%)'
     slide_video.get(0).playbackRate = parseFloat(this.value);
   });
+  speed_div.append(speed_slider);
 
-  let fullscreen_button = $("<button>").addClass("fullscreen-button");
-  fullscreen_button.text("Fullscreen");
+  let fullscreen_div = $("<div>").addClass("col-2")
+  let fullscreen_button = $("<button>").addClass("fullscreen-button button media-button");
+  fullscreen_button.text("Max");
   fullscreen_button.click(function () {
     pauseVideo(slide_video);
     setOverlay(media, option_id);
   });
+  fullscreen_div.append(fullscreen_button);
 
-  media_controls.append(play_button, restart_button, speed_slider);
+  media_controls.append(play_div, restart_div, speed_div);
 
   if (fullscreen_option) {
-    media_controls.append(fullscreen_button);
+    media_controls.append(fullscreen_div);
   }
 
   slide_col.append(media_controls);
@@ -280,6 +330,10 @@ function handleResizeFooter() {
 }
 
 $(document).ready(function () {
+  overlayShown = false;
+
+  console.log(overlayShown);
+
   $("img").on("dragstart", function (event) {
     event.preventDefault();
   });
@@ -297,4 +351,16 @@ $(document).ready(function () {
       hideOverlay();
     }
   });
+
+  $(window).click(function () {
+    if (overlayShown) {
+      console.log("Hide overlay");
+      hideOverlay();
+    }
+  })
+  $(overlay).click(function (event) {
+    if (overlayShown) {
+      event.stopPropagation();
+    }
+  })
 });
