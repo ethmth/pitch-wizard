@@ -42,7 +42,7 @@ function getSlideMediaDiv(slideMedia) {
   }
 
   for (const media of slideMedia) {
-    let slide_col = genMediaDiv(media, 1);
+    let slide_col = genMediaDiv(media, slideMedia.length, 1, slideMedia.length <= 1, slideMedia.length > 1);
     slide_media_div.append(slide_col);
   }
 
@@ -142,7 +142,11 @@ $(document).ready(function () {
 
   initializeSlides(lesson["slides"]);
   setNextButtonText("Next");
-  setSecondButtonText(`${lesson["lessonName"]} Quiz`)
+  if(lesson["lessonName"] == "Introduction") {
+  setSecondButtonText("First Pitch");
+  } else {
+    setSecondButtonText(`${lesson["lessonName"]} Quiz`);
+  }
 
   renderCurrentSlide();
 

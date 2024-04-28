@@ -37,9 +37,26 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 36px;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 24px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  margin-top: 1rem;
+  font-size: 18px;
+}
+
+br {
+  line-height: 200%;
 }
 
 video {
@@ -117,9 +134,10 @@ video {
 
 /* Global Styles TODO */
 
-/* #slide {
-  min-height: 600px;
-} */
+#slide {
+  /* min-height: 600px; */
+  padding-bottom: 1rem;
+}
 
 #slide-navigation {
   display: flex;
@@ -280,7 +298,7 @@ video {
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
 
-  color: var(--black);
+  color: var(--dark-dark-grey);
 }
 
 .media-button-div {
