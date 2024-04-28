@@ -99,20 +99,25 @@ video {
   background-color: var(--white);
   border: solid 4px var(--accent-color);
 }
+
 .nav-link {
   color: var(--dark-grey) !important;
 }
+
 .nav-link:hover {
   color: var(--dark-dark-grey) !important;
 }
+
 .nav-link.nav-link-current {
   font-weight: bold;
   color: var(--black) !important;
   border: solid 1px var(--accent-color);
 }
+
 #navbar-title {
   padding: 10px;
 }
+
 .navbar-title-active {
   border: solid 1px var(--accent-color);
 }
@@ -194,6 +199,7 @@ video {
   height: 0;
   position: absolute;
 }
+
 .footer-holder-active {
   height: var(--footer-height);
   position: relative;
@@ -230,18 +236,23 @@ video {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
 .button.nav-button {
   width: 110px;
 }
+
 .button.media-button {
   width: 100%;
 }
+
 .button:hover {
   background-color: var(--light-grey-dark);
 }
+
 .button-accent {
   background-color: var(--accent-color);
 }
+
 .button-accent:hover {
   background-color: var(--accent-color-dark);
 }
@@ -264,6 +275,7 @@ video {
     /* height: auto; */
   }
 }
+
 #overlay.overlay-shown {
   display: block;
 }
@@ -272,7 +284,7 @@ video {
   position: fixed;
   margin: 0;
   padding: 0;
-  
+
   z-index: 100000;
   display: none;
 
@@ -281,6 +293,7 @@ video {
 
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 #backdrop.backdrop-shown {
   display: block;
 }
@@ -348,9 +361,11 @@ video {
 
 .radio-container .radio-item {
   margin: 0 5px 0 0;
-  width: 150px;
+  width: 170px;
   height: 50px;
   position: relative;
+  background-color: var(--light-light-grey);
+  color: var(--dark-dark-grey);
 }
 
 .radio-container label,
@@ -391,6 +406,11 @@ video {
   background-color: red;
 } */
 
+.answers-div {
+  display: flex;
+  flex-direction: row;
+}
+
 .answer-div {
   text-align: center;
   display: flex;
@@ -398,4 +418,8 @@ video {
 
   font-size: 24px;
   font-family: "Bowlby One";
+}
+
+.answer-div-select {
+  flex: 1;
 }

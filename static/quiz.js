@@ -36,13 +36,13 @@ function genQuestionIdentify(question) {
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
-    if(options.length == 2) {
-      if(count == 0) {
+    if (options.length == 2) {
+      if (count == 0) {
         btn_label.text("Left");
       } else {
         btn_label.text("Right");
       }
-    }else {
+    } else {
       btn_label.text(`Option ${Number(key) + 1}`);
     }
 
@@ -103,9 +103,8 @@ function genQuestionMatch(question) {
 function genQuestionSelect(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group");
+  let container_div = $("<div>").addClass("");
 
-  let options_div = $("<div>").addClass("row");
   let media_container = $("<div>").addClass("row");
   for (const key in question["questionMedia"]) {
     const media = question["questionMedia"][key];
@@ -113,11 +112,15 @@ function genQuestionSelect(question) {
     media_container.append(media_div);
   }
 
+  // let options_div = $("<div>").addClass("row");
+  let answers_div = $("<div>").addClass("answers-div row");
+
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let btn_div = $("<div>").addClass("");
+    let radio_container = $("<div>").addClass("answer-div answer-div-select radio-container");
+    let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
     btn_input.data("option_id", option_id);
@@ -131,13 +134,14 @@ function genQuestionSelect(question) {
     btn_label.text(`${option["optionPitchType"]}`);
 
     btn_div.append(btn_input, btn_label);
+    radio_container.append(btn_div);
 
-    options_div.append(btn_div);
+    answers_div.append(radio_container);
   }
 
-  question_div.append(options_div, media_container);
+  container_div.append(media_container, answers_div);
 
-  return question_div;
+  return container_div;
 }
 
 function genQuestionSentence(question) {
