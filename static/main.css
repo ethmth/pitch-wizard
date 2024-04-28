@@ -17,6 +17,7 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
+  --highlight-color: #81ADC8;
 }
 
 /* Styles applied to all*/
@@ -336,4 +337,65 @@ video {
 
 .media-close {
   margin-top: 10px;
+}
+
+
+.radio-container {
+  list-style-type: none;
+  margin: 25px 0 0 0;
+  padding: 0;
+}
+
+.radio-container .radio-item {
+  margin: 0 5px 0 0;
+  width: 150px;
+  height: 50px;
+  position: relative;
+}
+
+.radio-container label,
+.radio-container input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.radio-container input[type="radio"] {
+  opacity: 0.01;
+  z-index: 100;
+}
+
+.radio-container input[type="radio"]:checked+label,
+.Checked+label {
+  background: var(--highlight-color);
+  color: var(--white);
+}
+
+.radio-container label {
+  padding: 5px;
+  border: 1px solid var(--dark-dark-grey);
+  /* cursor: crosshair; */
+  z-index: 90;
+}
+
+
+.radio-container label:hover {
+  background: yellow;
+}
+
+/* .radio-item {
+  cursor: grab !important;
+  background-color: red;
+} */
+
+.answer-div {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  font-size: 24px;
+  font-family: "Bowlby One";
 }

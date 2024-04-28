@@ -4,15 +4,28 @@ let checked = true;
 function genQuestionIdentify(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group row");
+  let container_div = $("<div>").addClass("");
 
+  let questions_div = $("<div>").addClass("questions-div row");
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
 
     let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
+    media_div.addClass("question-div");
 
-    let btn_div = $("<div>").addClass("");
+    questions_div.append(media_div);
+  }
+
+  let answers_div = $("<div>").addClass("answers-div row");
+
+  let count = 0;
+  for (const key in options) {
+    const option = options[key];
+    const option_id = option["optionId"];
+
+    let radio_container = $("<div>").addClass("answer-div col-6 radio-container");
+    let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
     btn_input.data("option_id", option_id);
@@ -23,15 +36,27 @@ function genQuestionIdentify(question) {
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
-    btn_label.text(`Option ${Number(key) + 1}`);
+    if(options.length == 2) {
+      if(count == 0) {
+        btn_label.text("Left");
+      } else {
+        btn_label.text("Right");
+      }
+    }else {
+      btn_label.text(`Option ${Number(key) + 1}`);
+    }
 
     btn_div.append(btn_input, btn_label);
+    radio_container.append(btn_div);
 
-    question_div.append(media_div);
-    question_div.append(btn_div);
+    answers_div.append(radio_container);
+
+    count++;
   }
 
-  return question_div;
+  container_div.append(questions_div, answers_div);
+
+  return container_div;
 }
 
 function genQuestionMatch(question) {
