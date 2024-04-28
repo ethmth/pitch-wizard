@@ -44,6 +44,11 @@ h2 {
 
 video {
   width: 100%;
+  /* margin-bottom: 0; */
+  /* padding-bottom: 0; */
+
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 /* General Classes */
@@ -237,7 +242,7 @@ video {
 
   video {
     width: 100%;
-    height: auto;
+    /* height: auto; */
   }
 }
 #overlay.overlay-shown {
@@ -264,10 +269,18 @@ video {
 .media-controls {
   display: flex;
   flex-direction: row;
-  /* background-color: yellow; */
   /* margin-left: 1px; */
   margin-left: 0;
   margin-right: 0;
+
+  margin-top: -8px;
+
+  background-color: var(--light-light-grey);
+
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+
+  color: var(--black);
 }
 
 .media-button-div {
@@ -289,4 +302,16 @@ video {
 .speed-slider {
   accent-color: var(--accent-color-dark);
   width: 100%;
+}
+
+.media-before-div {
+  display: flex;
+  flex: 0;
+  width: 10px;
+}
+
+.media-after-div {
+  display: flex;
+  flex: 0;
+  width: 10px;
 }

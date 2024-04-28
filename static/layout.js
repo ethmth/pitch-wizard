@@ -161,6 +161,8 @@ function genMediaDiv(
   let media_controls = $("<div>").addClass("media-controls row");
   media_controls.attr("id", `media-controls-${option_id}`);
 
+  let before_div = $("<div>").addClass("media-before-div").text("");
+
   let play_div = $("<div>").addClass("media-button-div");
   let play_button = $("<button>").addClass("play-button button media-button button-accent");
   let play_icon = $("<i>").addClass("fa fa-play");
@@ -197,7 +199,7 @@ function genMediaDiv(
 
   let speed_div = $("<div>").addClass("speed-slider-div");
   // let speed_label =$("<span>").addClass("").text("Speed:");
-  let speed_value =$("<span>").addClass("").text("Speed: 1.00x");
+  let speed_value = $("<span>").addClass("").text("Speed: 1.00x");
   let speed_slider = $("<input>").addClass("speed-slider");
   speed_slider.attr("type", "range");
   speed_slider.attr("min", "0.25");
@@ -221,11 +223,15 @@ function genMediaDiv(
   });
   fullscreen_div.append(fullscreen_button);
 
-  media_controls.append(play_div, restart_div, speed_div);
+  let after_div = $("<div>").addClass("media-after-div").text("");
+
+  media_controls.append(before_div, play_div, restart_div, speed_div);
 
   if (fullscreen_option) {
     media_controls.append(fullscreen_div);
   }
+
+  media_controls.append(after_div);
 
   slide_col.append(media_controls);
 
