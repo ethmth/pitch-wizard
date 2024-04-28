@@ -128,7 +128,7 @@ video {
 }
 
 #overlay .container-main {
-  padding-bottom: 70px;
+  padding-bottom: 20px;
   padding-top: 70px;
 }
 
@@ -332,4 +332,8 @@ video {
   display: flex;
   flex: 0;
   width: 10px;
+}
+
+.media-close {
+  margin-top: 10px;
 }

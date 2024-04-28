@@ -81,21 +81,22 @@ function hideOverlay() {
 function setOverlay(media, option_id = -1) {
   $(overlay).empty();
   let container_div = $("<div>").addClass("container container-main");
-  // let row_x = $("<div>").addClass("row float-right");
-  // let btn_div = $("<div>").addClass();
-  // let btn_x = $("<button>").addClass("button media-button").text("X");
-  // btn_x.click(function () {
-  //   hideOverlay();
-  // });
+  
+  let row_x = $("<div>").addClass("row media-close");
+  let btn_div = $("<div>").addClass();
+  let btn_x = $("<button>").addClass("button button-accent").text("Close");
+  btn_x.click(function () {
+    hideOverlay();
+  });
 
-  // btn_div.append(btn_x);
-  // row_x.append(btn_div);
+  btn_div.append(btn_x);
+  row_x.append(btn_div);
 
   let row_div = $("<div>").addClass("row");
   let media_div = genMediaDiv(media, 1, option_id, true, false);
 
   row_div.append(media_div);
-  container_div.append(row_div);
+  container_div.append(row_div, row_x);
   $(overlay).append(container_div);
 
   showOverlay();
@@ -221,7 +222,7 @@ function genMediaDiv(
   speed_div.append(speed_value, speed_slider);
 
   let fullscreen_div = $("<div>").addClass("media-button-div")
-  let fullscreen_button = $("<button>").addClass("fullscreen-button button media-button");
+  let fullscreen_button = $("<button>").addClass("fullscreen-button button media-button button-accent");
   let fullscreen_icon = $("<i>").addClass("fa fa-expand");
   fullscreen_button.append(fullscreen_icon);
   fullscreen_button.click(function () {
