@@ -355,6 +355,10 @@ $(document).ready(function () {
   $(window).on("resize", function () {
     handleResizeFooter();
   });
+
+  $(document).on("scroll", function() {
+    handleResizeFooter();
+  })
   $(clearSessionButton).click(function () {
     clearSession();
   });
