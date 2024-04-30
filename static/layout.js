@@ -55,7 +55,7 @@ function pauseVideo(video_div) {
 }
 
 async function setOverlayShown(new_value) {
-  await new Promise(resolve => setTimeout(resolve, 50));
+  await new Promise((resolve) => setTimeout(resolve, 50));
 
   overlayShown = new_value;
 }
@@ -67,7 +67,6 @@ function showOverlay() {
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
   setOverlayShown(true);
-  handleResizeOverlay();
 }
 
 function hideOverlay() {
@@ -82,7 +81,7 @@ function hideOverlay() {
 function setOverlay(media, option_id = -1) {
   $(overlay).empty();
   let container_div = $("<div>").addClass("container container-main");
-  
+
   let row_x = $("<div>").addClass("row media-close");
   let btn_div = $("<div>").addClass();
   let btn_x = $("<button>").addClass("button button-accent").text("Close");
@@ -162,7 +161,7 @@ function genMediaDiv(
     }
   });
 
-  slide_video.click(function() {
+  slide_video.click(function () {
     if (slide_video.data("playing")) {
       play_icon.removeClass("fa-pause");
       play_icon.addClass("fa-play");
@@ -172,7 +171,7 @@ function genMediaDiv(
       play_icon.addClass("fa-pause");
       playVideo(slide_video);
     }
-  })
+  });
 
   let media_controls = $("<div>").addClass("media-controls row");
   media_controls.attr("id", `media-controls-${option_id}`);
@@ -180,7 +179,9 @@ function genMediaDiv(
   let before_div = $("<div>").addClass("media-before-div").text("");
 
   let play_div = $("<div>").addClass("media-button-div");
-  let play_button = $("<button>").addClass("play-button button media-button button-accent");
+  let play_button = $("<button>").addClass(
+    "play-button button media-button button-accent"
+  );
   let play_icon = $("<i>").addClass("fa fa-play");
   play_button.append(play_icon);
   play_button.click(function () {
@@ -196,8 +197,10 @@ function genMediaDiv(
   });
   play_div.append(play_button);
 
-  let restart_div = $("<div>").addClass("media-button-div")
-  let restart_button = $("<button>").addClass("restart-button button media-button");
+  let restart_div = $("<div>").addClass("media-button-div");
+  let restart_button = $("<button>").addClass(
+    "restart-button button media-button"
+  );
   let restart_icon = $("<i>").addClass("fa fa-arrows-spin");
   restart_button.append(restart_icon);
   restart_button.click(function () {
@@ -222,8 +225,10 @@ function genMediaDiv(
   });
   speed_div.append(speed_value, speed_slider);
 
-  let fullscreen_div = $("<div>").addClass("media-button-div")
-  let fullscreen_button = $("<button>").addClass("fullscreen-button button media-button button-accent");
+  let fullscreen_div = $("<div>").addClass("media-button-div");
+  let fullscreen_button = $("<button>").addClass(
+    "fullscreen-button button media-button button-accent"
+  );
   let fullscreen_icon = $("<i>").addClass("fa fa-expand");
   fullscreen_button.append(fullscreen_icon);
   fullscreen_button.click(function () {
@@ -323,32 +328,6 @@ function genNavLinks(current = "") {
   }
 }
 
-function handleResizeOverlay() {
-
-  return;
-    const overlay_div = document.getElementById('overlay');
-    const backdrop_div = document.getElementById('backdrop');
-  
-    const overlay_rect = overlay_div.getBoundingClientRect();
-    const backdrop_rect = backdrop_div.getBoundingClientRect();
-  
-    // Calculate new height for div1
-    console.log("Backdrop rect top " + backdrop_rect.top);
-    console.log("Overlay rect bottom " + overlay_rect.bottom)
-    // const newHeight = overlay_rect.bottom - backdrop_rect.top;
-    // const newHeight = overlay_rect.bottom - 0;
-
-    // const newHeight = overlay_rect.bottom + window.scrollY;
-
-    const newHeight = overlay_div.offsetTop;
-
-  
-    // Set the new height
-    backdrop_div.style.height = newHeight + 'px';
-
-    console.log("Set height to " + backdrop_div.style.height);
-}
-
 function handleResizeFooter() {
   if (document.body.clientHeight <= window.innerHeight + 10) {
     $(footerDiv).removeClass("footer-fixed");
@@ -367,10 +346,8 @@ $(document).ready(function () {
   });
 
   handleResizeFooter();
-  handleResizeOverlay();
   $(window).on("resize", function () {
     handleResizeFooter();
-    handleResizeOverlay();
   });
   $(clearSessionButton).click(function () {
     clearSession();
@@ -386,10 +363,10 @@ $(document).ready(function () {
     if (overlayShown) {
       hideOverlay();
     }
-  })
+  });
   $(overlay).click(function (event) {
     if (overlayShown) {
       event.stopPropagation();
     }
-  })
+  });
 });
