@@ -167,6 +167,8 @@ $(document).ready(function () {
   initializeSlides(lesson["slides"]);
   setNextButtonText("Next");
   if (lesson["lessonName"] == "Introduction") {
+    $(nextButton).removeClass("button-accent");
+    $(secondButton).addClass("button-accent");
     setSecondButtonText("Next");
     setNextButtonText("Back");
   } else {
