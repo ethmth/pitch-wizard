@@ -329,10 +329,16 @@ function genNavLinks(current = "") {
 }
 
 function handleResizeFooter() {
-  if (document.body.clientHeight <= window.innerHeight + 10) {
+  const container = document.getElementById('container-main');
+  const container_height = container.getBoundingClientRect().bottom;
+
+  // if (document.body.clientHeight <= window.innerHeight + 10) {
+  if (container_height <= window.innerHeight + 10) {
+    console.log("Unfixing footer");
     $(footerDiv).removeClass("footer-fixed");
     $(footerHolder).removeClass("footer-holder-active");
   } else {
+    console.log("Fixing footer");
     $(footerDiv).addClass("footer-fixed");
     $(footerHolder).addClass("footer-holder-active");
   }

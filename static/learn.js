@@ -112,6 +112,7 @@ function renderCurrentSlide() {
     renderSlide(slide);
   }
   genSlideNavigation();
+  handleResizeFooter();
 }
 
 function initializeSlides(slides_array) {
