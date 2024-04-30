@@ -96,14 +96,6 @@ video {
   float: right;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
-.scroll-y {
-  overflow-y: scroll;
-}
-
 .hidden {
   display: none;
 }
