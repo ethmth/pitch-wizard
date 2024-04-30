@@ -225,6 +225,17 @@ video {
   margin-left: var(--main-border-radius);
   margin-right: var(--main-border-radius);
   border-top: 1px solid var(--light-light-grey);
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.footer .footer-div div {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .footer-fixed .footer-div {

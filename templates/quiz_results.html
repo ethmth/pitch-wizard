@@ -6,36 +6,12 @@
   let quiz_id = {{ quiz_id| tojson}}
 </script>
 
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10" id="slide">
-      <h1>Congratulations</h1>
-      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-        src="https://droplet.ethanmt.com/pitching/media/congratulations.gif" />
-      <h3>
-        You've completed Pitch Wizard with the score {{ number_correct }}/{{ total_questions }}.
-      </h3>
-    </div>
-
-    <div class="col-1" id="next-button-div">
-      <button type="button" class="btn btn-primary" id="next-button">Restart</button>
-    </div>
-  </div>
-  <div class="warning-div">
-    3/7 is the highest possible score at this time because matching questions are not yet checked.
-  </div>
-</div> -->
-
-
 <div id="container-main" class="container container-main">
   <div class="row">
     <div id="slide">
       <h2>Congratulations</h2>
-      <img
-        alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-        src="https://droplet.ethanmt.com/pitching/media/congratulations.gif"
-      />
+      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
+        src="https://droplet.ethanmt.com/pitching/media/congratulations.gif" />
       <h3>
         You've completed Pitch Wizard with the score {{ number_correct }}/{{ total_questions }}.
       </h3>
@@ -48,18 +24,10 @@
     <div id="footer" class="footer">
       <div class="container">
         <div class="footer-div">
-          <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6" id="next-button-div">
-              <button
-                type="button"
-                id="next-button"
-                class="button button-accent button-bottom"
-              >
-                Restart
-              </button>
-            </div>
-            <div class="col-3"></div>
+          <div id="next-button-div">
+            <button type="button" id="next-button" class="button button-bottom button-accent">
+              Restart
+            </button>
           </div>
         </div>
       </div>

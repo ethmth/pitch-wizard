@@ -331,11 +331,9 @@ function handleResizeFooter() {
   const container_height = container.getBoundingClientRect().bottom;
 
   if (container_height <= window.innerHeight + 10) {
-    console.log("Unfixing footer");
     $(footerDiv).removeClass("footer-fixed");
     $(footerHolder).removeClass("footer-holder-active");
   } else {
-    console.log("Fixing footer");
     $(footerDiv).addClass("footer-fixed");
     $(footerHolder).addClass("footer-holder-active");
   }
