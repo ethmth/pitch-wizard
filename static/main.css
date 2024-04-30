@@ -17,7 +17,7 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #81ADC8;
+  --highlight-color: #ecdf8b;
 }
 
 /* Styles applied to all*/
@@ -25,11 +25,28 @@
 * {
   font-family: "Arvo", sans-serif;
   text-align: center;
+  
+}
+
+html {
+  height: 100%;   /* This makes sure that the body takes the full viewport height */
+  width: 100%;
+  margin: 0;      /* Removes default margin */
+  padding: 0;     /* Removes default padding */
+  position: relative;
 }
 
 body {
   background-color: var(--base-color);
   color: var(--black);
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  overflow-x: hidden;
+
+  /* background-color: red; */
 }
 
 h1 {
@@ -87,6 +104,11 @@ video {
 .no-scroll {
   overflow: hidden;
 }
+
+.scroll-y {
+  overflow-y: scroll;
+}
+
 
 .hidden {
   display: none;
@@ -281,17 +303,27 @@ video {
 }
 
 #backdrop {
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   margin: 0;
   padding: 0;
+  top: 0;
+  bottom: 0;
+  /* overflow-y:hidden; */
+  /* overflow-y: scroll; */
+
+  /* padding-bottom: 1rem; */
 
   z-index: 100000;
   display: none;
 
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  width: 100%;
+  /* min-height: 100%; */
+  min-height: 100%;
 
   background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: red; */
 }
 
 #backdrop.backdrop-shown {
@@ -386,7 +418,7 @@ video {
 .radio-container input[type="radio"]:checked+label,
 .Checked+label {
   background: var(--highlight-color);
-  color: var(--white);
+  color: var(--black);
 }
 
 .radio-container label {
@@ -397,9 +429,9 @@ video {
 }
 
 
-.radio-container label:hover {
+/* .radio-container label:hover {
   background: yellow;
-}
+} */
 
 /* .radio-item {
   cursor: grab !important;

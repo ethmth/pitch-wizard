@@ -63,17 +63,18 @@ async function setOverlayShown(new_value) {
 function showOverlay() {
   $(overlay).addClass("overlay-shown");
   $("body").css("pointer-events", "none");
-  $("body").addClass("no-scroll");
+  $("body").addClass("scroll-y");
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
   setOverlayShown(true);
+  handleResizeOverlay();
 }
 
 function hideOverlay() {
   overlayShown = false;
   $(overlay).removeClass("overlay-shown");
   $("body").css("pointer-events", "auto");
-  $("body").removeClass("no-scroll");
+  $("body").removeClass("scroll-y");
   $(overlay).css("pointer-events", "none");
   $(backdrop).removeClass("backdrop-shown");
 }
@@ -322,6 +323,32 @@ function genNavLinks(current = "") {
   }
 }
 
+function handleResizeOverlay() {
+
+  return;
+    const overlay_div = document.getElementById('overlay');
+    const backdrop_div = document.getElementById('backdrop');
+  
+    const overlay_rect = overlay_div.getBoundingClientRect();
+    const backdrop_rect = backdrop_div.getBoundingClientRect();
+  
+    // Calculate new height for div1
+    console.log("Backdrop rect top " + backdrop_rect.top);
+    console.log("Overlay rect bottom " + overlay_rect.bottom)
+    // const newHeight = overlay_rect.bottom - backdrop_rect.top;
+    // const newHeight = overlay_rect.bottom - 0;
+
+    // const newHeight = overlay_rect.bottom + window.scrollY;
+
+    const newHeight = overlay_div.offsetTop;
+
+  
+    // Set the new height
+    backdrop_div.style.height = newHeight + 'px';
+
+    console.log("Set height to " + backdrop_div.style.height);
+}
+
 function handleResizeFooter() {
   if (document.body.clientHeight <= window.innerHeight + 10) {
     $(footerDiv).removeClass("footer-fixed");
@@ -340,8 +367,10 @@ $(document).ready(function () {
   });
 
   handleResizeFooter();
+  handleResizeOverlay();
   $(window).on("resize", function () {
     handleResizeFooter();
+    handleResizeOverlay();
   });
   $(clearSessionButton).click(function () {
     clearSession();
