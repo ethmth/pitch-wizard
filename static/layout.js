@@ -63,7 +63,6 @@ async function setOverlayShown(new_value) {
 function showOverlay() {
   $(overlay).addClass("overlay-shown");
   $("body").css("pointer-events", "none");
-  // $("body").addClass("scroll-y");
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
   setOverlayShown(true);
@@ -73,7 +72,6 @@ function hideOverlay() {
   overlayShown = false;
   $(overlay).removeClass("overlay-shown");
   $("body").css("pointer-events", "auto");
-  // $("body").removeClass("scroll-y");
   $(overlay).css("pointer-events", "none");
   $(backdrop).removeClass("backdrop-shown");
 }
@@ -332,7 +330,6 @@ function handleResizeFooter() {
   const container = document.getElementById('container-main');
   const container_height = container.getBoundingClientRect().bottom;
 
-  // if (document.body.clientHeight <= window.innerHeight + 10) {
   if (container_height <= window.innerHeight + 10) {
     console.log("Unfixing footer");
     $(footerDiv).removeClass("footer-fixed");
