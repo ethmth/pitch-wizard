@@ -6,24 +6,32 @@
   let quiz_id = {{ quiz_id| tojson}}
 </script>
 
-<div class="container">
+<div id="container-main" class="container container-main">
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10" id="slide">
-      <h1>Congratulations</h1>
+    <div id="slide">
+      <h2>Congratulations</h2>
       <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
         src="https://droplet.ethanmt.com/pitching/media/congratulations.gif" />
-      <h2>
+      <h3>
         You've completed Pitch Wizard with the score {{ number_correct }}/{{ total_questions }}.
-      </h2>
+      </h3>
+      <div class="warning-div">
+        3/7 is the highest possible score at this time because matching questions are not yet checked.
+      </div>
     </div>
 
-    <div class="col-1" id="next-button-div">
-      <button type="button" class="btn btn-primary" id="next-button">Restart</button>
+    <div id="footer-holder" class="footer-holder"></div>
+    <div id="footer" class="footer">
+      <div class="container">
+        <div class="footer-div">
+          <div id="next-button-div">
+            <button type="button" id="next-button" class="button button-bottom button-accent">
+              Restart
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="warning-div">
-    3/7 is the highest possible score at this time because matching questions are not yet checked.
   </div>
 </div>
 

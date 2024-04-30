@@ -4,15 +4,35 @@ let checked = true;
 function genQuestionIdentify(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group row");
+  let container_div = $("<div>").addClass("");
 
+  let questions_div = $("<div>").addClass("questions-div row");
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
 
     let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
+    media_div.addClass("question-div");
 
-    let btn_div = $("<div>").addClass("");
+    questions_div.append(media_div);
+  }
+
+  let answers_div = $("<div>").addClass("answers-div row");
+
+  let count = 0;
+  for (const key in options) {
+    const option = options[key];
+    const option_id = option["optionId"];
+
+
+    let radio_container = $("<div>").addClass("answer-div radio-container");
+    if (options.length == 2) {
+      radio_container.addClass("col-6");
+    } else if (options.length == 3) {
+      radio_container.addClass("col-4");
+    }
+
+    let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
     btn_input.data("option_id", option_id);
@@ -23,24 +43,35 @@ function genQuestionIdentify(question) {
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
-    btn_label.text(`Option ${Number(key) + 1}`);
+    if (options.length == 2) {
+      if (count == 0) {
+        btn_label.text("Left");
+      } else {
+        btn_label.text("Right");
+      }
+    } else {
+      btn_label.text(`Option ${Number(key) + 1}`);
+    }
 
     btn_div.append(btn_input, btn_label);
+    radio_container.append(btn_div);
 
-    question_div.append(media_div);
-    question_div.append(btn_div);
+    answers_div.append(radio_container);
+
+    count++;
   }
 
-  return question_div;
+  container_div.append(questions_div, answers_div);
+
+  return container_div;
 }
 
 function genQuestionMatch(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group row");
+  let container_div = $("<div>").addClass("");
 
-  let drag_div = $("<div>").addClass("col-3");
-  let drop_div = $("<div>").addClass("col-9");
+  let questions_div = $("<div>").addClass("questions-div row");
 
   let warning_div = $("<div>").addClass("col-12 warning-div");
   warning_div.text("Dragging and Dropping not yet implemented");
@@ -52,7 +83,9 @@ function genQuestionMatch(question) {
     const option_id = option["optionId"];
 
     let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
-    drop_div.append(media_div);
+    media_div.addClass("question-div");
+
+    questions_div.append(media_div);
 
     pitch_options.push({
       pitchType: option["optionPitchType"],
@@ -60,27 +93,33 @@ function genQuestionMatch(question) {
     });
   }
 
+  let answers_div = $("<div>").addClass("answers-div row");
+
   pitch_options = deterministicShuffle(pitch_options);
 
   for (const key in pitch_options) {
-    let option_div = $("<div>").addClass("answer-option draggable-answer");
-    option_div.text(pitch_options[key]["pitchType"]);
-    option_div.data("option_id", pitch_options[key]["optionId"]);
-    drag_div.append(option_div);
+    let answer_div = $("<div>").addClass("answer-div answer-div-match");
+    if (pitch_options.length == 2) {
+      answer_div.addClass("col-6");
+    } else if (pitch_options.length == 3) {
+      answer_div.addClass("col-4");
+    }
+    answer_div.text(pitch_options[key]["pitchType"]);
+    answer_div.data("option_id", pitch_options[key]["optionId"]);
+    answers_div.append(answer_div);
   }
 
-  question_div.append(warning_div);
-  question_div.append(drag_div, drop_div);
+  container_div.append(warning_div);
+  container_div.append(questions_div, answers_div);
 
-  return question_div;
+  return container_div;
 }
 
 function genQuestionSelect(question) {
   const options = deterministicShuffle(question["options"]);
 
-  let question_div = $("<div>").addClass("btn-group");
+  let container_div = $("<div>").addClass("");
 
-  let options_div = $("<div>").addClass("row");
   let media_container = $("<div>").addClass("row");
   for (const key in question["questionMedia"]) {
     const media = question["questionMedia"][key];
@@ -88,11 +127,15 @@ function genQuestionSelect(question) {
     media_container.append(media_div);
   }
 
+  // let options_div = $("<div>").addClass("row");
+  let answers_div = $("<div>").addClass("answers-div row");
+
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let btn_div = $("<div>").addClass("");
+    let radio_container = $("<div>").addClass("answer-div answer-div-select radio-container");
+    let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
     btn_input.data("option_id", option_id);
@@ -106,13 +149,14 @@ function genQuestionSelect(question) {
     btn_label.text(`${option["optionPitchType"]}`);
 
     btn_div.append(btn_input, btn_label);
+    radio_container.append(btn_div);
 
-    options_div.append(btn_div);
+    answers_div.append(radio_container);
   }
 
-  question_div.append(options_div, media_container);
+  container_div.append(media_container, answers_div);
 
-  return question_div;
+  return container_div;
 }
 
 function genQuestionSentence(question) {

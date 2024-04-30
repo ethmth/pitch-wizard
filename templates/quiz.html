@@ -5,49 +5,23 @@
 <script>
   let question = {{ question| tojson}}
   let quiz_id = {{ quiz_id | tojson}}
-  let question_id = {{question_id| tojson}}
-  let last_question = {{last_question| tojson}}
-  let answered = {{answered |tojson}}
+  let question_id = {{ question_id| tojson}}
+  let last_question = {{ last_question| tojson}}
+  let answered = {{ answered | tojson}}
   let answer = {{ answer| tojson}}
 </script>
 
-<!-- <div class="container">
-
-
-  <div class="row">
-
-    <div class="col-10" id="slide">
-      <h2>Question X</h2>
-      <h3>
-        Just do it
-      </h3>
-    </div>
-
-    <div class="col-1" id="next-button-div">
-      <button type="button" class="btn btn-primary" id="next-button">Check</button>
-    </div>
-
-  </div>
-</div> -->
-
-
-<div class="container container-main">
+<div id="container-main" class="container container-main">
   <div class="row">
     <div id="slide"></div>
     <div id="footer-holder" class="footer-holder"></div>
     <div id="footer" class="footer">
       <div class="container">
         <div class="footer-div">
-          <div class="row">
-            <div class="col-12" id="next-button-div">
-              <button
-                type="button"
-                id="next-button"
-                class="button button-accent button-bottom"
-              >
-                Submit
-              </button>
-            </div>
+          <div id="next-button-div">
+            <button type="button" id="next-button" class="button button-bottom button-accent">
+              Submit
+            </button>
           </div>
         </div>
       </div>

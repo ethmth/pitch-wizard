@@ -140,6 +140,9 @@ def calculate_number_correct(session, quiz_id):
         user_answer = get_answer(session, quiz_id, question_id)
         correct_answer = get_correct_answer(quiz_id, question_id)
 
+        if not user_answer:
+            continue
+
         if user_answer == correct_answer:
             correct_count += 1
 

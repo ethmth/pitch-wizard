@@ -1,15 +1,12 @@
 {% extends "layout.html" %} {% block content %}
 
-<script
-  type="text/javascript"
-  src="{{ url_for('static', filename = 'learn.js') }}"
-></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
 
 <script>
   let lesson = {{ lesson| tojson}}
 </script>
 
-<div class="container container-main">
+<div id="container-main" class="container container-main">
   <div class="row">
     <h1 class="bfont" id="lesson-name">{{lesson.lessonName}}</h1>
   </div>
@@ -24,27 +21,15 @@
     <div id="footer" class="footer">
       <div class="container">
         <div class="footer-div">
-          <div class="row">
-            <div class="col-3"></div>
-            <div class="col-3" id="next-button-div">
-              <button
-                type="button"
-                id="next-button"
-                class="button button-accent button-bottom"
-              >
-                Learn
-              </button>
-            </div>
-            <div class="col-3" id="second-button-div">
-              <button
-                type="button"
-                id="second-button"
-                class="button button-bottom"
-              >
-                Quiz
-              </button>
-            </div>
-            <div class="col-3"></div>
+          <div id="next-button-div">
+            <button type="button" id="next-button" class="button button-bottom button-accent">
+              Learn
+            </button>
+          </div>
+          <div id="second-button-div">
+            <button type="button" id="second-button" class="button button-bottom">
+              Quiz
+            </button>
           </div>
         </div>
       </div>
