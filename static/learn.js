@@ -1,4 +1,4 @@
-const lessonName = "#lesson-name"
+const lessonName = "#lesson-name";
 let slides = {};
 let currentSlide = 0;
 
@@ -10,25 +10,44 @@ const lessonToRoute = {
   Knuckleball: "Learn Knuckleball",
 };
 
-function secondButtonClicked(nextRoute) {
-    window.location.href = nextRoute;
+function previousSlide() {
+  if (currentSlide > 0) {
+    setSlide(currentSlide - 1);
+  } else {
+    window.location.href = "/";
+  }
 }
 
-function nextButtonClicked(nextRoute) {
+function nextSlide(nextRoute) {
   const slidesLength = Object.keys(slides).length;
 
   if (currentSlide >= slidesLength - 1) {
     window.location.href = nextRoute;
-    return;
   } else {
     setSlide(currentSlide + 1);
+  }
+}
+
+function secondButtonClicked(nextRoute) {
+  if (lesson["lessonName"] == "Introduction") {
+    nextSlide(nextRoute);
+  } else {
+    window.location.href = nextRoute;
+  }
+}
+
+function nextButtonClicked(nextRoute) {
+  if (lesson["lessonName"] == "Introduction") {
+    previousSlide(nextRoute);
+  } else {
+    nextSlide(nextRoute);
   }
 }
 
 function getSlideMediaDiv(slideMedia) {
   let slide_media_div = $("<div>").addClass("row");
 
-  if(slideMedia.includes(".svg")) {
+  if (slideMedia.includes(".svg")) {
     let slide_col = $("<div>").addClass("col-12");
     let image = $("<img>").addClass("image-pitch-info");
     image.on("dragstart", function (event) {
@@ -37,19 +56,25 @@ function getSlideMediaDiv(slideMedia) {
     image.attr("src", `${VIDEO_DOMAIN}/${slideMedia}`);
     slide_col.append(image);
     slide_media_div.append(slide_col);
-    
-    return slide_media_div
+
+    return slide_media_div;
   }
 
   for (const media of slideMedia) {
-    let slide_col = genMediaDiv(media, slideMedia.length, 1, slideMedia.length <= 1, slideMedia.length > 1);
+    let slide_col = genMediaDiv(
+      media,
+      slideMedia.length,
+      1,
+      slideMedia.length <= 1,
+      slideMedia.length > 1
+    );
     slide_media_div.append(slide_col);
   }
 
   return slide_media_div;
 }
 
-function renderSlide(slide, showTitle=false) {
+function renderSlide(slide, showTitle = false) {
   $(slideDiv).empty();
 
   let slideText = "";
@@ -62,7 +87,7 @@ function renderSlide(slide, showTitle=false) {
   let slide_text = $("<h3>").addClass("text-left");
   let slide_media_div = $("<div>");
   if (slide["slideMedia"]) {
-    if(slide["slideMedia"].includes(".svg")) {
+    if (slide["slideMedia"].includes(".svg")) {
       slideText = "";
     }
     slide_media_div = getSlideMediaDiv(slide["slideMedia"]);
@@ -71,20 +96,19 @@ function renderSlide(slide, showTitle=false) {
   slide_title.text(slide["slideName"]);
   slide_text.html(slideText);
 
-  if(showTitle) {
+  if (showTitle) {
     slide_div.append(slide_title);
   }
-  slide_div.append( slide_text, slide_media_div);
+  slide_div.append(slide_text, slide_media_div);
 
   $(slideDiv).append(slide_div);
 }
 
 function renderCurrentSlide() {
   const slide = slides[currentSlide];
-  if(lesson["lessonName"] == "Introduction") {
+  if (lesson["lessonName"] == "Introduction") {
     renderSlide(slide, true);
-  }
-  else {
+  } else {
     renderSlide(slide);
   }
   genSlideNavigation();
@@ -106,7 +130,7 @@ function setSlide(slide_number) {
 
 function genSlideNavigation() {
   $(slideNavigation).empty();
-  if(lesson["lessonName"] == "Introduction") {
+  if (lesson["lessonName"] == "Introduction") {
     return;
   }
 
@@ -115,8 +139,8 @@ function genSlideNavigation() {
 
     let slide_div = $("<div>").addClass("slide-button-div");
     let slide_button = $("<button>").addClass("button nav-button");
-    if(key == currentSlide) {
-      slide_button.addClass("button-accent")
+    if (key == currentSlide) {
+      slide_button.addClass("button-accent");
     }
     slide_button.click(function () {
       setSlide(key);
@@ -133,17 +157,17 @@ function hideLessonName() {
 }
 
 $(document).ready(function () {
-
   genNavLinks(lessonToRoute[lesson["lessonName"]]);
 
-  if(lesson["lessonName"] == "Introduction") {
+  if (lesson["lessonName"] == "Introduction") {
     hideLessonName();
   }
 
   initializeSlides(lesson["slides"]);
   setNextButtonText("Next");
-  if(lesson["lessonName"] == "Introduction") {
-  setSecondButtonText("First Pitch");
+  if (lesson["lessonName"] == "Introduction") {
+    setSecondButtonText("Next");
+    setNextButtonText("Back");
   } else {
     setSecondButtonText(`${lesson["lessonName"]} Quiz`);
   }
