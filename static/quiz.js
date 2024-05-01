@@ -103,7 +103,7 @@ function genQuestionMatch(question) {
 
     let media_div = genMediaDiv(
       option["optionMedia"],
-      -1,
+      1,
       option_id,
       false,
       true
@@ -117,20 +117,29 @@ function genQuestionMatch(question) {
     // drop_here.append(drop_here_text);
     media_container.append(media_div, drop_here);
 
-    media_container.data("dropped", false);
+    // media_container.data("dropped", false);
     media_container.droppable({
       drop: function (event, ui) {
-        $(this).addClass("drop-here-dropped");
-        console.log("Dropped");
-        console.log(event);
-        console.log(ui);
-        console.log("Option ID " + ui.draggable.data("option_id") + " dropped on video key " + key);
-        media_container.data("dropped", true);
+        drop_here.addClass("drop-here-dropped");
+        // console.log("Dropped");
+        // console.log(event);
+        // console.log(ui);
+        console.log(
+          "Option ID " +
+            ui.draggable.data("option_id") +
+            " dropped on video key " +
+            key
+        );
+        // media_container.data("dropped", true);
+
+        ui.draggable.addClass("invisible");
+
+        drop_here.text(ui.draggable.text());
 
         $(this).droppable({
-          accept: ""
-        })
-      }
+          accept: "",
+        });
+      },
     });
 
     questions_div.append(media_container);
@@ -155,11 +164,10 @@ function genQuestionMatch(question) {
     answer_div.text(pitch_options[key]["pitchType"]);
     answer_div.data("option_id", pitch_options[key]["optionId"]);
 
-    answer_div.draggable({revert: "invalid"});
+    answer_div.draggable({ revert: "invalid" });
 
     answers_div.append(answer_div);
   }
-
 
   container_div.append(warning_div);
   container_div.append(questions_div, answers_div);
