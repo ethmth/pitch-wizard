@@ -530,68 +530,132 @@
           {
             "optionId": 1,
             "optionMedia": {
-              "filename": "Changeup_MiniQuizQuestion2Option1.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
-            "optionPitchType": "Fastball",
-            "optionCorrect": null
-          },
-          {
-            "optionId": 2,
-            "optionMedia": {
               "filename": "Changeup_MiniQuizQuestion2Option2.mp4",
               "caption": null,
               "captionLocation": null
             },
             "optionPitchType": "Changeup",
             "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Changeup_MiniQuizQuestion2Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Fastball",
+            "optionCorrect": null
           }
         ]
       }
-    },
-    "knuckleball": {
-      "questions": {
-        "1": {
-          "questionName": "Knuckleball Question 1",
-          "questionType": "Sentence",
-          "questionText": "Fill in the blanks.",
-          "questionMedia": [
-            {
-              "mediaId": 1,
-              "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
-              "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
-              "captionLocation": "bottom"
+    }
+  },
+  "curveball": {
+    "nextRoute": "/learn/4",
+    "questions": {
+      "1": {
+        "questionName": "Curveball Question 1",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Yoshinobu Yamamoto, Los Angeles Dodgers",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question1Option1.mp4",
+              "caption": null,
+              "captionLocation": null
             },
-            {
-              "mediaId": 2,
-              "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
-              "caption": "R.A. Dickey, (formerly) Atlanta Braves",
-              "captionLocation": "bottom"
-            }
-          ],
-          "questionPitcher": null,
-          "sentences": [
-            {
-              "sentenceId": 1,
-              "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
-              "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
-              "sentenceOptions": [
-                {
-                  "optionId": 1,
-                  "optionName": "Left",
-                  "optionCorrect": false
-                },
-                {
-                  "optionId": 2,
-                  "optionName": "Right",
-                  "optionCorrect": true
-                }
-              ]
-            }
-          ],
-          "options": null
-        }
+            "optionPitchType": "Curveball",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question1Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Fastball",
+            "optionCorrect": null
+          }
+        ]
+      },
+      "2": {
+        "questionName": "Curveball Question 2",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Joe Musgrove, San Diego Padres",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question2Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Changeup",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question2Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Curveball",
+            "optionCorrect": null
+          }
+        ]
+      }
+    }
+  },
+  "knuckleball": {
+    "nextRoute": "/quiz/0",
+    "questions": {
+      "1": {
+        "questionName": "Knuckleball Question 1",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
+            "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
+            "captionLocation": "bottom"
+          },
+          {
+            "mediaId": 2,
+            "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
+            "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": null,
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
+            "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Left",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "Right",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
       }
     }
   }
