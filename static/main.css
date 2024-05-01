@@ -156,7 +156,7 @@ video {
 
 #overlay .container-main {
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 35px;
 }
 
 /* Global Styles TODO */
@@ -352,11 +352,15 @@ video {
   flex: 0;
   padding-right: 0;
   padding-left: 0;
+
+  /* height: 50px; */
 }
 
 .speed-slider-div {
   display: flex;
   flex: 3;
+
+  font-size: 14px;
 }
 
 .media-button {
@@ -366,6 +370,7 @@ video {
 .speed-slider {
   accent-color: var(--accent-color-dark);
   width: 100%;
+  /* font-size: 8px; */
 }
 
 .media-before-div {
