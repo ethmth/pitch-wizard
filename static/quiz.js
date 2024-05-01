@@ -117,10 +117,19 @@ function genQuestionMatch(question) {
     // drop_here.append(drop_here_text);
     media_container.append(media_div, drop_here);
 
-    $(media_container).droppable({
+    media_container.data("dropped", false);
+    media_container.droppable({
       drop: function (event, ui) {
         $(this).addClass("drop-here-dropped");
         console.log("Dropped");
+        console.log(event);
+        console.log(ui);
+        console.log("Option ID " + ui.draggable.data("option_id") + " dropped on video key " + key);
+        media_container.data("dropped", true);
+
+        $(this).droppable({
+          accept: ""
+        })
       }
     });
 
@@ -146,7 +155,7 @@ function genQuestionMatch(question) {
     answer_div.text(pitch_options[key]["pitchType"]);
     answer_div.data("option_id", pitch_options[key]["optionId"]);
 
-    answer_div.draggable();
+    answer_div.draggable({revert: "invalid"});
 
     answers_div.append(answer_div);
   }
