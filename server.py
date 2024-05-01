@@ -70,6 +70,12 @@ def set_correct_answers_radio(quiz_id, question_id, question):
         if option["optionCorrect"]:
             set_correct_answer(quiz_id, question_id, option["optionId"])
 
+def set_correct_answers_match(quiz_id, question_id, question):
+    corr_ans = {}
+    for option in question["options"]:
+        corr_ans[str(option["optionId"])] = option["optionId"]
+        set_correct_answer(quiz_id, question_id, corr_ans)
+
 def set_correct_answers():
     global questions
     global correct_answers
@@ -82,7 +88,7 @@ def set_correct_answers():
             if questionType == "Identify":
                 set_correct_answers_radio(quiz_id, question_id, question)
             elif questionType == "Match":
-                pass
+                set_correct_answers_match(quiz_id, question_id, question)
             elif questionType == "Select":
                 set_correct_answers_radio(quiz_id, question_id, question)
             elif questionType == "Sentence":
@@ -226,6 +232,7 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
+        print_answer_key(session)
 
         return jsonify(success=True)
     except:
@@ -243,6 +250,7 @@ def clear_session():
 if __name__ == '__main__':
     read_json()
     set_correct_answers()
+    print(correct_answers)
     app.run(debug = True)
 
 

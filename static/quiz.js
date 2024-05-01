@@ -1,6 +1,8 @@
 // let checked = false;
 let checked = true;
 
+let match_answers = {};
+
 function genQuestionIdentify(question) {
   const options = deterministicShuffle(question["options"]);
 
@@ -118,12 +120,10 @@ function genQuestionMatch(question) {
       drop: function (event, ui) {
         drop_here.addClass("drop-here-dropped");
 
-        console.log(
-          "Option ID " +
-            ui.draggable.data("option_id") +
-            " dropped on video with option_id " +
-            option_id
-        );
+        const drag_option_id = ui.draggable.data("option_id");
+        const drop_option_id = option_id;
+
+        match_answers[drop_option_id] = drag_option_id;
 
         ui.draggable.addClass("invisible");
 
@@ -300,7 +300,7 @@ function sendAnswerRadio(quiz_id, question_id, question) {
 }
 
 function sendAnswerMatch(quiz_id, question_id, question) {
-  let user_answer = "unanswered";
+  let user_answer = match_answers;
   sendAJAX(quiz_id, question_id, question, user_answer);
 }
 
