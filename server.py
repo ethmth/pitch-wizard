@@ -236,6 +236,10 @@ def quiz_results():
 def quiz_results_general(quiz_id):
     return render_quiz_results(session, quiz_id)
 
+@app.errorhandler(404)
+def http_error_handler(error):
+    return render_template("404.html"), 404
+
 # AJAX FUNCTIONS
 @app.route('/check_answer', methods=['GET', 'POST'])
 def check_answer():
