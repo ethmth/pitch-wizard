@@ -348,12 +348,12 @@
             "sentenceOptions": [
               {
                 "optionId": 1,
-                "optionName": "Top",
+                "optionName": "Left",
                 "optionCorrect": false
               },
               {
                 "optionId": 2,
-                "optionName": "Bottom",
+                "optionName": "Right",
                 "optionCorrect": true
               }
             ]

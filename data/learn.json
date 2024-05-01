@@ -62,7 +62,7 @@
     },
     "1": {
       "lessonName": "Fastball",
-      "nextRoute": "/learn/2",
+      "nextRoute": "/quiz/fastball/1",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
       "slides": [

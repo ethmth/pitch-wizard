@@ -442,6 +442,14 @@ video {
   margin-top: 1rem;
 }
 
+
+
+.answers-div-sentence {
+  margin-top: 1rem;
+  font-size: 22px;
+  /* background-color: blue; */
+}
+
 .answer-div {
   text-align: center;
   display: flex;

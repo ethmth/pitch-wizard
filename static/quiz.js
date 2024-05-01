@@ -293,11 +293,71 @@ function genQuestionSelect(question) {
 }
 
 function genQuestionSentence(question) {
-  let question_div = $("<div>").addClass("");
 
-  question_div.text("Sentence question");
+  // const options = deterministicShuffle(question["options"]);
+  const options = question["questionMedia"];
 
-  return question_div;
+  let container_div = $("<div>").addClass("");
+
+  let questions_div = $("<div>").addClass("questions-div row");
+  for (const key in options) {
+    // const option = options[key];
+    // const option_id = option["optionId"];
+
+    let media_div = genMediaDiv(
+      options[key],
+      options.length,
+      -1,
+      false,
+      options.length > 1
+    );
+    media_div.addClass("question-div");
+
+    questions_div.append(media_div);
+  }
+
+  let answers_div = $("<div>").addClass("answers-div-sentence");
+
+  const sentences = question["sentences"];
+  console.log(sentences);
+
+  for(const i in sentences) {
+    let before_span = $("<span>").text(sentences[i]["sentenceBefore"]);
+    answers_div.append(before_span);
+
+    let dropdown = $("<select>").addClass("");
+
+    let empty_option = $("<option>").addClass("");
+    empty_option.attr("value", "");
+    empty_option.text("");
+    dropdown.append(empty_option);
+
+    const options = sentences[i]["sentenceOptions"];
+    for(const key in options) {
+      let new_option = $("<option>").addClass("");
+      new_option.attr("value", options[key]["optionName"]);
+      new_option.text(options[key]["optionName"]);
+
+      dropdown.append(new_option);
+    }
+
+    answers_div.append(dropdown);
+
+    let after_span = $("<span>").text(sentences[i]["sentenceAfter"]);
+    answers_div.append(after_span);
+
+  }
+
+  container_div.append(questions_div, answers_div);
+
+  return container_div;
+
+  // console.log(question);
+  // let question_div = $("<div>").addClass("");
+
+  // question_div.text("Sentence question");
+
+  // return question_div;
 }
 
 function genQuestion(question) {
