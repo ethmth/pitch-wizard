@@ -115,6 +115,10 @@ video {
   display: none;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /* Bootstrap Overrides */
 
 /* Navbar */
@@ -536,6 +540,16 @@ video {
 }
 
 .drop-here-incorrect {
+  background: var(--incorrect-color);
+  color: var(--white);
+}
+
+.dropdown-correct {
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.dropdown-incorrect {
   background: var(--incorrect-color);
   color: var(--white);
 }

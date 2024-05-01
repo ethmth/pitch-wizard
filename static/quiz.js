@@ -292,16 +292,12 @@ function genQuestionSelect(question) {
 }
 
 function genQuestionSentence(question) {
-  // const options = deterministicShuffle(question["options"]);
   const options = question["questionMedia"];
 
   let container_div = $("<div>").addClass("");
 
   let questions_div = $("<div>").addClass("questions-div row");
   for (const key in options) {
-    // const option = options[key];
-    // const option_id = option["optionId"];
-
     let media_div = genMediaDiv(
       options[key],
       options.length,
@@ -317,7 +313,6 @@ function genQuestionSentence(question) {
   let answers_div = $("<div>").addClass("answers-div-sentence");
 
   const sentences = question["sentences"];
-  // console.log(sentences);
 
   for (const i in sentences) {
     const sentence_id = sentences[i]["sentenceId"];
@@ -341,6 +336,7 @@ function genQuestionSentence(question) {
       dropdown.append(new_option);
     }
 
+
     dropdown.on("change", function () {
       setInfoText();
       const new_val = $(this).val();
@@ -351,6 +347,29 @@ function genQuestionSentence(question) {
 
     answers_div.append(dropdown);
 
+    if (answered) {
+      dropdown.attr("disabled", true);
+      dropdown.val(answer[sentence_id]);
+
+      if(answer[sentence_id] == correct_answer[sentence_id]) {
+        dropdown.addClass("dropdown-correct");
+      } else {
+        dropdown.addClass("dropdown-incorrect");
+
+        let correction_span = $("<span>").addClass("bold");
+
+        let correct_option_text;
+        for (const inside in options) {
+          if (options[inside]["optionId"] == correct_answer[sentence_id]) {
+            correct_option_text = options[inside]["optionName"];
+            break;
+          }
+        }
+        correction_span.text(` (${correct_option_text})`);
+        answers_div.append(correction_span);
+      }
+    }
+
     let after_span = $("<span>").text(sentences[i]["sentenceAfter"]);
     answers_div.append(after_span);
   }
@@ -358,13 +377,6 @@ function genQuestionSentence(question) {
   container_div.append(questions_div, answers_div);
 
   return container_div;
-
-  // console.log(question);
-  // let question_div = $("<div>").addClass("");
-
-  // question_div.text("Sentence question");
-
-  // return question_div;
 }
 
 function genQuestion(question) {
