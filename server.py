@@ -181,13 +181,18 @@ def render_quiz(session, quiz_id, question_id):
     if user_answer:
         user_answered = True
 
+    correct_answer = None
+    if user_answered:
+        correct_answer = get_correct_answer(quiz_id, question_id)
+
     return render_template('quiz.html', 
         question=question,
         quiz_id=quiz_id,
         question_id=question_id,
         last_question=len(questions[quiz_id]["questions"]),
         answered=user_answered,
-        answer=user_answer)
+        answer=user_answer,
+        correct_answer=correct_answer)
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
