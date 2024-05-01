@@ -318,8 +318,18 @@ function nextPage(quiz_id, question_id) {
   }
 }
 
-function nextButtonClicked() {
+function secondButtonClicked() {
+  nextButtonClicked(true);
+}
+
+function nextButtonClicked(second = false) {
   console.log("Next button clicked");
+
+  if (!second && question["questionType"] == "Match") {
+    // TODO Reset matching question
+    console.log("TODO: Reset question match");
+    return;
+  }
 
   if (answered) {
     nextPage(quiz_id, question_id);
@@ -343,7 +353,19 @@ $(document).ready(function () {
     setNextButtonText("Next");
   }
 
+  if (question["questionType"] == "Match") {
+    setNextButtonText("Reset");
+    $(nextButton).removeClass("button-accent");
+    $(secondButton).addClass("button-accent");
+  } else {
+    $("#second-button-div").remove();
+  }
+
   $(nextButton).click(function () {
     nextButtonClicked();
+  });
+
+  $(secondButton).click(function () {
+    secondButtonClicked();
   });
 });

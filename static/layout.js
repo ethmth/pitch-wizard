@@ -91,7 +91,7 @@ function setOverlay(media, option_id = -1) {
   row_x.append(btn_div);
 
   let row_div = $("<div>").addClass("row");
-  let media_div = genMediaDiv(media, 1, option_id, true, false);
+  let media_div = genMediaDiv(media, 1, option_id, true, false, true);
 
   row_div.append(media_div);
   container_div.append(row_div, row_x);
@@ -105,7 +105,8 @@ function genMediaDiv(
   vids_in_row = 1,
   option_id = -1,
   restart_on_end = true,
-  fullscreen_option = false
+  fullscreen_option = false,
+  autoplay = false
 ) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
@@ -256,6 +257,13 @@ function genMediaDiv(
 
   if (option_id >= 0) {
     slide_col.data("option_id", option_id);
+  }
+
+  if (autoplay) {
+    slide_video.get(0).currentTime = 0;
+    play_icon.removeClass("fa-play");
+    play_icon.addClass("fa-pause");
+    playVideo(slide_video);
   }
   return slide_col;
 }
