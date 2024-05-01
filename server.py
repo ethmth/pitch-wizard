@@ -149,6 +149,8 @@ def set_answer(session, quiz_id, question_id, answer):
     session["answer_key"] = new_answer_key
 
 def is_correct(user_answer, correct_answer):
+    print("is_correct: user_answer: ", user_answer)
+    print("is_correct: correct_answer: ", correct_answer)
     if user_answer == correct_answer:
         return True
     return False
@@ -188,7 +190,7 @@ def render_quiz(session, quiz_id, question_id:int):
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
-    print(questions[quiz_id]["questions"])
+    # print(questions[quiz_id]["questions"])
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
@@ -202,7 +204,7 @@ def render_quiz(session, quiz_id, question_id:int):
     correct = is_correct(user_answer, correct_answer)
 
     next_route = None
-    if questions[quiz_id]["nextRoute"]:
+    if "nextRoute" in questions[quiz_id]:
         next_route = questions[quiz_id]["nextRoute"]
 
     return render_template('quiz.html', 
@@ -259,7 +261,7 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
-        # print_answer_key(session)
+        print_answer_key(session)
 
         return jsonify(success=True)
     except:

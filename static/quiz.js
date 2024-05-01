@@ -2,7 +2,7 @@
 const slideInformation = "#slide-information";
 let checked = true;
 
-let match_answers = {};
+let curr_answers = {};
 
 function genQuestionIdentify(question) {
   const options = deterministicShuffle(question["options"]);
@@ -172,7 +172,7 @@ function genQuestionMatch(question) {
           const drag_option_id = ui.draggable.data("option_id");
           const drop_option_id = option_id;
 
-          match_answers[drop_option_id] = drag_option_id;
+          curr_answers[drop_option_id] = drag_option_id;
 
           ui.draggable.addClass("invisible");
 
@@ -317,9 +317,11 @@ function genQuestionSentence(question) {
   let answers_div = $("<div>").addClass("answers-div-sentence");
 
   const sentences = question["sentences"];
-  console.log(sentences);
+  // console.log(sentences);
 
   for (const i in sentences) {
+    const sentence_id = sentences[i]["sentenceId"];
+
     let before_span = $("<span>").text(sentences[i]["sentenceBefore"]);
     answers_div.append(before_span);
 
@@ -333,11 +335,19 @@ function genQuestionSentence(question) {
     const options = sentences[i]["sentenceOptions"];
     for (const key in options) {
       let new_option = $("<option>").addClass("");
-      new_option.attr("value", options[key]["optionName"]);
+      new_option.attr("value", options[key]["optionId"]);
       new_option.text(options[key]["optionName"]);
 
       dropdown.append(new_option);
     }
+
+    dropdown.on("change", function () {
+      setInfoText();
+      const new_val = $(this).val();
+      if (!isNaN(new_val)) {
+        curr_answers[sentence_id] = Number(new_val);
+      }
+    });
 
     answers_div.append(dropdown);
 
@@ -401,6 +411,8 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
     user_answer: user_answer,
   };
 
+  console.log(request);
+
   $.ajax({
     type: "POST",
     url: "/check_answer",
@@ -439,9 +451,9 @@ function sendAnswerRadio(quiz_id, question_id, question) {
 }
 
 function sendAnswerMatch(quiz_id, question_id, question) {
-  let user_answer = match_answers;
+  let user_answer = curr_answers;
 
-  if (Object.keys(match_answers).length != question["options"].length) {
+  if (Object.keys(curr_answers).length != question["options"].length) {
     return false;
   }
   sendAJAX(quiz_id, question_id, question, user_answer);
@@ -450,7 +462,11 @@ function sendAnswerMatch(quiz_id, question_id, question) {
 }
 
 function sendAnswerSentence(quiz_id, question_id, question) {
-  let user_answer = "unanswered";
+  let user_answer = curr_answers;
+
+  if (Object.keys(curr_answers).length != question["sentences"].length) {
+    return false;
+  }
   sendAJAX(quiz_id, question_id, question, user_answer);
 
   return true;
@@ -493,11 +509,11 @@ function secondButtonClicked() {
 }
 
 function nextButtonClicked(second = false) {
-  console.log("Next button clicked");
-  console.log("Answered: " + answered);
+  // console.log("Next button clicked");
+  // console.log("Answered: " + answered);
 
   if (!answered && !second && question["questionType"] == "Match") {
-    console.log("Reloading");
+    // console.log("Reloading");
     window.location.reload(true);
     return;
   }
