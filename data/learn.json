@@ -62,7 +62,7 @@
     },
     "1": {
       "lessonName": "Fastball",
-      "nextRoute": "/learn/2",
+      "nextRoute": "/quiz/fastball/1",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
       "slides": [
@@ -124,7 +124,7 @@
     },
     "2": {
       "lessonName": "Changeup",
-      "nextRoute": "/learn/3",
+      "nextRoute": "/quiz/changeup/1",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
       "slides": [
@@ -186,7 +186,7 @@
     },
     "3": {
       "lessonName": "Curveball",
-      "nextRoute": "/learn/4",
+      "nextRoute": "/quiz/curveball/1",
       "nextBehavior": "lesson",
       "nextText": "Next Pitch",
       "slides": [
@@ -248,7 +248,7 @@
     },
     "4": {
       "lessonName": "Knuckleball",
-      "nextRoute": "/quiz/0",
+      "nextRoute": "/quiz/knuckleball/1",
       "nextBehavior": "lesson",
       "nextText": "Take Quiz",
       "slides": [

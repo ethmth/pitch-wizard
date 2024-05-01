@@ -259,6 +259,7 @@
     }
   },
   "fastball": {
+    "nextRoute": "/learn/2",
     "questions": {
       "1": {
         "questionName": "Fastball Question 1",
@@ -304,16 +305,16 @@
           {
             "sentenceId": 2,
             "sentenceBefore": ", which is ",
-            "sentenceAfter": " speed for an MLB fastball.",
+            "sentenceAfter": " average speed for an MLB fastball.",
             "sentenceOptions": [
               {
                 "optionId": 1,
-                "optionName": "Below Average",
+                "optionName": "Below",
                 "optionCorrect": true
               },
               {
                 "optionId": 2,
-                "optionName": "Above Average",
+                "optionName": "Above",
                 "optionCorrect": false
               }
             ]
@@ -322,6 +323,301 @@
         "options": null
       },
       "2": {
+        "questionName": "Fastball Question 2",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Fastball_MiniQuiz_Question2.mp4",
+            "caption": "Tyler Alexander, Tampa Bay Rays",
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": null,
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "This pitch ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "is",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "is NOT",
+                "optionCorrect": true
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " a Fastball because its trajectory is ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Straight",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "Curved",
+                "optionCorrect": true
+              }
+            ]
+          },
+          {
+            "sentenceId": 3,
+            "sentenceBefore": " and its speed is ",
+            "sentenceAfter": " Fastball speed.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Below",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "At",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
+      },
+      "3": {
+        "questionName": "Fastball Question 3",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Fastball_MiniQuiz_Question3.mp4",
+            "caption": "Freddy Peralta, Milwaukee Brewers",
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": null,
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "This pitch ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "is",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "is NOT",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " a Fastball because its trajectory is ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Straight",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "Curved",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 3,
+            "sentenceBefore": " and its speed is ",
+            "sentenceAfter": " Fastball speed.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Below",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "At",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
+      }
+    }
+  },
+  "changeup": {
+    "nextRoute": "/learn/3",
+    "questions": {
+      "1": {
+        "questionName": "Changeup Question 1",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Changeup_MiniQuiz_Question1Fastball.mp4",
+            "caption": null,
+            "captionLocation": "bottom"
+          },
+          {
+            "mediaId": 2,
+            "filename": "Changeup_MiniQuiz_Question1Changeup.mp4",
+            "caption": null,
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": "Yusei Kikuchi, Toronto Blue Jays",
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "The Changeup is meant to throw off the batter's timing by being ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Slower",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "Faster",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " than the Fastball, which means the ",
+            "sentenceAfter": " pitch is a Changeup, and the other is a Fastball.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Left",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "Right",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
+      },
+      "2": {
+        "questionName": "Changeup Question 2",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Ronel Blanco, Houston Astros",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Changeup_MiniQuizQuestion2Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Changeup",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Changeup_MiniQuizQuestion2Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Fastball",
+            "optionCorrect": null
+          }
+        ]
+      }
+    }
+  },
+  "curveball": {
+    "nextRoute": "/learn/4",
+    "questions": {
+      "1": {
+        "questionName": "Curveball Question 1",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Yoshinobu Yamamoto, Los Angeles Dodgers",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question1Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Curveball",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question1Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Fastball",
+            "optionCorrect": null
+          }
+        ]
+      },
+      "2": {
+        "questionName": "Curveball Question 2",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Joe Musgrove, San Diego Padres",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question2Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Changeup",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Curveball_MiniQuiz_Question2Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Curveball",
+            "optionCorrect": null
+          }
+        ]
+      }
+    }
+  },
+  "knuckleball": {
+    "nextRoute": "/quiz/0",
+    "questions": {
+      "1": {
         "questionName": "Knuckleball Question 1",
         "questionType": "Sentence",
         "questionText": "Fill in the blanks.",
@@ -348,12 +644,12 @@
             "sentenceOptions": [
               {
                 "optionId": 1,
-                "optionName": "Top",
+                "optionName": "Left",
                 "optionCorrect": false
               },
               {
                 "optionId": 2,
-                "optionName": "Bottom",
+                "optionName": "Right",
                 "optionCorrect": true
               }
             ]

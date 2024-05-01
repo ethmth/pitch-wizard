@@ -17,7 +17,11 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #ecdf8b;
+  --highlight-color: #8fbce6; /* E5B876 ecdf8b*/
+  --drop-color: #f3dfc1;
+  --drop-color-light: rgb(245, 216, 176);
+  --correct-color: #4e6e5d; /* 00916E */
+  --incorrect-color: #823038; /* 780116 */
 }
 
 /* Styles applied to all*/
@@ -25,6 +29,8 @@
 * {
   font-family: "Arvo", sans-serif;
   text-align: center;
+
+  user-select: none;
 }
 
 html {
@@ -93,6 +99,10 @@ video {
   text-transform: uppercase;
 }
 
+.invisible {
+  display: none;
+}
+
 .text-left {
   text-align: left;
 }
@@ -103,6 +113,10 @@ video {
 
 .hidden {
   display: none;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 /* Bootstrap Overrides */
@@ -144,12 +158,11 @@ video {
   border: solid 2px var(--dark-grey);
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
 #overlay .container-main {
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 35px;
 }
 
 /* Global Styles TODO */
@@ -305,7 +318,6 @@ video {
 
 #backdrop {
   position: fixed;
-  /* position: absolute; */
   margin: 0;
   padding: 0;
   top: 0;
@@ -350,6 +362,8 @@ video {
 .speed-slider-div {
   display: flex;
   flex: 3;
+
+  font-size: 14px;
 }
 
 .media-button {
@@ -428,6 +442,18 @@ video {
   flex-direction: row;
 }
 
+.answers-div-match {
+  margin-top: 1rem;
+}
+
+
+
+.answers-div-sentence {
+  margin-top: 1rem;
+  font-size: 22px;
+  /* background-color: blue; */
+}
+
 .answer-div {
   text-align: center;
   display: flex;
@@ -436,6 +462,94 @@ video {
   font-size: 24px;
 }
 
+.answer-div-match {
+  flex: 1;
+  background-color: var(--light-light-grey);
+
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  border: solid 1px var(--black);
+
+  cursor: move;
+}
+
 .answer-div-select {
   flex: 1;
+}
+
+.answer-div-answered.radio-container input[type="radio"]:hover {
+  cursor: default;
+}
+
+.answer-div-correct.radio-container .radio-item {
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.answer-div-incorrect.radio-container .radio-item {
+  background: var(--incorrect-color);
+  color: var(--white);
+}
+
+.question-div-match {
+  font-size: 24px;
+  background-color: var(--drop-color);
+
+  border: solid 1px var(--black);
+  padding-top: 1rem;
+
+  height: 100%;
+}
+
+.drop-here {
+  align-content: center;
+  height: 100px;
+}
+
+.drop-here-dropped {
+  background-color: var(--light-light-grey);
+
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 70px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  border: solid 1px var(--black);
+}
+
+.drop-here-hovered {
+  background-color: var(--drop-color-light);
+}
+
+.drop-here-correct{ 
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.drop-here-incorrect {
+  background: var(--incorrect-color);
+  color: var(--white);
+}
+
+.dropdown-correct {
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.dropdown-incorrect {
+  background: var(--incorrect-color);
+  color: var(--white);
 }

@@ -70,6 +70,20 @@ def set_correct_answers_radio(quiz_id, question_id, question):
         if option["optionCorrect"]:
             set_correct_answer(quiz_id, question_id, option["optionId"])
 
+def set_correct_answers_match(quiz_id, question_id, question):
+    corr_ans = {}
+    for option in question["options"]:
+        corr_ans[str(option["optionId"])] = option["optionId"]
+    set_correct_answer(quiz_id, question_id, corr_ans)
+
+def set_correct_answers_sentence(quiz_id, question_id, question):
+    corr_ans = {}
+    for sentence in question["sentences"]:
+        for option in sentence["sentenceOptions"]:
+            if option["optionCorrect"] == True:
+                corr_ans[str(sentence["sentenceId"])] = option["optionId"]
+    set_correct_answer(quiz_id, question_id, corr_ans)
+
 def set_correct_answers():
     global questions
     global correct_answers
@@ -82,11 +96,11 @@ def set_correct_answers():
             if questionType == "Identify":
                 set_correct_answers_radio(quiz_id, question_id, question)
             elif questionType == "Match":
-                pass
+                set_correct_answers_match(quiz_id, question_id, question)
             elif questionType == "Select":
                 set_correct_answers_radio(quiz_id, question_id, question)
             elif questionType == "Sentence":
-                pass
+                set_correct_answers_sentence(quiz_id, question_id, question)
 
 def print_answer_key(session):
     answer_key = session.get("answer_key")
@@ -134,6 +148,13 @@ def set_answer(session, quiz_id, question_id, answer):
     new_answer_key[quiz_id][question_id] = answer
     session["answer_key"] = new_answer_key
 
+def is_correct(user_answer, correct_answer):
+    print("is_correct: user_answer: ", user_answer)
+    print("is_correct: correct_answer: ", correct_answer)
+    if user_answer == correct_answer:
+        return True
+    return False
+
 def calculate_number_correct(session, quiz_id):
     correct_count = 0
     for question_id in questions[quiz_id]["questions"]:
@@ -143,7 +164,7 @@ def calculate_number_correct(session, quiz_id):
         if not user_answer:
             continue
 
-        if user_answer == correct_answer:
+        if is_correct(user_answer, correct_answer):
             correct_count += 1
 
     return correct_count
@@ -164,16 +185,27 @@ def learn(learn_id):
     return render_template('learn.html', lesson=lesson)
 
 
-def render_quiz(session, quiz_id, question_id):
+def render_quiz(session, quiz_id, question_id:int):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
+    # print(questions[quiz_id]["questions"])
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
     if user_answer:
         user_answered = True
+
+    correct_answer = None
+    if user_answered:
+        correct_answer = get_correct_answer(quiz_id, question_id)
+
+    correct = is_correct(user_answer, correct_answer)
+
+    next_route = None
+    if "nextRoute" in questions[quiz_id]:
+        next_route = questions[quiz_id]["nextRoute"]
 
     return render_template('quiz.html', 
         question=question,
@@ -181,7 +213,10 @@ def render_quiz(session, quiz_id, question_id):
         question_id=question_id,
         last_question=len(questions[quiz_id]["questions"]),
         answered=user_answered,
-        answer=user_answer)
+        answer=user_answer,
+        correct_answer=correct_answer,
+        correct=correct,
+        next_route=next_route)
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
@@ -226,6 +261,7 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
+        print_answer_key(session)
 
         return jsonify(success=True)
     except:
@@ -243,6 +279,8 @@ def clear_session():
 if __name__ == '__main__':
     read_json()
     set_correct_answers()
+    # print(correct_answers)
+    # print(questions)
     app.run(debug = True)
 
 

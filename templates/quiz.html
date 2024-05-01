@@ -9,18 +9,28 @@
   let last_question = {{ last_question| tojson}}
   let answered = {{ answered | tojson}}
   let answer = {{ answer| tojson}}
+  let correct_answer = {{ correct_answer| tojson}}
+  let correct = {{ correct| tojson}}
+  let next_route = {{ next_route| tojson}}
 </script>
 
 <div id="container-main" class="container container-main">
   <div class="row">
     <div id="slide"></div>
+    <h4 id="slide-information">
+    </h4>
     <div id="footer-holder" class="footer-holder"></div>
     <div id="footer" class="footer">
       <div class="container">
         <div class="footer-div">
           <div id="next-button-div">
             <button type="button" id="next-button" class="button button-bottom button-accent">
-              Submit
+              Next
+            </button>
+          </div>
+          <div id="second-button-div">
+            <button type="button" id="second-button" class="button button-bottom">
+              Next
             </button>
           </div>
         </div>

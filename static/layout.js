@@ -91,7 +91,7 @@ function setOverlay(media, option_id = -1) {
   row_x.append(btn_div);
 
   let row_div = $("<div>").addClass("row");
-  let media_div = genMediaDiv(media, 1, option_id, true, false);
+  let media_div = genMediaDiv(media, 1, option_id, true, false, true);
 
   row_div.append(media_div);
   container_div.append(row_div, row_x);
@@ -105,7 +105,8 @@ function genMediaDiv(
   vids_in_row = 1,
   option_id = -1,
   restart_on_end = true,
-  fullscreen_option = false
+  fullscreen_option = false,
+  autoplay = false
 ) {
   const videoURL = VIDEO_DOMAIN + media["filename"];
 
@@ -114,11 +115,16 @@ function genMediaDiv(
     captionLocation = media["captionLocation"];
   }
 
-  let slide_col = $("<div>").addClass("col-12");
-  if (vids_in_row == 2) {
-    slide_col = $("<div>").addClass("col-6");
+  let slide_col = $("<div>");
+
+  if (vids_in_row == 1) {
+    slide_col.addClass("col-12");
+  } else if (vids_in_row == 2) {
+    slide_col.addClass("col-6");
   } else if (vids_in_row == 3) {
-    slide_col = $("<div>").addClass("col-4");
+    slide_col.addClass("col-4");
+  } else if (vids_in_row == 4) {
+    slide_col.addClass("col-3");
   }
 
   let slide_video = $("<video>").addClass("");
@@ -252,6 +258,13 @@ function genMediaDiv(
   if (option_id >= 0) {
     slide_col.data("option_id", option_id);
   }
+
+  if (autoplay) {
+    slide_video.get(0).currentTime = 0;
+    play_icon.removeClass("fa-play");
+    play_icon.addClass("fa-pause");
+    playVideo(slide_video);
+  }
   return slide_col;
 }
 
@@ -271,9 +284,9 @@ function setSecondButtonText(new_text) {
   $(secondButton).text(message);
 }
 
-function showNextButtonErrorMessage(message) {
-  console.log("showNextButtonErrorMessage: " + message);
-}
+// function showNextButtonErrorMessage(message) {
+//   console.log("showNextButtonErrorMessage: " + message);
+// }
 
 function clearSession(newPage = null) {
   let request = { clear: "me" };
@@ -327,7 +340,7 @@ function genNavLinks(current = "") {
 }
 
 function handleResizeFooter() {
-  const container = document.getElementById('container-main');
+  const container = document.getElementById("container-main");
   const container_height = container.getBoundingClientRect().bottom;
 
   if (container_height <= window.innerHeight + 10) {
@@ -351,9 +364,9 @@ $(document).ready(function () {
     handleResizeFooter();
   });
 
-  $(document).on("scroll", function() {
+  $(document).on("scroll", function () {
     handleResizeFooter();
-  })
+  });
   $(clearSessionButton).click(function () {
     clearSession();
   });
