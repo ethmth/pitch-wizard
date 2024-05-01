@@ -17,7 +17,10 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #ecdf8b;
+  --highlight-color: #8FBCE6; /* E5B876 ecdf8b*/
+  --drop-color: #F3DFC1;
+  --correct-color: #4E6E5D; /* 00916E */
+  --incorrect-color: #823038; /* 780116 */
 }
 
 /* Styles applied to all*/
@@ -439,3 +442,31 @@ video {
 .answer-div-select {
   flex: 1;
 }
+
+.question-div-match {
+  background-color: var(--drop-color);
+
+  border: solid 1px var(--black);
+  /* padding-left: 3px; */
+  /* padding-right: 3px; */
+  /* padding-bottom: 100px; */
+  padding-top: 1rem;
+
+  height: 100%;
+}
+
+.drop-here {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  justify-content: center;
+  align-content: center;
+  /* height: 100%; */
+
+  height: 100px;
+}
+
+/* .drop-here-text {
+  flex: 1;
+  background-color: yellow;
+} */

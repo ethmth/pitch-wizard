@@ -114,11 +114,16 @@ function genMediaDiv(
     captionLocation = media["captionLocation"];
   }
 
-  let slide_col = $("<div>").addClass("col-12");
-  if (vids_in_row == 2) {
-    slide_col = $("<div>").addClass("col-6");
+  let slide_col = $("<div>");
+
+  if (vids_in_row == 1) {
+    slide_col.addClass("col-12");
+  } else if (vids_in_row == 2) {
+    slide_col.addClass("col-6");
   } else if (vids_in_row == 3) {
-    slide_col = $("<div>").addClass("col-4");
+    slide_col.addClass("col-4");
+  } else if (vids_in_row == 4) {
+    slide_col.addClass("col-3");
   }
 
   let slide_video = $("<video>").addClass("");
@@ -327,7 +332,7 @@ function genNavLinks(current = "") {
 }
 
 function handleResizeFooter() {
-  const container = document.getElementById('container-main');
+  const container = document.getElementById("container-main");
   const container_height = container.getBoundingClientRect().bottom;
 
   if (container_height <= window.innerHeight + 10) {
@@ -351,9 +356,9 @@ $(document).ready(function () {
     handleResizeFooter();
   });
 
-  $(document).on("scroll", function() {
+  $(document).on("scroll", function () {
     handleResizeFooter();
-  })
+  });
   $(clearSessionButton).click(function () {
     clearSession();
   });

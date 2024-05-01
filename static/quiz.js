@@ -11,7 +11,13 @@ function genQuestionIdentify(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
+    let media_div = genMediaDiv(
+      option["optionMedia"],
+      options.length,
+      option_id,
+      false,
+      true
+    );
     media_div.addClass("question-div");
 
     questions_div.append(media_div);
@@ -23,7 +29,6 @@ function genQuestionIdentify(question) {
   for (const key in options) {
     const option = options[key];
     const option_id = option["optionId"];
-
 
     let radio_container = $("<div>").addClass("answer-div radio-container");
     if (options.length == 2) {
@@ -82,10 +87,37 @@ function genQuestionMatch(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let media_div = genMediaDiv(option["optionMedia"], options.length, option_id, false, true);
-    media_div.addClass("question-div");
+    let media_container = $("<div>").addClass(
+      "question-div question-div-match"
+    );
 
-    questions_div.append(media_div);
+    if (options.length == 1) {
+      media_container.addClass("col-12");
+    } else if (options.length == 2) {
+      media_container.addClass("col-6");
+    } else if (options.length == 3) {
+      media_container.addClass("col-4");
+    } else if (options.length == 4) {
+      media_container.addClass("col-3");
+    }
+
+    let media_div = genMediaDiv(
+      option["optionMedia"],
+      -1,
+      option_id,
+      false,
+      true
+    );
+    media_div.addClass("");
+
+    let drop_here = $("<div>").addClass("drop-here");
+    // let drop_here_text = $("<div>").addClass("drop-here-text");
+    // drop_here_text.text("Drop Here");
+    drop_here.text("Drop Here");
+    // drop_here.append(drop_here_text);
+    media_container.append(media_div, drop_here);
+
+    questions_div.append(media_container);
 
     pitch_options.push({
       pitchType: option["optionPitchType"],
@@ -134,7 +166,9 @@ function genQuestionSelect(question) {
     const option = options[key];
     const option_id = option["optionId"];
 
-    let radio_container = $("<div>").addClass("answer-div answer-div-select radio-container");
+    let radio_container = $("<div>").addClass(
+      "answer-div answer-div-select radio-container"
+    );
     let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
