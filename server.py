@@ -149,8 +149,6 @@ def set_answer(session, quiz_id, question_id, answer):
     session["answer_key"] = new_answer_key
 
 def is_correct(user_answer, correct_answer):
-    print("is_correct: user_answer: ", user_answer)
-    print("is_correct: correct_answer: ", correct_answer)
     if user_answer == correct_answer:
         return True
     return False
@@ -174,23 +172,17 @@ def calculate_number_correct(session, quiz_id):
 def home():
    return render_template('home.html')
 
-@app.route('/test')
-def test():
-   return render_template('test.html')
-
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
     learn_id = str(learn_id)
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
 
-
 def render_quiz(session, quiz_id, question_id:int):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
-    # print(questions[quiz_id]["questions"])
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
@@ -228,11 +220,6 @@ def quiz_general(quiz_id, question_id):
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
-    print("User Answers:")
-    print_answer_key(session)
-    print("Correct Answers:")
-    print(correct_answers)
-
     total_questions = len(questions[quiz_id]["questions"])
     number_correct = calculate_number_correct(session, quiz_id)
 
@@ -261,7 +248,6 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
-        print_answer_key(session)
 
         return jsonify(success=True)
     except:
@@ -279,8 +265,6 @@ def clear_session():
 if __name__ == '__main__':
     read_json()
     set_correct_answers()
-    # print(correct_answers)
-    # print(questions)
     app.run(debug = True)
 
 

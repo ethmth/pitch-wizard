@@ -1,6 +1,4 @@
-// let checked = false;
 const slideInformation = "#slide-information";
-let checked = true;
 
 let curr_answers = {};
 
@@ -336,7 +334,6 @@ function genQuestionSentence(question) {
       dropdown.append(new_option);
     }
 
-
     dropdown.on("change", function () {
       setInfoText();
       const new_val = $(this).val();
@@ -351,7 +348,7 @@ function genQuestionSentence(question) {
       dropdown.attr("disabled", true);
       dropdown.val(answer[sentence_id]);
 
-      if(answer[sentence_id] == correct_answer[sentence_id]) {
+      if (answer[sentence_id] == correct_answer[sentence_id]) {
         dropdown.addClass("dropdown-correct");
       } else {
         dropdown.addClass("dropdown-incorrect");
@@ -411,19 +408,12 @@ function genQuestion(question) {
   $(slideDiv).append(question_div);
 }
 
-// function checkIfAnswerSelected(question) {
-//   // TODO Check if question is answered
-//   return true;
-// }
-
 function sendAJAX(quiz_id, question_id, question, user_answer) {
   const request = {
     quiz_id: quiz_id,
     question_id: question_id,
     user_answer: user_answer,
   };
-
-  console.log(request);
 
   $.ajax({
     type: "POST",
@@ -434,7 +424,6 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
     success: function (response) {
       if (response["success"]) {
         window.location.reload(true);
-        // nextPage(quiz_id, question_id);
       } else {
         console.log("Error setting your answer");
       }
@@ -521,11 +510,7 @@ function secondButtonClicked() {
 }
 
 function nextButtonClicked(second = false) {
-  // console.log("Next button clicked");
-  // console.log("Answered: " + answered);
-
   if (!answered && !second && question["questionType"] == "Match") {
-    // console.log("Reloading");
     window.location.reload(true);
     return;
   }
@@ -533,12 +518,7 @@ function nextButtonClicked(second = false) {
   if (answered) {
     nextPage(quiz_id, question_id);
   } else {
-    // let answer_selected = checkIfAnswerSelected(question);
-    // if (answer_selected) {
-    //   sendAnswer(quiz_id, question_id, question);
-    // } else {
     if (!sendAnswer(quiz_id, question_id, question)) {
-      // showNextButtonErrorMessage("Please Answer the Question");
       setInfoText("Please Answer the Question");
     }
   }

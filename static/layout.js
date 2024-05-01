@@ -12,7 +12,6 @@ const clearSessionButton = "#clear-session-button";
 const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
-// const ACCENT_COLOR = "B99470"
 
 const navRoutes = {
   Intro: "/learn/0",
@@ -283,10 +282,6 @@ function setSecondButtonText(new_text) {
   }
   $(secondButton).text(message);
 }
-
-// function showNextButtonErrorMessage(message) {
-//   console.log("showNextButtonErrorMessage: " + message);
-// }
 
 function clearSession(newPage = null) {
   let request = { clear: "me" };
