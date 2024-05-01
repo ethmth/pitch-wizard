@@ -1,11 +1,12 @@
 - Further testing
 - Create Video
-
 - Go back over docs for requirements.
+
+- Setup hosting
+
 - Pick better colors for selecting answers, showing what's correct, and drag & dropping
 - Explore making video fullscreen automatically when clicked on instead of (just) playing.
 - Add animation when overlay appears and disappears.
 - Make "Fastball MiniQuiz" the accented button after clicking "Next" to the first example.
-- Setup hosting
 - Potentially remove screen going over "different pitch types" in intro section because too much text.
 - Make sure no bad wording/explicit welcome message.
