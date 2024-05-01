@@ -74,7 +74,15 @@ def set_correct_answers_match(quiz_id, question_id, question):
     corr_ans = {}
     for option in question["options"]:
         corr_ans[str(option["optionId"])] = option["optionId"]
-        set_correct_answer(quiz_id, question_id, corr_ans)
+    set_correct_answer(quiz_id, question_id, corr_ans)
+
+def set_correct_answers_sentence(quiz_id, question_id, question):
+    corr_ans = {}
+    for sentence in question["sentences"]:
+        for option in sentence["sentenceOptions"]:
+            if option["optionCorrect"] == True:
+                corr_ans[str(sentence["sentenceId"])] = option["optionId"]
+    set_correct_answer(quiz_id, question_id, corr_ans)
 
 def set_correct_answers():
     global questions
@@ -92,7 +100,7 @@ def set_correct_answers():
             elif questionType == "Select":
                 set_correct_answers_radio(quiz_id, question_id, question)
             elif questionType == "Sentence":
-                pass
+                set_correct_answers_sentence(quiz_id, question_id, question)
 
 def print_answer_key(session):
     answer_key = session.get("answer_key")
@@ -193,6 +201,10 @@ def render_quiz(session, quiz_id, question_id:int):
 
     correct = is_correct(user_answer, correct_answer)
 
+    next_route = None
+    if questions[quiz_id]["nextRoute"]:
+        next_route = questions[quiz_id]["nextRoute"]
+
     return render_template('quiz.html', 
         question=question,
         quiz_id=quiz_id,
@@ -201,7 +213,8 @@ def render_quiz(session, quiz_id, question_id:int):
         answered=user_answered,
         answer=user_answer,
         correct_answer=correct_answer,
-        correct=correct)
+        correct=correct,
+        next_route=next_route)
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):

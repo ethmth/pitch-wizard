@@ -156,7 +156,6 @@ function genQuestionMatch(question) {
         }
       }
       media_container.text(pitch_type);
-
     }
     media_container.append(media_div, drop_here);
 
@@ -293,7 +292,6 @@ function genQuestionSelect(question) {
 }
 
 function genQuestionSentence(question) {
-
   // const options = deterministicShuffle(question["options"]);
   const options = question["questionMedia"];
 
@@ -321,7 +319,7 @@ function genQuestionSentence(question) {
   const sentences = question["sentences"];
   console.log(sentences);
 
-  for(const i in sentences) {
+  for (const i in sentences) {
     let before_span = $("<span>").text(sentences[i]["sentenceBefore"]);
     answers_div.append(before_span);
 
@@ -333,7 +331,7 @@ function genQuestionSentence(question) {
     dropdown.append(empty_option);
 
     const options = sentences[i]["sentenceOptions"];
-    for(const key in options) {
+    for (const key in options) {
       let new_option = $("<option>").addClass("");
       new_option.attr("value", options[key]["optionName"]);
       new_option.text(options[key]["optionName"]);
@@ -345,7 +343,6 @@ function genQuestionSentence(question) {
 
     let after_span = $("<span>").text(sentences[i]["sentenceAfter"]);
     answers_div.append(after_span);
-
   }
 
   container_div.append(questions_div, answers_div);
@@ -479,10 +476,14 @@ function nextPage(quiz_id, question_id) {
       window.location.href = `/quiz/${quiz_id}/${1 + Number(question_id)}`;
     }
   } else {
-    if (quiz_id == "main") {
-      window.location.href = "/quiz_results";
+    if (next_route) {
+      window.location.href = next_route;
     } else {
-      window.location.href = `/quiz_results/${quiz_id}`;
+      if (quiz_id == "main") {
+        window.location.href = "/quiz_results";
+      } else {
+        window.location.href = `/quiz_results/${quiz_id}`;
+      }
     }
   }
 }
