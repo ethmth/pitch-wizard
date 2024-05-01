@@ -119,6 +119,9 @@ function genQuestionMatch(question) {
 
     // media_container.data("dropped", false);
     media_container.droppable({
+      classes: {
+        "ui-droppable-hover": "drop-here-hovered"
+      },
       drop: function (event, ui) {
         drop_here.addClass("drop-here-dropped");
         // console.log("Dropped");
@@ -355,7 +358,8 @@ function nextButtonClicked(second = false) {
 
   if (!second && question["questionType"] == "Match") {
     // TODO Reset matching question
-    console.log("TODO: Reset question match");
+    // console.log("TODO: Reset question match");
+    window.location.reload(true);
     return;
   }
 

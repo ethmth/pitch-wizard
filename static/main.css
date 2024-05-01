@@ -17,9 +17,10 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #8FBCE6; /* E5B876 ecdf8b*/
-  --drop-color: #F3DFC1;
-  --correct-color: #4E6E5D; /* 00916E */
+  --highlight-color: #8fbce6; /* E5B876 ecdf8b*/
+  --drop-color: #f3dfc1;
+  --drop-color-light: rgb(245, 216, 176);
+  --correct-color: #4e6e5d; /* 00916E */
   --incorrect-color: #823038; /* 780116 */
 }
 
@@ -28,6 +29,8 @@
 * {
   font-family: "Arvo", sans-serif;
   text-align: center;
+
+  user-select: none;
 }
 
 html {
@@ -151,7 +154,6 @@ video {
   border: solid 2px var(--dark-grey);
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
 #overlay .container-main {
@@ -514,6 +516,10 @@ video {
   align-content: center;
 
   border: solid 1px var(--black);
+}
+
+.drop-here-hovered {
+  background-color: var(--drop-color-light);
 }
 
 /* .drop-here-text {
