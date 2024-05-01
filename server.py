@@ -4,6 +4,8 @@ from flask import Response, request, jsonify
 import json
 import datetime
 import uuid
+import os
+
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
 
@@ -30,8 +32,6 @@ def log_route(session, remote_addr, route_name):
     with open("logs/page.txt", "a") as f:
         f.write(f"({current_time}) User {session["session_id"]} ({remote_addr}) visited {route_name}.\n")
 
-    print(f"({current_time}) User {session["session_id"]} ({remote_addr}) visited {route_name}.")
-
 def log_quiz_finish(session, quiz_id, number_correct):
     current_time = datetime.datetime.now()
 
@@ -42,8 +42,6 @@ def log_quiz_finish(session, quiz_id, number_correct):
 
     with open("logs/quiz.txt", "a") as f:
         f.write(f"({current_time}) User {session["session_id"]} finished quiz {quiz_id} with answers {user_answers} and {number_correct} correct.\n")
-
-    print(f"({current_time}) User {session["session_id"]} finished quiz {quiz_id} with answers {user_answers} and {number_correct} correct.")
 
 def read_json():
     global lessons
@@ -316,6 +314,8 @@ def clear_session():
 
 # DRIVER
 if __name__ == '__main__':
+    if not os.path.exists("logs"):
+        os.makedirs("logs")
     read_json()
     set_correct_answers()
     app.run(debug = True)

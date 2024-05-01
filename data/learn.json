@@ -24,12 +24,6 @@
           "slideText": "In baseball, the pitcher’s goal is to get a strike, which leads to an out.\nThere are two ways to get a strike:"
         },
         {
-          "slideName": "What are Pitch Types?",
-          "slideType": "Information",
-          "slideMedia": "intro.svg",
-          "slideText": "To throw off the batter, pitchers throw different “types” of pitches.\nSome are really fast (Fastball).\nSome are meant to throw off the batter's timing (Changeup).\nSome move a lot (Curveball).\nOthers move almost randomly (Knuckleball).\nThese are the four pitch types we will learn how to identify."
-        },
-        {
           "slideName": "Pitch Velocity",
           "slideType": "Information",
           "slideMedia": [
@@ -39,7 +33,7 @@
               "captionLocation": "bottom"
             }
           ],
-          "slideText": "Pitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
+          "slideText": "To throw off the batter, pitchers throw different “types” of pitces.\nPitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
         },
         {
           "slideName": "Pitch Movement",
@@ -56,7 +50,7 @@
               "captionLocation": "top"
             }
           ],
-          "slideText": "Pitch movement, or the amount it “breaks” down or to the side, is a great indicator of what pitch type it is."
+          "slideText": "Pitch movement, or the amount it “breaks” down or to the side, is another indicator of what pitch type it is."
         }
       ]
     },
