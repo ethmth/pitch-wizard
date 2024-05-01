@@ -314,7 +314,6 @@ video {
 
 #backdrop {
   position: fixed;
-  /* position: absolute; */
   margin: 0;
   padding: 0;
   top: 0;
@@ -354,8 +353,6 @@ video {
   flex: 0;
   padding-right: 0;
   padding-left: 0;
-
-  /* height: 50px; */
 }
 
 .speed-slider-div {
@@ -372,7 +369,6 @@ video {
 .speed-slider {
   accent-color: var(--accent-color-dark);
   width: 100%;
-  /* font-size: 8px; */
 }
 
 .media-before-div {
@@ -481,27 +477,17 @@ video {
   background-color: var(--drop-color);
 
   border: solid 1px var(--black);
-  /* padding-left: 3px; */
-  /* padding-right: 3px; */
-  /* padding-bottom: 100px; */
   padding-top: 1rem;
 
   height: 100%;
 }
 
 .drop-here {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* background-color: red; */
-  /* justify-content: center; */
   align-content: center;
-  /* height: 100%; */
-
   height: 100px;
 }
 
 .drop-here-dropped {
-  /* flex: 1; */
   background-color: var(--light-light-grey);
 
   margin-left: 50px;
@@ -521,8 +507,3 @@ video {
 .drop-here-hovered {
   background-color: var(--drop-color-light);
 }
-
-/* .drop-here-text {
-  flex: 1;
-  background-color: yellow;
-} */

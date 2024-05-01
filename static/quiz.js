@@ -78,9 +78,6 @@ function genQuestionMatch(question) {
 
   let questions_div = $("<div>").addClass("questions-div row");
 
-  // let warning_div = $("<div>").addClass("col-12 warning-div");
-  // warning_div.text("Dragging and Dropping not yet implemented");
-
   let pitch_options = [];
 
   for (const key in options) {
@@ -111,29 +108,22 @@ function genQuestionMatch(question) {
     media_div.addClass("");
 
     let drop_here = $("<div>").addClass("drop-here");
-    // let drop_here_text = $("<div>").addClass("drop-here-text");
-    // drop_here_text.text("Drop Here");
     drop_here.text("Drop Here");
-    // drop_here.append(drop_here_text);
     media_container.append(media_div, drop_here);
 
-    // media_container.data("dropped", false);
     media_container.droppable({
       classes: {
-        "ui-droppable-hover": "drop-here-hovered"
+        "ui-droppable-hover": "drop-here-hovered",
       },
       drop: function (event, ui) {
         drop_here.addClass("drop-here-dropped");
-        // console.log("Dropped");
-        // console.log(event);
-        // console.log(ui);
+
         console.log(
           "Option ID " +
             ui.draggable.data("option_id") +
-            " dropped on video key " +
-            key
+            " dropped on video with option_id " +
+            option_id
         );
-        // media_container.data("dropped", true);
 
         ui.draggable.addClass("invisible");
 
@@ -172,7 +162,6 @@ function genQuestionMatch(question) {
     answers_div.append(answer_div);
   }
 
-  // container_div.append(warning_div);
   container_div.append(questions_div, answers_div);
 
   return container_div;
@@ -190,7 +179,6 @@ function genQuestionSelect(question) {
     media_container.append(media_div);
   }
 
-  // let options_div = $("<div>").addClass("row");
   let answers_div = $("<div>").addClass("answers-div row");
 
   for (const key in options) {
@@ -357,8 +345,6 @@ function nextButtonClicked(second = false) {
   console.log("Next button clicked");
 
   if (!second && question["questionType"] == "Match") {
-    // TODO Reset matching question
-    // console.log("TODO: Reset question match");
     window.location.reload(true);
     return;
   }
