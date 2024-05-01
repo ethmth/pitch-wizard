@@ -175,11 +175,12 @@ def learn(learn_id):
     return render_template('learn.html', lesson=lesson)
 
 
-def render_quiz(session, quiz_id, question_id):
+def render_quiz(session, quiz_id, question_id:int):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
+    print(questions[quiz_id]["questions"])
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
@@ -245,7 +246,7 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
-        print_answer_key(session)
+        # print_answer_key(session)
 
         return jsonify(success=True)
     except:
@@ -263,7 +264,8 @@ def clear_session():
 if __name__ == '__main__':
     read_json()
     set_correct_answers()
-    print(correct_answers)
+    # print(correct_answers)
+    # print(questions)
     app.run(debug = True)
 
 

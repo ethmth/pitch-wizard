@@ -259,6 +259,7 @@
     }
   },
   "fastball": {
+    "nextRoute": "/learn/2",
     "questions": {
       "1": {
         "questionName": "Fastball Question 1",
@@ -304,16 +305,16 @@
           {
             "sentenceId": 2,
             "sentenceBefore": ", which is ",
-            "sentenceAfter": " speed for an MLB fastball.",
+            "sentenceAfter": " average speed for an MLB fastball.",
             "sentenceOptions": [
               {
                 "optionId": 1,
-                "optionName": "Below Average",
+                "optionName": "Below",
                 "optionCorrect": true
               },
               {
                 "optionId": 2,
-                "optionName": "Above Average",
+                "optionName": "Above",
                 "optionCorrect": false
               }
             ]
@@ -322,20 +323,14 @@
         "options": null
       },
       "2": {
-        "questionName": "Knuckleball Question 1",
+        "questionName": "Fastball Question 2",
         "questionType": "Sentence",
         "questionText": "Fill in the blanks.",
         "questionMedia": [
           {
             "mediaId": 1,
-            "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
-            "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
-            "captionLocation": "bottom"
-          },
-          {
-            "mediaId": 2,
-            "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
-            "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+            "filename": "Fastball_MiniQuiz_Question2.mp4",
+            "caption": "Tyler Alexander, Tampa Bay Rays",
             "captionLocation": "bottom"
           }
         ],
@@ -343,8 +338,172 @@
         "sentences": [
           {
             "sentenceId": 1,
-            "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
-            "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+            "sentenceBefore": "This pitch ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "is",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "is NOT",
+                "optionCorrect": true
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " a Fastball because its trajectory is ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Straight",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "Curved",
+                "optionCorrect": true
+              }
+            ]
+          },
+          {
+            "sentenceId": 3,
+            "sentenceBefore": " and its speed is ",
+            "sentenceAfter": " Fastball speed.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Below",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "At",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
+      },
+      "3": {
+        "questionName": "Fastball Question 3",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Fastball_MiniQuiz_Question3.mp4",
+            "caption": "Freddy Peralta, Milwaukee Brewers",
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": null,
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "This pitch ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "is",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "is NOT",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " a Fastball because its trajectory is ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Straight",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "Curved",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 3,
+            "sentenceBefore": " and its speed is ",
+            "sentenceAfter": " Fastball speed.",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Below",
+                "optionCorrect": false
+              },
+              {
+                "optionId": 2,
+                "optionName": "At",
+                "optionCorrect": true
+              }
+            ]
+          }
+        ],
+        "options": null
+      }
+    }
+  },
+  "changeup": {
+    "nextRoute": "/learn/3",
+    "questions": {
+      "1": {
+        "questionName": "Changeup Question 1",
+        "questionType": "Sentence",
+        "questionText": "Fill in the blanks.",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Changeup_MiniQuiz_Question1Fastball.mp4",
+            "caption": null,
+            "captionLocation": "bottom"
+          },
+          {
+            "mediaId": 2,
+            "filename": "Changeup_MiniQuiz_Question1Changeup.mp4",
+            "caption": null,
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": "Yusei Kikuchi, Toronto Blue Jays",
+        "sentences": [
+          {
+            "sentenceId": 1,
+            "sentenceBefore": "The Changeup is meant to throw off the batter's timing by being ",
+            "sentenceAfter": "",
+            "sentenceOptions": [
+              {
+                "optionId": 1,
+                "optionName": "Slower",
+                "optionCorrect": true
+              },
+              {
+                "optionId": 2,
+                "optionName": "Faster",
+                "optionCorrect": false
+              }
+            ]
+          },
+          {
+            "sentenceId": 2,
+            "sentenceBefore": " than the Fastball, which means the ",
+            "sentenceAfter": " pitch is a Changeup, and the other is a Fastball.",
             "sentenceOptions": [
               {
                 "optionId": 1,
@@ -360,6 +519,79 @@
           }
         ],
         "options": null
+      },
+      "2": {
+        "questionName": "Changeup Question 2",
+        "questionType": "Match",
+        "questionText": "Match these pitches to the correct video.",
+        "questionMedia": null,
+        "questionPitcher": "Ronel Blanco, Houston Astros",
+        "options": [
+          {
+            "optionId": 1,
+            "optionMedia": {
+              "filename": "Changeup_MiniQuizQuestion2Option1.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Fastball",
+            "optionCorrect": null
+          },
+          {
+            "optionId": 2,
+            "optionMedia": {
+              "filename": "Changeup_MiniQuizQuestion2Option2.mp4",
+              "caption": null,
+              "captionLocation": null
+            },
+            "optionPitchType": "Changeup",
+            "optionCorrect": null
+          }
+        ]
+      }
+    },
+    "knuckleball": {
+      "questions": {
+        "1": {
+          "questionName": "Knuckleball Question 1",
+          "questionType": "Sentence",
+          "questionText": "Fill in the blanks.",
+          "questionMedia": [
+            {
+              "mediaId": 1,
+              "filename": "Knuckleball_MiniQuiz_Question1Option2.mp4",
+              "caption": "Tyler Glasnow, (formerly) Pittsburgh Pirates",
+              "captionLocation": "bottom"
+            },
+            {
+              "mediaId": 2,
+              "filename": "Knuckleball_MiniQuiz_Question1Option1.mp4",
+              "caption": "R.A. Dickey, (formerly) Atlanta Braves",
+              "captionLocation": "bottom"
+            }
+          ],
+          "questionPitcher": null,
+          "sentences": [
+            {
+              "sentenceId": 1,
+              "sentenceBefore": "While the Curveball's trajectory is an arch, the knuckleball \"dances\" around from left to right, making the ",
+              "sentenceAfter": " pitch a knuckleball, and the other a curveball.",
+              "sentenceOptions": [
+                {
+                  "optionId": 1,
+                  "optionName": "Left",
+                  "optionCorrect": false
+                },
+                {
+                  "optionId": 2,
+                  "optionName": "Right",
+                  "optionCorrect": true
+                }
+              ]
+            }
+          ],
+          "options": null
+        }
       }
     }
   }
