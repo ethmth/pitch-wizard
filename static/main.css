@@ -472,6 +472,20 @@ video {
   flex: 1;
 }
 
+.answer-div-answered.radio-container input[type="radio"]:hover {
+  cursor: default;
+}
+
+.answer-div-correct.radio-container .radio-item {
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.answer-div-incorrect.radio-container .radio-item {
+  background: var(--incorrect-color);
+  color: var(--white);
+}
+
 .question-div-match {
   font-size: 24px;
   background-color: var(--drop-color);

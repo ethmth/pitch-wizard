@@ -39,6 +39,15 @@ function genQuestionIdentify(question) {
       radio_container.addClass("col-4");
     }
 
+    if(answered) {
+      radio_container.addClass("answer-div-answered");
+      if (option_id == Number(correct_answer)) {
+        radio_container.addClass("answer-div-correct");
+      } else if (option_id == Number(answer)) {
+        radio_container.addClass("answer-div-incorrect");
+      }
+    }
+
     let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
@@ -47,6 +56,10 @@ function genQuestionIdentify(question) {
     btn_input.attr("name", "options");
     btn_input.attr("id", `option-${option_id}`);
     btn_input.attr("autocomplete", "off");
+
+    if(answered) {
+      btn_input.attr("disabled", true);
+    }
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
