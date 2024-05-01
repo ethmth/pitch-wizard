@@ -78,8 +78,8 @@ function genQuestionMatch(question) {
 
   let questions_div = $("<div>").addClass("questions-div row");
 
-  let warning_div = $("<div>").addClass("col-12 warning-div");
-  warning_div.text("Dragging and Dropping not yet implemented");
+  // let warning_div = $("<div>").addClass("col-12 warning-div");
+  // warning_div.text("Dragging and Dropping not yet implemented");
 
   let pitch_options = [];
 
@@ -169,7 +169,7 @@ function genQuestionMatch(question) {
     answers_div.append(answer_div);
   }
 
-  container_div.append(warning_div);
+  // container_div.append(warning_div);
   container_div.append(questions_div, answers_div);
 
   return container_div;

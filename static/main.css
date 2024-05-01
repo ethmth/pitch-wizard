@@ -466,6 +466,8 @@ video {
   align-content: center;
 
   border: solid 1px var(--black);
+
+  cursor: move;
 }
 
 .answer-div-select {
