@@ -7,4 +7,3 @@
 - Pick better colors for selecting answers, showing what's correct, and drag & dropping
 - Explore making video fullscreen automatically when clicked on instead of (just) playing.
 - Add animation when overlay appears and disappears.
-- Make "Fastball MiniQuiz" the accented button after clicking "Next" to the first example.

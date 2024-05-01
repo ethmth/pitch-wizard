@@ -113,6 +113,16 @@ function renderCurrentSlide() {
   }
   genSlideNavigation();
   handleResizeFooter();
+
+  if (lesson["lessonName"] != "Introduction") {
+    if (currentSlide > 0) {
+      // $(nextButton).removeClass("button-accent");
+      $(secondButton).addClass("button-accent");
+    } else {
+      // $(nextButton).addClass("button-accent");
+      $(secondButton).removeClass("button-accent");
+    }
+  }
 }
 
 function initializeSlides(slides_array) {
