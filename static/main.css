@@ -521,3 +521,13 @@ video {
 .drop-here-hovered {
   background-color: var(--drop-color-light);
 }
+
+.drop-here-correct{ 
+  background: var(--correct-color);
+  color: var(--white);
+}
+
+.drop-here-incorrect {
+  background: var(--incorrect-color);
+  color: var(--white);
+}

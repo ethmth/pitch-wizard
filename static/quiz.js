@@ -64,7 +64,7 @@ function genQuestionIdentify(question) {
 
     btn_input.click(function () {
       setInfoText();
-    }) 
+    });
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
@@ -129,29 +129,62 @@ function genQuestionMatch(question) {
 
     let drop_here = $("<div>").addClass("drop-here");
     drop_here.text("Drop Here");
+    if (answered) {
+      let matching_option_id = answer[option_id];
+
+      let pitch_type;
+      for (const inside in options) {
+        if (options[inside]["optionId"] == matching_option_id) {
+          pitch_type = options[inside]["optionPitchType"];
+          break;
+        }
+      }
+      drop_here.text(pitch_type);
+      drop_here.addClass("drop-here-dropped");
+
+      if (answer[option_id] == correct_answer[option_id]) {
+        drop_here.addClass("drop-here-correct");
+      } else {
+        drop_here.addClass("drop-here-incorrect");
+      }
+
+      matching_option_id = correct_answer[option_id];
+      for (const inside in options) {
+        if (options[inside]["optionId"] == matching_option_id) {
+          pitch_type = options[inside]["optionPitchType"];
+          break;
+        }
+      }
+      media_container.text(pitch_type);
+
+    }
     media_container.append(media_div, drop_here);
 
-    media_container.droppable({
-      classes: {
-        "ui-droppable-hover": "drop-here-hovered",
-      },
-      drop: function (event, ui) {
-        drop_here.addClass("drop-here-dropped");
+    if (!answered) {
+      media_container.droppable({
+        classes: {
+          "ui-droppable-hover": "drop-here-hovered",
+        },
+        drop: function (event, ui) {
+          setInfoText();
 
-        const drag_option_id = ui.draggable.data("option_id");
-        const drop_option_id = option_id;
+          drop_here.addClass("drop-here-dropped");
 
-        match_answers[drop_option_id] = drag_option_id;
+          const drag_option_id = ui.draggable.data("option_id");
+          const drop_option_id = option_id;
 
-        ui.draggable.addClass("invisible");
+          match_answers[drop_option_id] = drag_option_id;
 
-        drop_here.text(ui.draggable.text());
+          ui.draggable.addClass("invisible");
 
-        $(this).droppable({
-          accept: "",
-        });
-      },
-    });
+          drop_here.text(ui.draggable.text());
+
+          $(this).droppable({
+            accept: "",
+          });
+        },
+      });
+    }
 
     questions_div.append(media_container);
 
@@ -167,6 +200,11 @@ function genQuestionMatch(question) {
 
   for (const key in pitch_options) {
     let answer_div = $("<div>").addClass("answer-div answer-div-match");
+
+    if (answered) {
+      answer_div.addClass("invisible");
+    }
+
     if (pitch_options.length == 2) {
       answer_div.addClass("col-6");
     } else if (pitch_options.length == 3) {
@@ -175,12 +213,18 @@ function genQuestionMatch(question) {
     answer_div.text(pitch_options[key]["pitchType"]);
     answer_div.data("option_id", pitch_options[key]["optionId"]);
 
-    answer_div.draggable({ revert: "invalid" });
+    if (!answered) {
+      answer_div.draggable({ revert: "invalid" });
+    }
 
     answers_div.append(answer_div);
   }
 
-  container_div.append(questions_div, answers_div);
+  container_div.append(questions_div);
+
+  if (!answered) {
+    container_div.append(answers_div);
+  }
 
   return container_div;
 }
@@ -206,6 +250,16 @@ function genQuestionSelect(question) {
     let radio_container = $("<div>").addClass(
       "answer-div answer-div-select radio-container"
     );
+
+    if (answered) {
+      radio_container.addClass("answer-div-answered");
+      if (option_id == Number(correct_answer)) {
+        radio_container.addClass("answer-div-correct");
+      } else if (option_id == Number(answer)) {
+        radio_container.addClass("answer-div-incorrect");
+      }
+    }
+
     let btn_div = $("<div>").addClass("radio-item");
     btn_div.data("option_id", option_id);
     let btn_input = $("<input>").addClass("");
@@ -214,6 +268,14 @@ function genQuestionSelect(question) {
     btn_input.attr("name", "options");
     btn_input.attr("id", `${option["optionPitchType"]}`);
     btn_input.attr("autocomplete", "off");
+
+    btn_input.click(function () {
+      setInfoText();
+    });
+
+    if (answered) {
+      btn_input.attr("disabled", true);
+    }
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `${option["optionPitchType"]}`);
@@ -408,14 +470,14 @@ $(document).ready(function () {
   if (answered) {
     setNextButtonText("Next");
   } else {
-    setNextButtonText("Submit");
+    setNextButtonText("Check");
   }
 
   if (answered) {
     if (correct) {
       setInfoText("Correct!");
     } else {
-      setInfoText("Incorrect!");
+      setInfoText("Incorrect");
     }
   } else {
     setInfoText("");
@@ -423,6 +485,7 @@ $(document).ready(function () {
 
   if (!answered && question["questionType"] == "Match") {
     setNextButtonText("Reset");
+    setSecondButtonText("Check");
     $(nextButton).removeClass("button-accent");
     $(secondButton).addClass("button-accent");
   } else {
