@@ -117,6 +117,13 @@ function genQuestionMatch(question) {
     // drop_here.append(drop_here_text);
     media_container.append(media_div, drop_here);
 
+    $(media_container).droppable({
+      drop: function (event, ui) {
+        $(this).addClass("drop-here-dropped");
+        console.log("Dropped");
+      }
+    });
+
     questions_div.append(media_container);
 
     pitch_options.push({
@@ -125,7 +132,7 @@ function genQuestionMatch(question) {
     });
   }
 
-  let answers_div = $("<div>").addClass("answers-div row");
+  let answers_div = $("<div>").addClass("answers-div answers-div-match row");
 
   pitch_options = deterministicShuffle(pitch_options);
 
@@ -138,8 +145,12 @@ function genQuestionMatch(question) {
     }
     answer_div.text(pitch_options[key]["pitchType"]);
     answer_div.data("option_id", pitch_options[key]["optionId"]);
+
+    answer_div.draggable();
+
     answers_div.append(answer_div);
   }
+
 
   container_div.append(warning_div);
   container_div.append(questions_div, answers_div);
