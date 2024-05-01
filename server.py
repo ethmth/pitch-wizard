@@ -7,14 +7,11 @@ import uuid
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
 
-# HW10 Video - https://youtu.be/1TmIuiQQ9YM
-
 lessons = []
 questions = []
 correct_answers = {}
 
 # FUNCTIONS
-
 def log_route(session, remote_addr, route_name):
     current_time = datetime.datetime.now()
 
@@ -30,20 +27,23 @@ def log_route(session, remote_addr, route_name):
     session['page_entered'][route_name] = current_time
     session['session_timestamps'].append((route_name, remote_addr, current_time))
 
-    print("User", session['session_id'], f"({remote_addr})", "visited", route_name, "at", current_time)
+    with open("logs/page.txt", "a") as f:
+        f.write(f"({current_time}) User {session["session_id"]} ({remote_addr}) visited {route_name}.\n")
+
+    print(f"({current_time}) User {session["session_id"]} ({remote_addr}) visited {route_name}.")
 
 def log_quiz_finish(session, quiz_id, number_correct):
     current_time = datetime.datetime.now()
 
-    session_id = None
-    if "session_id" in session:
-        session_id = session["session_id"]
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
     
-    user_answers = session.get("answer_key")
-    if not user_answers:
-        user_answers = None
+    user_answers = get_answers(session, quiz_id)
 
-    print("User", session_id, "finished quiz, ")
+    with open("logs/quiz.txt", "a") as f:
+        f.write(f"({current_time}) User {session["session_id"]} finished quiz {quiz_id} with answers {user_answers} and {number_correct} correct.\n")
+
+    print(f"({current_time}) User {session["session_id"]} finished quiz {quiz_id} with answers {user_answers} and {number_correct} correct.")
 
 def read_json():
     global lessons
@@ -144,51 +144,21 @@ def print_answer_key(session):
 
 def get_answers(session, quiz_id):
     answer_key = session.get("answer_key")
-    # res = None
 
     if not answer_key:
         return {}
 
-    # new_answer_key = None
-    # if answer_key:
-    #     new_answer_key = answer_key.copy()
-
-    # if not new_answer_key:
-    #     new_answer_key = {}
-
     if not quiz_id in answer_key:
-        # new_answer_key[quiz_id] = {}
         return {}
     
-    # session["answer_key"] = new_answer_key
     return answer_key[quiz_id]
 
 def get_answer(session, quiz_id, question_id):
-    # get_answers(session, quiz_id)
-
-    # answer_key = session.get("answer_key")
-    # res = None
-
-    # new_answer_key = None
-    # if answer_key:
-    #     new_answer_key = answer_key.copy()
-
-    # if not new_answer_key:
-    #     new_answer_key = {}
-
-    # if not quiz_id in new_answer_key:
-    #     new_answer_key[quiz_id] = {}
-
-    res = None
-
     quiz_answer_key = get_answers(session, quiz_id)
-    if question_id in quiz_answer_key:
-        res = quiz_answer_key[question_id]
-    else:
-        res = None
+    if question_id not in quiz_answer_key:
+        return None
 
-    # session["answer_key"] = new_answer_key
-    return res
+    return quiz_answer_key[question_id]
 
 def set_answer(session, quiz_id, question_id, answer):
     answer_key = session.get("answer_key")
@@ -320,6 +290,8 @@ def http_error_handler(error):
 def check_answer():
     global questions
 
+    log_route(session, request.remote_addr, "/check_answer")
+
     try:
         json_data = request.get_json()
         user_answer = json_data['user_answer']
@@ -334,6 +306,8 @@ def check_answer():
 
 @app.route('/clear_session', methods=['GET', 'POST'])
 def clear_session():
+    log_route(session, request.remote_addr, "/clear_session")
+
     try:
         session.clear()
         return jsonify(success=True)
