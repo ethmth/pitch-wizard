@@ -2,6 +2,8 @@ from flask import Flask, session
 from flask import render_template, redirect
 from flask import Response, request, jsonify
 import json
+import datetime
+import uuid
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
 
@@ -12,6 +14,37 @@ questions = []
 correct_answers = {}
 
 # FUNCTIONS
+
+def log_route(session, remote_addr, route_name):
+    current_time = datetime.datetime.now()
+
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
+
+    if 'session_timestamps' not in session:
+        session['session_timestamps'] = []
+
+    if 'page_entered' not in session:
+        session['page_entered'] = {}
+
+    session['page_entered'][route_name] = current_time
+    session['session_timestamps'].append((route_name, remote_addr, current_time))
+
+    print("User", session['session_id'], f"({remote_addr})", "visited", route_name, "at", current_time)
+
+def log_quiz_finish(session, quiz_id, number_correct):
+    current_time = datetime.datetime.now()
+
+    session_id = None
+    if "session_id" in session:
+        session_id = session["session_id"]
+    
+    user_answers = session.get("answer_key")
+    if not user_answers:
+        user_answers = None
+
+    print("User", session_id, "finished quiz, ")
+
 def read_json():
     global lessons
     global questions
@@ -109,26 +142,52 @@ def print_answer_key(session):
     else:
         print(None)
 
-def get_answer(session, quiz_id, question_id):
+def get_answers(session, quiz_id):
     answer_key = session.get("answer_key")
+    # res = None
+
+    if not answer_key:
+        return {}
+
+    # new_answer_key = None
+    # if answer_key:
+    #     new_answer_key = answer_key.copy()
+
+    # if not new_answer_key:
+    #     new_answer_key = {}
+
+    if not quiz_id in answer_key:
+        # new_answer_key[quiz_id] = {}
+        return {}
+    
+    # session["answer_key"] = new_answer_key
+    return answer_key[quiz_id]
+
+def get_answer(session, quiz_id, question_id):
+    # get_answers(session, quiz_id)
+
+    # answer_key = session.get("answer_key")
+    # res = None
+
+    # new_answer_key = None
+    # if answer_key:
+    #     new_answer_key = answer_key.copy()
+
+    # if not new_answer_key:
+    #     new_answer_key = {}
+
+    # if not quiz_id in new_answer_key:
+    #     new_answer_key[quiz_id] = {}
+
     res = None
 
-    new_answer_key = None
-    if answer_key:
-        new_answer_key = answer_key.copy()
-
-    if not new_answer_key:
-        new_answer_key = {}
-
-    if not quiz_id in new_answer_key:
-        new_answer_key[quiz_id] = {}
-
-    if question_id in new_answer_key[quiz_id]:
-        res = new_answer_key[quiz_id][question_id]
+    quiz_answer_key = get_answers(session, quiz_id)
+    if question_id in quiz_answer_key:
+        res = quiz_answer_key[question_id]
     else:
         res = None
 
-    session["answer_key"] = new_answer_key
+    # session["answer_key"] = new_answer_key
     return res
 
 def set_answer(session, quiz_id, question_id, answer):
@@ -170,10 +229,14 @@ def calculate_number_correct(session, quiz_id):
 # ROUTES
 @app.route('/')
 def home():
-   return render_template('home.html')
+    log_route(session, request.remote_addr, "/")
+
+    return render_template('home.html')
 
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
+    log_route(session, request.remote_addr, f"/learn/{learn_id}")
+
     learn_id = str(learn_id)
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
@@ -212,16 +275,22 @@ def render_quiz(session, quiz_id, question_id:int):
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
+    log_route(session, request.remote_addr, f"/quiz/{question_id}")
+
     return render_quiz(session, "main", question_id)
 
 
 @app.route('/quiz/<quiz_id>/<int:question_id>')
 def quiz_general(quiz_id, question_id):
+    log_route(session, request.remote_addr, f"/quiz/{quiz_id}/{question_id}")
+
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
     total_questions = len(questions[quiz_id]["questions"])
     number_correct = calculate_number_correct(session, quiz_id)
+
+    log_quiz_finish(session, quiz_id, number_correct)
 
     return render_template('quiz_results.html',
         quiz_id=quiz_id,
@@ -230,14 +299,20 @@ def render_quiz_results(session, quiz_id):
 
 @app.route('/quiz_results')
 def quiz_results():
+    log_route(session, request.remote_addr, "/quiz_results")
+
     return render_quiz_results(session, "main")
 
 @app.route('/quiz_results/<quiz_id>')
 def quiz_results_general(quiz_id):
+    log_route(session, request.remote_addr, f"/quiz_results/{quiz_id}")
+
     return render_quiz_results(session, quiz_id)
 
 @app.errorhandler(404)
 def http_error_handler(error):
+    log_route(session, request.remote_addr, "404")
+
     return render_template("404.html"), 404
 
 # AJAX FUNCTIONS
