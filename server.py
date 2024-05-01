@@ -140,6 +140,11 @@ def set_answer(session, quiz_id, question_id, answer):
     new_answer_key[quiz_id][question_id] = answer
     session["answer_key"] = new_answer_key
 
+def is_correct(user_answer, correct_answer):
+    if user_answer == correct_answer:
+        return True
+    return False
+
 def calculate_number_correct(session, quiz_id):
     correct_count = 0
     for question_id in questions[quiz_id]["questions"]:
@@ -149,7 +154,7 @@ def calculate_number_correct(session, quiz_id):
         if not user_answer:
             continue
 
-        if user_answer == correct_answer:
+        if is_correct(user_answer, correct_answer):
             correct_count += 1
 
     return correct_count
@@ -185,6 +190,8 @@ def render_quiz(session, quiz_id, question_id):
     if user_answered:
         correct_answer = get_correct_answer(quiz_id, question_id)
 
+    correct = is_correct(user_answer, correct_answer)
+
     return render_template('quiz.html', 
         question=question,
         quiz_id=quiz_id,
@@ -192,7 +199,8 @@ def render_quiz(session, quiz_id, question_id):
         last_question=len(questions[quiz_id]["questions"]),
         answered=user_answered,
         answer=user_answer,
-        correct_answer=correct_answer)
+        correct_answer=correct_answer,
+        correct=correct)
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):

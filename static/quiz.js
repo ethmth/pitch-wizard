@@ -1,4 +1,5 @@
 // let checked = false;
+const slideInformation = "#slide-information";
 let checked = true;
 
 let match_answers = {};
@@ -39,7 +40,7 @@ function genQuestionIdentify(question) {
       radio_container.addClass("col-4");
     }
 
-    if(answered) {
+    if (answered) {
       radio_container.addClass("answer-div-answered");
       if (option_id == Number(correct_answer)) {
         radio_container.addClass("answer-div-correct");
@@ -57,9 +58,13 @@ function genQuestionIdentify(question) {
     btn_input.attr("id", `option-${option_id}`);
     btn_input.attr("autocomplete", "off");
 
-    if(answered) {
+    if (answered) {
       btn_input.attr("disabled", true);
     }
+
+    btn_input.click(function () {
+      setInfoText();
+    }) 
 
     let btn_label = $("<label>").addClass("");
     btn_label.attr("for", `option-${option_id}`);
@@ -265,10 +270,10 @@ function genQuestion(question) {
   $(slideDiv).append(question_div);
 }
 
-function checkIfAnswerSelected(question) {
-  // TODO Check if question is answered
-  return true;
-}
+// function checkIfAnswerSelected(question) {
+//   // TODO Check if question is answered
+//   return true;
+// }
 
 function sendAJAX(quiz_id, question_id, question, user_answer) {
   const request = {
@@ -285,8 +290,8 @@ function sendAJAX(quiz_id, question_id, question, user_answer) {
     data: JSON.stringify(request),
     success: function (response) {
       if (response["success"]) {
-        // window.location.reload(true);
-        nextPage(quiz_id, question_id);
+        window.location.reload(true);
+        // nextPage(quiz_id, question_id);
       } else {
         console.log("Error setting your answer");
       }
@@ -306,31 +311,41 @@ function sendAnswerRadio(quiz_id, question_id, question) {
   );
 
   if (!user_answer) {
-    user_answer = "unanswered";
+    return false;
   }
 
   sendAJAX(quiz_id, question_id, question, user_answer);
+
+  return true;
 }
 
 function sendAnswerMatch(quiz_id, question_id, question) {
   let user_answer = match_answers;
+
+  if (Object.keys(match_answers).length != question["options"].length) {
+    return false;
+  }
   sendAJAX(quiz_id, question_id, question, user_answer);
+
+  return true;
 }
 
 function sendAnswerSentence(quiz_id, question_id, question) {
   let user_answer = "unanswered";
   sendAJAX(quiz_id, question_id, question, user_answer);
+
+  return true;
 }
 
 function sendAnswer(quiz_id, question_id, question) {
   const questionType = question["questionType"];
 
   if (questionType == "Identify" || questionType == "Select") {
-    sendAnswerRadio(quiz_id, question_id, question);
+    return sendAnswerRadio(quiz_id, question_id, question);
   } else if (questionType == "Match") {
-    sendAnswerMatch(quiz_id, question_id, question);
+    return sendAnswerMatch(quiz_id, question_id, question);
   } else if (questionType == "Sentence") {
-    sendAnswerSentence(quiz_id, question_id, question);
+    return sendAnswerSentence(quiz_id, question_id, question);
   }
 }
 
@@ -356,8 +371,10 @@ function secondButtonClicked() {
 
 function nextButtonClicked(second = false) {
   console.log("Next button clicked");
+  console.log("Answered: " + answered);
 
-  if (!second && question["questionType"] == "Match") {
+  if (!answered && !second && question["questionType"] == "Match") {
+    console.log("Reloading");
     window.location.reload(true);
     return;
   }
@@ -365,13 +382,23 @@ function nextButtonClicked(second = false) {
   if (answered) {
     nextPage(quiz_id, question_id);
   } else {
-    let answer_selected = checkIfAnswerSelected(question);
-    if (answer_selected) {
-      sendAnswer(quiz_id, question_id, question);
-    } else {
-      showNextButtonErrorMessage("Please Answer the Question");
+    // let answer_selected = checkIfAnswerSelected(question);
+    // if (answer_selected) {
+    //   sendAnswer(quiz_id, question_id, question);
+    // } else {
+    if (!sendAnswer(quiz_id, question_id, question)) {
+      // showNextButtonErrorMessage("Please Answer the Question");
+      setInfoText("Please Answer the Question");
     }
   }
+}
+
+function setInfoText(new_text = "") {
+  let message = "";
+  if (new_text) {
+    message = new_text;
+  }
+  $(slideInformation).text(message);
 }
 
 $(document).ready(function () {
@@ -381,10 +408,20 @@ $(document).ready(function () {
   if (answered) {
     setNextButtonText("Next");
   } else {
-    setNextButtonText("Next");
+    setNextButtonText("Submit");
   }
 
-  if (question["questionType"] == "Match") {
+  if (answered) {
+    if (correct) {
+      setInfoText("Correct!");
+    } else {
+      setInfoText("Incorrect!");
+    }
+  } else {
+    setInfoText("");
+  }
+
+  if (!answered && question["questionType"] == "Match") {
     setNextButtonText("Reset");
     $(nextButton).removeClass("button-accent");
     $(secondButton).addClass("button-accent");

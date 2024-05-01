@@ -284,9 +284,9 @@ function setSecondButtonText(new_text) {
   $(secondButton).text(message);
 }
 
-function showNextButtonErrorMessage(message) {
-  console.log("showNextButtonErrorMessage: " + message);
-}
+// function showNextButtonErrorMessage(message) {
+//   console.log("showNextButtonErrorMessage: " + message);
+// }
 
 function clearSession(newPage = null) {
   let request = { clear: "me" };

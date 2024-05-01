@@ -10,11 +10,14 @@
   let answered = {{ answered | tojson}}
   let answer = {{ answer| tojson}}
   let correct_answer = {{ correct_answer| tojson}}
+  let correct = {{ correct| tojson}}
 </script>
 
 <div id="container-main" class="container container-main">
   <div class="row">
     <div id="slide"></div>
+    <h4 id="slide-information">
+    </h4>
     <div id="footer-holder" class="footer-holder"></div>
     <div id="footer" class="footer">
       <div class="container">
