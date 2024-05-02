@@ -17,11 +17,11 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #8fbce6; /* E5B876 ecdf8b*/
+  --highlight-color: #f5d78c; /* E5B876 ecdf8b*/
   --drop-color: #f3dfc1;
   --drop-color-light: rgb(245, 216, 176);
-  --correct-color: #4e6e5d; /* 00916E */
-  --incorrect-color: #823038; /* 780116 */
+  --correct-color: #2d8355; /* 00916E */
+  --incorrect-color: #af3440; /* 780116 */
 }
 
 /* Styles applied to all*/
@@ -552,35 +552,6 @@ video {
 .dropdown-incorrect {
   background: var(--incorrect-color);
   color: var(--white);
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: default;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  padding: 0.25em 0.5em;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 0.25em;
-  white-space: nowrap;
-  
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 100%;
-  transition-property: visibility;
-  transition-delay: 0s;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  transition-delay: 0.3s;
 }
 
 #clear-session-button {
