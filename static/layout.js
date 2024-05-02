@@ -91,7 +91,7 @@ function hideOverlay() {
 
 function setOverlay(media, option_id = -1, from_div = null) {
   $(overlay).empty();
-  let container_div = $("<div>").addClass("container container-main");
+  let container_div = $("<div>").addClass("container container-small container-main");
 
   let row_x = $("<div>").addClass("row media-close");
   let btn_div = $("<div>").addClass();
@@ -379,6 +379,7 @@ function genNavLinks(current = "") {
 }
 
 function handleResizeFooter() {
+  return;
   const container = document.getElementById("container-main");
   const container_height = container.getBoundingClientRect().bottom;
 
