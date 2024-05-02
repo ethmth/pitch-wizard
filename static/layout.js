@@ -61,22 +61,6 @@ async function setOverlayShown(new_value) {
   overlayShown = new_value;
 }
 
-// function showOverlay() {
-//   $(overlay).addClass("overlay-shown");
-//   $("body").css("pointer-events", "none");
-//   $(overlay).css("pointer-events", "auto");
-//   $(backdrop).addClass("backdrop-shown");
-//   setOverlayShown(true);
-// }
-
-// function hideOverlay() {
-//   overlayShown = false;
-//   $(overlay).removeClass("overlay-shown");
-//   $("body").css("pointer-events", "auto");
-//   $(overlay).css("pointer-events", "none");
-//   $(backdrop).removeClass("backdrop-shown");
-// }
-
 function setTransformOrigin(x = 0, y = 0) {
   $(overlay).css("transform-origin", `${x}px ${y}px`);
 }

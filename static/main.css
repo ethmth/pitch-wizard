@@ -301,55 +301,28 @@ video {
 
 /* Overlay */
 
-/* #overlay {
-  position: absolute;
-  z-index: 1000000;
-  display: none;
-
-  width: 100%;
-
-  align-items: center;
-  text-align: center;
-
-  video {
-    width: 100%;
-  }
-}
-
-#overlay.overlay-shown {
-  display: block;
-} */
-
 #overlay {
   position: absolute;
   z-index: 1000000;
-  display: none; /* Initially hidden */
+  display: none;
   width: 100%;
   align-items: center;
   text-align: center;
-  opacity: 0; /* Start fully transparent */
-  visibility: hidden;
-  transform: scale(0); /* Start scaled down */
-  transition: opacity var(--transition-duration) ease,
-    visibility 0s linear var(--transition-duration),
-    transform var(--transition-duration) ease;
+  transform: scale(0);
+  transition: transform var(--transition-duration) ease;
 
-  /* Ensure this is nested properly if using a preprocessor like SCSS */
   video {
     width: 100%;
   }
 }
 
 #overlay.overlay-shown {
-  display: flex; /* Changed to flex to use align-items */
-  opacity: 1;
-  visibility: visible;
-  transition: opacity var(--transition-duration) ease,
-    transform var(--transition-duration) ease;
+  display: flex;
+  transition: transform var(--transition-duration) ease;
 }
 
 #overlay.active {
-  transform: scale(1); /* Scale up to full size */
+  transform: scale(1);
 }
 
 #backdrop {
