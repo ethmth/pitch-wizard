@@ -1,6 +1,9 @@
 - Further testing
 - Create Video
-- Add timestamp tracking when user visits different routes.
 - Go back over docs for requirements.
+
+- Setup hosting
+
 - Pick better colors for selecting answers, showing what's correct, and drag & dropping
 - Explore making video fullscreen automatically when clicked on instead of (just) playing.
+- Add animation when overlay appears and disappears.

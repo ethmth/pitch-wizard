@@ -1,19 +1,19 @@
 {% extends "layout.html" %} {% block content %}
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'quiz_results.js') }}"></script>
-
-<script>
-  let quiz_id = {{ quiz_id| tojson}}
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename = '404.js') }}"></script>
 
 <div id="container-main" class="container container-main">
   <div class="row">
+    <h1 class="bfont">404: Page Not Found</h1>
+  </div>
+  <div class="row">
     <div id="slide">
-      <h2>Congratulations</h2>
-      <img alt="A gif of Bugs Bunny hitting a baseball back at the pitcher."
-        src="https://droplet.ethanmt.com/pitching/media/congratulations.gif" />
-      <h3>
-        You've completed Pitch Wizard with the score {{ number_correct }}/{{ total_questions }}.
+      <img alt="A baseball player sliding into another player's bum."
+        src="https://droplet.ethanmt.com/pitching/media/404.gif" />
+      <h3 class="">
+        You're not supposed to be here!
+        <br>
+        Redirecting in <span id="countdown">5</span> seconds...
       </h3>
     </div>
 
@@ -23,7 +23,7 @@
         <div class="footer-div">
           <div id="next-button-div">
             <button type="button" id="next-button" class="button button-bottom button-accent">
-              Restart
+              Home
             </button>
           </div>
         </div>

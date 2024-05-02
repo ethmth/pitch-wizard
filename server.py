@@ -2,16 +2,67 @@ from flask import Flask, session
 from flask import render_template, redirect
 from flask import Response, request, jsonify
 import json
-app = Flask(__name__)
-app.secret_key = "super_secret_key"
+import datetime
+import uuid
+import os
+import sys
 
-# HW10 Video - https://youtu.be/1TmIuiQQ9YM
+app = Flask(__name__)
+
+env_key = os.environ.get('PITCHWIZARD_KEY')
+print(env_key)
+if env_key:
+    app.secret_key = env_key
+else:
+    app.secret_key = "super_secret_key"
+
+env_proxy = os.environ.get('PITCHWIZARD_PROXY')
+if env_proxy:
+    try:
+        env_proxy = int(env_proxy)
+    except:
+        print("PITCHWIZARD_PROXY env variable should be 0 or 1")
+        sys.exit(1)
+    from werkzeug.middleware.proxy_fix import ProxyFix
+
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+    )
 
 lessons = []
 questions = []
 correct_answers = {}
 
 # FUNCTIONS
+def log_route(session, remote_addr, route_name):
+    current_time = datetime.datetime.now()
+
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
+
+    if 'session_timestamps' not in session:
+        session['session_timestamps'] = []
+
+    if 'page_entered' not in session:
+        session['page_entered'] = {}
+
+    session['page_entered'][route_name] = current_time
+    session['session_timestamps'].append((route_name, remote_addr, current_time))
+
+    with open("logs/page.txt", "a") as f:
+        f.write(f"({current_time}) User {session["session_id"]} ({remote_addr}) visited {route_name}.\n")
+
+def log_quiz_finish(session, quiz_id, number_correct):
+    current_time = datetime.datetime.now()
+
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
+    
+    user_answers = get_answers(session, quiz_id)
+
+    with open("logs/quiz.txt", "a") as f:
+        f.write(f"({current_time}) User {session["session_id"]} finished quiz {quiz_id} with answers {user_answers} and {number_correct} correct.\n")
+
 def read_json():
     global lessons
     global questions
@@ -109,27 +160,23 @@ def print_answer_key(session):
     else:
         print(None)
 
-def get_answer(session, quiz_id, question_id):
+def get_answers(session, quiz_id):
     answer_key = session.get("answer_key")
-    res = None
 
-    new_answer_key = None
-    if answer_key:
-        new_answer_key = answer_key.copy()
+    if not answer_key:
+        return {}
 
-    if not new_answer_key:
-        new_answer_key = {}
+    if not quiz_id in answer_key:
+        return {}
+    
+    return answer_key[quiz_id]
 
-    if not quiz_id in new_answer_key:
-        new_answer_key[quiz_id] = {}
+def get_answer(session, quiz_id, question_id):
+    quiz_answer_key = get_answers(session, quiz_id)
+    if question_id not in quiz_answer_key:
+        return None
 
-    if question_id in new_answer_key[quiz_id]:
-        res = new_answer_key[quiz_id][question_id]
-    else:
-        res = None
-
-    session["answer_key"] = new_answer_key
-    return res
+    return quiz_answer_key[question_id]
 
 def set_answer(session, quiz_id, question_id, answer):
     answer_key = session.get("answer_key")
@@ -149,8 +196,6 @@ def set_answer(session, quiz_id, question_id, answer):
     session["answer_key"] = new_answer_key
 
 def is_correct(user_answer, correct_answer):
-    print("is_correct: user_answer: ", user_answer)
-    print("is_correct: correct_answer: ", correct_answer)
     if user_answer == correct_answer:
         return True
     return False
@@ -172,25 +217,23 @@ def calculate_number_correct(session, quiz_id):
 # ROUTES
 @app.route('/')
 def home():
-   return render_template('home.html')
+    log_route(session, request.remote_addr, "/")
 
-@app.route('/test')
-def test():
-   return render_template('test.html')
+    return render_template('home.html')
 
 @app.route('/learn/<int:learn_id>')
 def learn(learn_id):
+    log_route(session, request.remote_addr, f"/learn/{learn_id}")
+
     learn_id = str(learn_id)
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
-
 
 def render_quiz(session, quiz_id, question_id:int):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
 
-    # print(questions[quiz_id]["questions"])
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
     user_answered = False
@@ -220,21 +263,22 @@ def render_quiz(session, quiz_id, question_id:int):
 
 @app.route('/quiz/<int:question_id>')
 def quiz(question_id):
+    log_route(session, request.remote_addr, f"/quiz/{question_id}")
+
     return render_quiz(session, "main", question_id)
 
 
 @app.route('/quiz/<quiz_id>/<int:question_id>')
 def quiz_general(quiz_id, question_id):
+    log_route(session, request.remote_addr, f"/quiz/{quiz_id}/{question_id}")
+
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
-    print("User Answers:")
-    print_answer_key(session)
-    print("Correct Answers:")
-    print(correct_answers)
-
     total_questions = len(questions[quiz_id]["questions"])
     number_correct = calculate_number_correct(session, quiz_id)
+
+    log_quiz_finish(session, quiz_id, number_correct)
 
     return render_template('quiz_results.html',
         quiz_id=quiz_id,
@@ -243,16 +287,28 @@ def render_quiz_results(session, quiz_id):
 
 @app.route('/quiz_results')
 def quiz_results():
+    log_route(session, request.remote_addr, "/quiz_results")
+
     return render_quiz_results(session, "main")
 
 @app.route('/quiz_results/<quiz_id>')
 def quiz_results_general(quiz_id):
+    log_route(session, request.remote_addr, f"/quiz_results/{quiz_id}")
+
     return render_quiz_results(session, quiz_id)
+
+@app.errorhandler(404)
+def http_error_handler(error):
+    log_route(session, request.remote_addr, "404")
+
+    return render_template("404.html"), 404
 
 # AJAX FUNCTIONS
 @app.route('/check_answer', methods=['GET', 'POST'])
 def check_answer():
     global questions
+
+    log_route(session, request.remote_addr, "/check_answer")
 
     try:
         json_data = request.get_json()
@@ -261,7 +317,6 @@ def check_answer():
         question_id = json_data['question_id']
 
         set_answer(session, quiz_id, question_id, user_answer)
-        print_answer_key(session)
 
         return jsonify(success=True)
     except:
@@ -269,18 +324,22 @@ def check_answer():
 
 @app.route('/clear_session', methods=['GET', 'POST'])
 def clear_session():
+    log_route(session, request.remote_addr, "/clear_session")
+
     try:
         session.clear()
         return jsonify(success=True)
     except:
         return jsonify(success=False)
 
+# SETUP
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+read_json()
+set_correct_answers()
+
 # DRIVER
 if __name__ == '__main__':
-    read_json()
-    set_correct_answers()
-    # print(correct_answers)
-    # print(questions)
     app.run(debug = True)
 
 
