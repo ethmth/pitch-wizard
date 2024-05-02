@@ -5,9 +5,29 @@ import json
 import datetime
 import uuid
 import os
+import sys
 
 app = Flask(__name__)
-app.secret_key = "super_secret_key"
+
+env_key = os.environ.get('PITCHWIZARD_KEY')
+print(env_key)
+if env_key:
+    app.secret_key = env_key
+else:
+    app.secret_key = "super_secret_key"
+
+env_proxy = os.environ.get('PITCHWIZARD_PROXY')
+if env_proxy:
+    try:
+        env_proxy = int(env_proxy)
+    except:
+        print("PITCHWIZARD_PROXY env variable should be 0 or 1")
+        sys.exit(1)
+    from werkzeug.middleware.proxy_fix import ProxyFix
+
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+    )
 
 lessons = []
 questions = []
@@ -312,12 +332,14 @@ def clear_session():
     except:
         return jsonify(success=False)
 
+# SETUP
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+read_json()
+set_correct_answers()
+
 # DRIVER
 if __name__ == '__main__':
-    if not os.path.exists("logs"):
-        os.makedirs("logs")
-    read_json()
-    set_correct_answers()
     app.run(debug = True)
 
 

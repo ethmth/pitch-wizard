@@ -1,0 +1,12 @@
+services:
+  pitchwizard:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8111:80"
+    volumes:
+      - ./deploy/logs:/app/pitch-wizard/logs
+    environment:
+      PITCHWIZARD_KEY: ${PITCHWIZARD_KEY}
+      PITCHWIZARD_PROXY: ${PITCHWIZARD_PROXY}
