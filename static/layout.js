@@ -363,7 +363,7 @@ $(document).ready(function () {
     handleResizeFooter();
   });
   $(clearSessionButton).click(function () {
-    clearSession();
+    clearSession("/");
   });
 
   $(document).keydown(function (e) {
