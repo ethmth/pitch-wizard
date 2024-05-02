@@ -4,5 +4,4 @@ COPY ./deploy/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . /app/pitch-wizard
 WORKDIR /app/pitch-wizard
-# CMD ["gunicorn", "server:app", "--bind", "0.0.0.0:80"]
-CMD ["sleep", "10000000"]
+CMD ["gunicorn", "server:app", "--bind", "0.0.0.0:80"]
