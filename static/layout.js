@@ -176,7 +176,7 @@ function genMediaDiv(
     video_container.append(slide_video);
   }
 
-  if (vids_in_row > 1) {
+  if (vids_in_row != 1) {
     let button_overlay = $("<div>").addClass("media-button-overlay");
     button_overlay.html("&#9658;");
     video_container.append(button_overlay);

@@ -118,7 +118,7 @@ function genQuestionMatch(question) {
 
     let media_div = genMediaDiv(
       option["optionMedia"],
-      1,
+      -1,
       option_id,
       false,
       true
