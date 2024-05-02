@@ -185,17 +185,26 @@ function genMediaDiv(
     }
   });
 
-  slide_video.click(function () {
-    if (slide_video.data("playing")) {
+  if (vids_in_row == 1) {
+    slide_video.click(function () {
+      if (slide_video.data("playing")) {
+        play_icon.removeClass("fa-pause");
+        play_icon.addClass("fa-play");
+        pauseVideo(slide_video);
+      } else {
+        play_icon.removeClass("fa-play");
+        play_icon.addClass("fa-pause");
+        playVideo(slide_video);
+      }
+    });
+  } else {
+    slide_video.click(function () {
       play_icon.removeClass("fa-pause");
       play_icon.addClass("fa-play");
       pauseVideo(slide_video);
-    } else {
-      play_icon.removeClass("fa-play");
-      play_icon.addClass("fa-pause");
-      playVideo(slide_video);
-    }
-  });
+      setOverlay(media, option_id, slide_video);
+    });
+  }
 
   let media_controls = $("<div>").addClass("media-controls row");
   media_controls.attr("id", `media-controls-${option_id}`);
@@ -273,7 +282,11 @@ function genMediaDiv(
 
   media_controls.append(after_div);
 
-  slide_col.append(media_controls);
+  if (vids_in_row == 1) {
+    slide_col.append(media_controls);
+  } else {
+    slide_video.addClass("radius-bottom");
+  }
 
   if (option_id >= 0) {
     slide_col.data("option_id", option_id);

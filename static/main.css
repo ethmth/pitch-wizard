@@ -93,6 +93,11 @@ video {
   border-top-left-radius: 30px;
 }
 
+.radius-bottom {
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
 /* General Classes */
 
 .bfont {
