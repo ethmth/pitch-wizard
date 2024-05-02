@@ -1,6 +1,0 @@
-- Further testing
-- Create Video
-- Go back over docs for requirements.
-
-- Explore making video fullscreen automatically when clicked on instead of (just) playing.
-- Add animation when overlay appears and disappears.

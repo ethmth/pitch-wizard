@@ -17,10 +17,10 @@ const TRANSITION_DURATION = 200;
 
 const navRoutes = {
   Intro: "/learn/0",
-  "Learn Fastball": "/learn/1",
-  "Learn Changeup": "/learn/2",
-  "Learn Curveball": "/learn/3",
-  "Learn Knuckleball": "/learn/4",
+  Fastball: "/learn/1",
+  Changeup: "/learn/2",
+  Curveball: "/learn/3",
+  Knuckleball: "/learn/4",
   Quiz: "/quiz/0",
 };
 
@@ -147,6 +147,7 @@ function genMediaDiv(
     slide_col.addClass("col-3");
   }
 
+  let video_container = $("<div>").addClass("relative");
   let slide_video = $("<video>").addClass("");
   let slide_source = $("<source>").addClass("");
 
@@ -165,15 +166,23 @@ function genMediaDiv(
 
   slide_video.append(slide_source);
   if (captionLocation == "bottom") {
-    slide_col.append(slide_video);
+    video_container.append(slide_video);
     if (media["caption"]) {
     }
   } else {
     if (media["caption"]) {
-      slide_col.append(slide_caption);
+      video_container.append(slide_caption);
     }
-    slide_col.append(slide_video);
+    video_container.append(slide_video);
   }
+
+  if (vids_in_row > 1) {
+    let button_overlay = $("<div>").addClass("media-button-overlay");
+    button_overlay.html("&#9658;");
+    video_container.append(button_overlay);
+  }
+
+  slide_col.append(video_container);
 
   slide_video.on("ended", function () {
     if (restart_on_end) {
@@ -286,6 +295,7 @@ function genMediaDiv(
     slide_col.append(media_controls);
   } else {
     slide_video.addClass("radius-bottom");
+    slide_video.addClass("cursor-pointer");
   }
 
   if (option_id >= 0) {
