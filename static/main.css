@@ -462,7 +462,7 @@ video {
 
 .radio-container input[type="radio"] {
   opacity: 0.01;
-  z-index: 100;
+  /* z-index: 100; */
 }
 
 .radio-container input[type="radio"]:checked + label,
@@ -474,10 +474,14 @@ video {
 .radio-container label {
   padding: 5px;
   border: 1px solid var(--dark-dark-grey);
-  z-index: 90;
+  /* z-index: 90; */
 }
 
 .radio-container input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.radio-container label:hover {
   cursor: pointer;
 }
 
