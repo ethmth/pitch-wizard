@@ -6,6 +6,7 @@
 :root {
   --footer-height: 60px;
   --main-border-radius: 100px;
+  --transition-duration: 0.2s;
   --base-color: #d9edbf;
   --base-color-dark: #d9edbf;
   --accent-color: #b99470;
@@ -300,7 +301,7 @@ video {
 
 /* Overlay */
 
-#overlay {
+/* #overlay {
   position: absolute;
   z-index: 1000000;
   display: none;
@@ -317,6 +318,38 @@ video {
 
 #overlay.overlay-shown {
   display: block;
+} */
+
+#overlay {
+  position: absolute;
+  z-index: 1000000;
+  display: none; /* Initially hidden */
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  opacity: 0; /* Start fully transparent */
+  visibility: hidden;
+  transform: scale(0); /* Start scaled down */
+  transition: opacity var(--transition-duration) ease,
+    visibility 0s linear var(--transition-duration),
+    transform var(--transition-duration) ease;
+
+  /* Ensure this is nested properly if using a preprocessor like SCSS */
+  video {
+    width: 100%;
+  }
+}
+
+#overlay.overlay-shown {
+  display: flex; /* Changed to flex to use align-items */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+}
+
+#overlay.active {
+  transform: scale(1); /* Scale up to full size */
 }
 
 #backdrop {

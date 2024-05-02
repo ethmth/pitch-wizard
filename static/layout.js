@@ -13,6 +13,8 @@ const slideNavigation = "#slide-navigation";
 
 const VIDEO_DOMAIN = "https://droplet.ethanmt.com/pitching/media/";
 
+const TRANSITION_DURATION = 200;
+
 const navRoutes = {
   Intro: "/learn/0",
   "Learn Fastball": "/learn/1",
@@ -59,8 +61,33 @@ async function setOverlayShown(new_value) {
   overlayShown = new_value;
 }
 
-function showOverlay() {
+// function showOverlay() {
+//   $(overlay).addClass("overlay-shown");
+//   $("body").css("pointer-events", "none");
+//   $(overlay).css("pointer-events", "auto");
+//   $(backdrop).addClass("backdrop-shown");
+//   setOverlayShown(true);
+// }
+
+// function hideOverlay() {
+//   overlayShown = false;
+//   $(overlay).removeClass("overlay-shown");
+//   $("body").css("pointer-events", "auto");
+//   $(overlay).css("pointer-events", "none");
+//   $(backdrop).removeClass("backdrop-shown");
+// }
+
+function setTransformOrigin(x = 0, y = 0) {
+  $(overlay).css("transform-origin", `${x}px ${y}px`);
+}
+
+function showOverlay(x = 0, y = 0) {
+  setTransformOrigin(x, y);
   $(overlay).addClass("overlay-shown");
+  setTimeout(function () {
+    $(overlay).addClass("active");
+  }, 10);
+
   $("body").css("pointer-events", "none");
   $(overlay).css("pointer-events", "auto");
   $(backdrop).addClass("backdrop-shown");
@@ -68,14 +95,17 @@ function showOverlay() {
 }
 
 function hideOverlay() {
-  overlayShown = false;
-  $(overlay).removeClass("overlay-shown");
-  $("body").css("pointer-events", "auto");
-  $(overlay).css("pointer-events", "none");
-  $(backdrop).removeClass("backdrop-shown");
+  $(overlay).removeClass("active");
+  setTimeout(function () {
+    $(overlay).removeClass("overlay-shown");
+    $("body").css("pointer-events", "auto");
+    $(overlay).css("pointer-events", "none");
+    $(backdrop).removeClass("backdrop-shown");
+    overlayShown = false;
+  }, TRANSITION_DURATION);
 }
 
-function setOverlay(media, option_id = -1) {
+function setOverlay(media, option_id = -1, from_div = null) {
   $(overlay).empty();
   let container_div = $("<div>").addClass("container container-main");
 
@@ -96,7 +126,14 @@ function setOverlay(media, option_id = -1) {
   container_div.append(row_div, row_x);
   $(overlay).append(container_div);
 
-  showOverlay();
+  let x_pos = 0;
+  let y_pos = 0;
+  if (from_div) {
+    const div_pos = $(from_div)[0].getBoundingClientRect();
+    x_pos = (div_pos.left + div_pos.right) / 2;
+    y_pos = (div_pos.top + div_pos.bottom) / 2;
+  }
+  showOverlay(x_pos, y_pos);
 }
 
 function genMediaDiv(
@@ -238,7 +275,7 @@ function genMediaDiv(
     play_icon.removeClass("fa-pause");
     play_icon.addClass("fa-play");
     pauseVideo(slide_video);
-    setOverlay(media, option_id);
+    setOverlay(media, option_id, slide_video);
   });
   fullscreen_div.append(fullscreen_button);
 
