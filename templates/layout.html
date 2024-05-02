@@ -8,9 +8,9 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
   <!-- jquery -->
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,7 +33,11 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
 
-      <a class="navbar-brand" href="/"><span class="bfont" id="navbar-title">Pitch Wizard</span></a>
+      <div class="margin-right">
+        <a class="navbar-brand" href="/"><span class="bfont" id="navbar-title">Pitch Wizard</span></a>
+        <button type="button" class="" id="clear-session-button" title="Reset Session"><i
+            class="fa fa-rotate-right"></i></button>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -41,14 +45,13 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav" id="nav-link-div">
           <a class="nav-link" href="/learn/0">Intro</a>
-          <a class="nav-link" href="/learn/1">Learn Fastball</a>
-          <a class="nav-link" href="/learn/2">Learn Changeup</a>
-          <a class="nav-link" href="/learn/3">Learn Curveball</a>
-          <a class="nav-link" href="/learn/4">Learn Knuckleball</a>
+          <a class="nav-link" href="/learn/1">Fastball</a>
+          <a class="nav-link" href="/learn/2">Changeup</a>
+          <a class="nav-link" href="/learn/3">Curveball</a>
+          <a class="nav-link" href="/learn/4">Knuckleball</a>
           <a class="nav-link" href="/quiz/0">Quiz</a>
         </div>
       </div>
-      <!-- <button type="button" class="btn btn-primary" id="clear-session-button">Clear Session</button> -->
     </div>
   </nav>
 

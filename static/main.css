@@ -6,6 +6,7 @@
 :root {
   --footer-height: 60px;
   --main-border-radius: 100px;
+  --transition-duration: 0.2s;
   --base-color: #d9edbf;
   --base-color-dark: #d9edbf;
   --accent-color: #b99470;
@@ -17,11 +18,11 @@
   --dark-dark-grey: rgb(34, 34, 34);
   --black: #000000;
   --white: #ffffff;
-  --highlight-color: #8fbce6; /* E5B876 ecdf8b*/
+  --highlight-color: #f5d78c; /* E5B876 ecdf8b*/
   --drop-color: #f3dfc1;
   --drop-color-light: rgb(245, 216, 176);
-  --correct-color: #4e6e5d; /* 00916E */
-  --incorrect-color: #823038; /* 780116 */
+  --correct-color: #2d8355; /* 00916E */
+  --incorrect-color: #af3440; /* 780116 */
 }
 
 /* Styles applied to all*/
@@ -92,6 +93,11 @@ video {
   border-top-left-radius: 30px;
 }
 
+.radius-bottom {
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
 /* General Classes */
 
 .bfont {
@@ -117,6 +123,18 @@ video {
 
 .bold {
   font-weight: bold;
+}
+
+.margin-right {
+  margin-right: 1rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.relative {
+  position: relative;
 }
 
 /* Bootstrap Overrides */
@@ -300,11 +318,11 @@ video {
   position: absolute;
   z-index: 1000000;
   display: none;
-
   width: 100%;
-
   align-items: center;
   text-align: center;
+  transform: scale(0);
+  transition: transform var(--transition-duration) ease;
 
   video {
     width: 100%;
@@ -312,7 +330,12 @@ video {
 }
 
 #overlay.overlay-shown {
-  display: block;
+  display: flex;
+  transition: transform var(--transition-duration) ease;
+}
+
+#overlay.active {
+  transform: scale(1);
 }
 
 #backdrop {
@@ -390,6 +413,28 @@ video {
   margin-top: 10px;
 }
 
+.media-button-overlay {
+  cursor: not-allowed;
+  pointer-events: none !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .radio-container {
   list-style-type: none;
   margin: 25px 0 0 0;
@@ -417,7 +462,7 @@ video {
 
 .radio-container input[type="radio"] {
   opacity: 0.01;
-  z-index: 100;
+  /* z-index: 100; */
 }
 
 .radio-container input[type="radio"]:checked + label,
@@ -429,10 +474,14 @@ video {
 .radio-container label {
   padding: 5px;
   border: 1px solid var(--dark-dark-grey);
-  z-index: 90;
+  /* z-index: 90; */
 }
 
 .radio-container input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.radio-container label:hover {
   cursor: pointer;
 }
 
@@ -548,4 +597,13 @@ video {
 .dropdown-incorrect {
   background: var(--incorrect-color);
   color: var(--white);
+}
+
+#clear-session-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
