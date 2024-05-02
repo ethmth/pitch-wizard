@@ -10,3 +10,4 @@ services:
     environment:
       PITCHWIZARD_KEY: ${PITCHWIZARD_KEY}
       PITCHWIZARD_PROXY: ${PITCHWIZARD_PROXY}
+    restart: unless-stopped
