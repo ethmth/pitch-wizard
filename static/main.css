@@ -7,7 +7,6 @@
   --footer-height: 60px;
   --main-border-radius: 100px;
   --transition-duration: 0.2s;
-  --size-cutoff: 992px;
   --base-color: #d9edbf;
   --base-color-dark: #d9edbf;
   --accent-color: #b99470;
@@ -64,24 +63,51 @@ h1 {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 24px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
 
 h2 {
   font-size: 32px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+@media (max-width: 1200px) {
+  h2 {
+    font-size: 20px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
 
 h3 {
-  font-size: 20px;
+  font-size: 24px;
   margin-left: 1rem;
   margin-right: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+@media (max-width: 1200px) {
+  h3 {
+    font-size: 18px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
 
 h4 {
   margin-top: 1rem;
-  font-size: 16px;
+  font-size: 20px;
+}
+@media (max-width: 1200px) {
+  h4 {
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }
 }
 
 br {
@@ -252,6 +278,12 @@ img {
   height: 450px;
 }
 
+@media (max-width: 1200px) {
+  .image-pitch-info {
+    height: 250px;
+  }
+}
+
 .option-input {
   width: 50px;
   background-color: red;
@@ -336,7 +368,7 @@ img {
   padding-bottom: 8px;
 }
 
-@media (max-width: var(--size-cutoff)) {
+@media (max-width: 1200px) {
   .button {
     font-size: 12px;
     width: 90px;
@@ -349,9 +381,9 @@ img {
   width: 110px;
 }
 
-@media (max-width: var(--size-cutoff)) {
+@media (max-width: 1200px) {
   .button.nav-button {
-    width: 70px;
+    width: 80px;
   }
 }
 
@@ -509,10 +541,10 @@ img {
   color: var(--dark-dark-grey);
 }
 
-@media (max-width: var(--size-cutoff)) {
+@media (max-width: 1200px) {
   .radio-container .radio-item {
-    width: 110px;
-    height: 40px;
+    width: 120px;
+    height: 36px;
   }
 }
 
@@ -565,9 +597,9 @@ img {
   font-size: 18px;
 }
 
-@media (max-width: var(--size-cutoff)) {
+@media (max-width: 1200px) {
   .answers-div-sentence {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -579,9 +611,9 @@ img {
   font-size: 24px;
 }
 
-@media (max-width: var(--size-cutoff)) {
-  .answers-div-sentence {
-    font-size: 18px;
+@media (max-width: 1200px) {
+  .answer-div {
+    font-size: 16px;
   }
 }
 
@@ -601,6 +633,14 @@ img {
   border: solid 1px var(--black);
 
   cursor: move;
+}
+
+@media (max-width: 1200px) {
+  .answer-div-match {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 50px;
+  }
 }
 
 .answer-div-select {
@@ -630,6 +670,11 @@ img {
 
   height: 100%;
 }
+@media (max-width: 1200px) {
+  .question-div-match {
+    font-size: 16px;
+  }
+}
 
 .drop-here {
   align-content: center;
@@ -651,6 +696,14 @@ img {
   align-content: center;
 
   border: solid 1px var(--black);
+}
+
+@media (max-width: 1200px) {
+  .drop-here-dropped {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 50px;
+  }
 }
 
 .drop-here-hovered {
