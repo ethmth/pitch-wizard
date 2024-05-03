@@ -101,40 +101,41 @@
       },
       "4": {
         "questionName": "Question 4",
-        "questionType": "Match",
-        "questionText": "Match these pitches to the correct video.",
-        "questionMedia": null,
-        "questionPitcher": "Spencer Strider, Atlanta Braves",
+        "questionType": "Select",
+        "questionText": "What is this pitch?",
+        "questionMedia": [
+          {
+            "mediaId": 1,
+            "filename": "Question7_JaredJones.mp4",
+            "caption": "Jared Jones, Pittsburgh Pirates",
+            "captionLocation": "bottom"
+          }
+        ],
+        "questionPitcher": null,
         "options": [
           {
             "optionId": 1,
-            "optionMedia": {
-              "filename": "Question4Option1_SpencerStrider.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
+            "optionMedia": null,
             "optionPitchType": "Fastball",
-            "optionCorrect": null
+            "optionCorrect": true
           },
           {
             "optionId": 2,
-            "optionMedia": {
-              "filename": "Question4Option2_SpencerStrider.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
+            "optionMedia": null,
             "optionPitchType": "Curveball",
-            "optionCorrect": null
+            "optionCorrect": false
           },
           {
             "optionId": 3,
-            "optionMedia": {
-              "filename": "Question4Option3_SpencerStrider.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
+            "optionMedia": null,
             "optionPitchType": "Changeup",
-            "optionCorrect": null
+            "optionCorrect": false
+          },
+          {
+            "optionId": 4,
+            "optionMedia": null,
+            "optionPitchType": "Knuckleball",
+            "optionCorrect": false
           }
         ]
       },
@@ -213,46 +214,6 @@
             },
             "optionPitchType": "Changeup",
             "optionCorrect": null
-          }
-        ]
-      },
-      "7": {
-        "questionName": "Question 7",
-        "questionType": "Select",
-        "questionText": "What is this pitch?",
-        "questionMedia": [
-          {
-            "mediaId": 1,
-            "filename": "Question7_JaredJones.mp4",
-            "caption": "Jared Jones, Pittsburgh Pirates",
-            "captionLocation": "bottom"
-          }
-        ],
-        "questionPitcher": null,
-        "options": [
-          {
-            "optionId": 1,
-            "optionMedia": null,
-            "optionPitchType": "Fastball",
-            "optionCorrect": true
-          },
-          {
-            "optionId": 2,
-            "optionMedia": null,
-            "optionPitchType": "Curveball",
-            "optionCorrect": false
-          },
-          {
-            "optionId": 3,
-            "optionMedia": null,
-            "optionPitchType": "Changeup",
-            "optionCorrect": false
-          },
-          {
-            "optionId": 4,
-            "optionMedia": null,
-            "optionPitchType": "Knuckleball",
-            "optionCorrect": false
           }
         ]
       }
@@ -389,74 +350,6 @@
           }
         ],
         "options": null
-      },
-      "3": {
-        "questionName": "Fastball Question 3",
-        "questionType": "Sentence",
-        "questionText": "Fill in the blanks.",
-        "questionMedia": [
-          {
-            "mediaId": 1,
-            "filename": "Fastball_MiniQuiz_Question3.mp4",
-            "caption": "Freddy Peralta, Milwaukee Brewers",
-            "captionLocation": "bottom"
-          }
-        ],
-        "questionPitcher": null,
-        "sentences": [
-          {
-            "sentenceId": 1,
-            "sentenceBefore": "This pitch ",
-            "sentenceAfter": "",
-            "sentenceOptions": [
-              {
-                "optionId": 1,
-                "optionName": "is",
-                "optionCorrect": true
-              },
-              {
-                "optionId": 2,
-                "optionName": "is NOT",
-                "optionCorrect": false
-              }
-            ]
-          },
-          {
-            "sentenceId": 2,
-            "sentenceBefore": " a Fastball because its trajectory is ",
-            "sentenceAfter": "",
-            "sentenceOptions": [
-              {
-                "optionId": 1,
-                "optionName": "Straight",
-                "optionCorrect": true
-              },
-              {
-                "optionId": 2,
-                "optionName": "Curved",
-                "optionCorrect": false
-              }
-            ]
-          },
-          {
-            "sentenceId": 3,
-            "sentenceBefore": " and its speed is ",
-            "sentenceAfter": " Fastball speed.",
-            "sentenceOptions": [
-              {
-                "optionId": 1,
-                "optionName": "Below",
-                "optionCorrect": false
-              },
-              {
-                "optionId": 2,
-                "optionName": "At",
-                "optionCorrect": true
-              }
-            ]
-          }
-        ],
-        "options": null
       }
     }
   },
@@ -467,26 +360,13 @@
         "questionName": "Changeup Question 1",
         "questionType": "Sentence",
         "questionText": "Fill in the blanks.",
-        "questionMedia": [
-          {
-            "mediaId": 1,
-            "filename": "Changeup_MiniQuiz_Question1Fastball.mp4",
-            "caption": null,
-            "captionLocation": "bottom"
-          },
-          {
-            "mediaId": 2,
-            "filename": "Changeup_MiniQuiz_Question1Changeup.mp4",
-            "caption": null,
-            "captionLocation": "bottom"
-          }
-        ],
+        "questionMedia": null,
         "questionPitcher": "Yusei Kikuchi, Toronto Blue Jays",
         "sentences": [
           {
             "sentenceId": 1,
             "sentenceBefore": "The Changeup is meant to throw off the batter's timing by being ",
-            "sentenceAfter": "",
+            "sentenceAfter": " than the Fastball.",
             "sentenceOptions": [
               {
                 "optionId": 1,
@@ -497,23 +377,6 @@
                 "optionId": 2,
                 "optionName": "Faster",
                 "optionCorrect": false
-              }
-            ]
-          },
-          {
-            "sentenceId": 2,
-            "sentenceBefore": " than the Fastball, which means the ",
-            "sentenceAfter": " pitch is a Changeup, and the other is a Fastball.",
-            "sentenceOptions": [
-              {
-                "optionId": 1,
-                "optionName": "Left",
-                "optionCorrect": false
-              },
-              {
-                "optionId": 2,
-                "optionName": "Right",
-                "optionCorrect": true
               }
             ]
           }
@@ -556,35 +419,6 @@
     "questions": {
       "1": {
         "questionName": "Curveball Question 1",
-        "questionType": "Match",
-        "questionText": "Match these pitches to the correct video.",
-        "questionMedia": null,
-        "questionPitcher": "Yoshinobu Yamamoto, Los Angeles Dodgers",
-        "options": [
-          {
-            "optionId": 1,
-            "optionMedia": {
-              "filename": "Curveball_MiniQuiz_Question1Option1.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
-            "optionPitchType": "Curveball",
-            "optionCorrect": null
-          },
-          {
-            "optionId": 2,
-            "optionMedia": {
-              "filename": "Curveball_MiniQuiz_Question1Option2.mp4",
-              "caption": null,
-              "captionLocation": null
-            },
-            "optionPitchType": "Fastball",
-            "optionCorrect": null
-          }
-        ]
-      },
-      "2": {
-        "questionName": "Curveball Question 2",
         "questionType": "Match",
         "questionText": "Match these pitches to the correct video.",
         "questionMedia": null,

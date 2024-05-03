@@ -182,7 +182,7 @@ $(document).ready(function () {
     setSecondButtonText("Next");
     setNextButtonText("Back");
   } else {
-    setSecondButtonText(`${lesson["lessonName"]} Quiz`);
+    setSecondButtonText(lesson["nextText"]);
   }
 
   renderCurrentSlide();
