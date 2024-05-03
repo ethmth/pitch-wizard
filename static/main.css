@@ -59,14 +59,29 @@ body {
 }
 
 h1 {
+  font-size: 36px;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 24px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
 
 h2 {
-  font-size: 36px;
+  font-size: 32px;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+@media (max-width: 1200px) {
+  h2 {
+    font-size: 20px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 h3 {
@@ -76,10 +91,23 @@ h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+@media (max-width: 1200px) {
+  h3 {
+    font-size: 18px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
 
 h4 {
   margin-top: 1rem;
-  font-size: 18px;
+  font-size: 20px;
+}
+@media (max-width: 1200px) {
+  h4 {
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }
 }
 
 br {
@@ -96,6 +124,11 @@ video {
 .radius-bottom {
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* General Classes */
@@ -138,6 +171,43 @@ video {
 }
 
 /* Bootstrap Overrides */
+
+@media (min-width: 576px) {
+  .container-small {
+    width: 400px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-small {
+    width: 550px;
+  }
+}
+@media (min-width: 992px) {
+  .container-small {
+    width: 650px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-small {
+    width: 850px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-small {
+    width: 960px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .container-small {
+    width: 1320px;
+  }
+}
+
+.container-small {
+  max-width: 100%;
+}
 
 /* Navbar */
 .navbar {
@@ -206,6 +276,12 @@ video {
   border: solid 5px var(--accent-color);
   border-radius: 10px;
   height: 450px;
+}
+
+@media (max-width: 1200px) {
+  .image-pitch-info {
+    height: 250px;
+  }
 }
 
 .option-input {
@@ -284,7 +360,7 @@ video {
 /* Buttons */
 
 .button {
-  font-size: 16px;
+  font-size: 14px;
   background-color: var(--light-grey);
   color: var(--white);
   width: 160px;
@@ -292,8 +368,23 @@ video {
   padding-bottom: 8px;
 }
 
+@media (max-width: 1200px) {
+  .button {
+    font-size: 12px;
+    width: 90px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
 .button.nav-button {
   width: 110px;
+}
+
+@media (max-width: 1200px) {
+  .button.nav-button {
+    width: 80px;
+  }
 }
 
 .button.media-button {
@@ -385,7 +476,7 @@ video {
   display: flex;
   flex: 3;
 
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .media-button {
@@ -450,6 +541,13 @@ video {
   color: var(--dark-dark-grey);
 }
 
+@media (max-width: 1200px) {
+  .radio-container .radio-item {
+    width: 120px;
+    height: 36px;
+  }
+}
+
 .radio-container label,
 .radio-container input {
   display: block;
@@ -496,7 +594,13 @@ video {
 
 .answers-div-sentence {
   margin-top: 1rem;
-  font-size: 22px;
+  font-size: 18px;
+}
+
+@media (max-width: 1200px) {
+  .answers-div-sentence {
+    font-size: 16px;
+  }
 }
 
 .answer-div {
@@ -505,6 +609,12 @@ video {
   justify-content: center;
 
   font-size: 24px;
+}
+
+@media (max-width: 1200px) {
+  .answer-div {
+    font-size: 16px;
+  }
 }
 
 .answer-div-match {
@@ -523,6 +633,14 @@ video {
   border: solid 1px var(--black);
 
   cursor: move;
+}
+
+@media (max-width: 1200px) {
+  .answer-div-match {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 50px;
+  }
 }
 
 .answer-div-select {
@@ -544,13 +662,18 @@ video {
 }
 
 .question-div-match {
-  font-size: 24px;
+  font-size: 20px;
   background-color: var(--drop-color);
 
   border: solid 1px var(--black);
   padding-top: 1rem;
 
   height: 100%;
+}
+@media (max-width: 1200px) {
+  .question-div-match {
+    font-size: 16px;
+  }
 }
 
 .drop-here {
@@ -573,6 +696,14 @@ video {
   align-content: center;
 
   border: solid 1px var(--black);
+}
+
+@media (max-width: 1200px) {
+  .drop-here-dropped {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 50px;
+  }
 }
 
 .drop-here-hovered {

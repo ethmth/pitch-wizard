@@ -4,10 +4,10 @@ let currentSlide = 0;
 
 const lessonToRoute = {
   Introduction: "Intro",
-  Fastball: "Learn Fastball",
-  Changeup: "Learn Changeup",
-  Curveball: "Learn Curveball",
-  Knuckleball: "Learn Knuckleball",
+  Fastball: "Fastball",
+  Changeup: "Changeup",
+  Curveball: "Curveball",
+  Knuckleball: "Knuckleball",
 };
 
 function previousSlide() {
