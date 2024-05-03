@@ -2,6 +2,8 @@
 
 **Try it here: [pitchwizard.lol](https://pitchwizard.lol)**
 
+**[Demo Video](https://youtu.be/Vy7uF103mDI)**
+
 > :warning: **Only tested on Chromium-based browsers.**
 
 Pitch Wizard is an interactive web app with examples and a quiz to teach users how to identify the differences between four baseball pitches: Fastball, Changeup, Curveball, and Knuckleball.
