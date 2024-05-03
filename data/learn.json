@@ -33,7 +33,7 @@
               "captionLocation": "bottom"
             }
           ],
-          "slideText": "To throw off the batter, pitchers throw different “types” of pitces.\nPitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
+          "slideText": "To throw off the batter, pitchers throw different “types” of pitches.\nPitch speed, or velocity, is often the best indicator of what type of pitch is thrown."
         },
         {
           "slideName": "Pitch Movement",
@@ -58,7 +58,7 @@
       "lessonName": "Fastball",
       "nextRoute": "/quiz/fastball/1",
       "nextBehavior": "lesson",
-      "nextText": "Next Pitch",
+      "nextText": "Fastball Quiz",
       "slides": [
         {
           "slideName": "Info",
@@ -120,7 +120,7 @@
       "lessonName": "Changeup",
       "nextRoute": "/quiz/changeup/1",
       "nextBehavior": "lesson",
-      "nextText": "Next Pitch",
+      "nextText": "Changeup Quiz",
       "slides": [
         {
           "slideName": "Info",
@@ -182,7 +182,7 @@
       "lessonName": "Curveball",
       "nextRoute": "/quiz/curveball/1",
       "nextBehavior": "lesson",
-      "nextText": "Next Pitch",
+      "nextText": "Curveball Quiz",
       "slides": [
         {
           "slideName": "Info",
@@ -242,9 +242,9 @@
     },
     "4": {
       "lessonName": "Knuckleball",
-      "nextRoute": "/quiz/knuckleball/1",
+      "nextRoute": "/quiz/0",
       "nextBehavior": "lesson",
-      "nextText": "Take Quiz",
+      "nextText": "Quiz",
       "slides": [
         {
           "slideName": "Info",

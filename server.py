@@ -226,6 +226,9 @@ def learn(learn_id):
     log_route(session, request.remote_addr, f"/learn/{learn_id}")
 
     learn_id = str(learn_id)
+    if learn_id not in lessons:
+        return render_template("404.html"), 404
+
     lesson = lessons[learn_id]
     return render_template('learn.html', lesson=lesson)
 
@@ -233,6 +236,11 @@ def render_quiz(session, quiz_id, question_id:int):
     question_id = str(question_id)
     if question_id == "0":
         return render_template('quiz_welcome.html')
+
+    if quiz_id not in questions:
+        return render_template("404.html"), 404
+    if question_id not in questions[quiz_id]["questions"]:
+        return render_template("404.html"), 404
 
     question = questions[quiz_id]["questions"][question_id]
     user_answer = get_answer(session, quiz_id, question_id)
@@ -275,6 +283,9 @@ def quiz_general(quiz_id, question_id):
     return render_quiz(session, quiz_id, question_id)
 
 def render_quiz_results(session, quiz_id):
+    if quiz_id not in questions:
+        return render_template("404.html"), 404
+
     total_questions = len(questions[quiz_id]["questions"])
     number_correct = calculate_number_correct(session, quiz_id)
 
