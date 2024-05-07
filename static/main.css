@@ -23,6 +23,7 @@
   --drop-color-light: rgb(245, 216, 176);
   --correct-color: #2d8355; /* 00916E */
   --incorrect-color: #af3440; /* 780116 */
+  --nav-bg: #f9e7cb;
 }
 
 /* Styles applied to all*/
@@ -211,8 +212,8 @@ img {
 
 /* Navbar */
 .navbar {
-  background-color: var(--white);
-  border: solid 4px var(--accent-color);
+  background-color: var(--nav-bg);
+  border: solid 1px var(--accent-color);
 }
 
 .nav-link {
