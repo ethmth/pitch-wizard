@@ -322,7 +322,7 @@ function genQuestionSentence(question) {
 
     let empty_option = $("<option>").addClass("");
     empty_option.attr("value", "");
-    empty_option.text("");
+    empty_option.text("SELECT");
     dropdown.append(empty_option);
 
     const options = sentences[i]["sentenceOptions"];
